@@ -25,11 +25,15 @@ export default class NavigationBar extends Component {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link" to="/managePassengers">Manage Passengers</Link>
+                                <Link className="nav-link" to="/manageInspectors">Manage Inspectors</Link>
                             </li>
 
                             <li className="nav-item">
                                 <Link className="nav-link" to="/manageAdmins">Manage Admins</Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/managePassengers">Manage Passengers</Link>
                             </li>
 
                             <li className="nav-item">
@@ -55,7 +59,7 @@ export default class NavigationBar extends Component {
                                 </div>
                             </div>
 
-                            <div className="form-inline my-2 my-lg-0" style={{marginLeft: 600}}>
+                            <div className="form-inline my-2 my-lg-0" style={{marginLeft: 550}}>
                                 <ul className="navbar-nav mr-auto">
                                     <div className="navbar-brand" onClick={this.userService.logout}>Log Out <i
                                         className="fa fa-sign-out" style={{margin: '12px'}}/>

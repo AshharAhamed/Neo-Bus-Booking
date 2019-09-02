@@ -33,12 +33,12 @@ export default class AdminList extends Component {
                 <table className="table  table-bordered table-hover table-striped ">
                     <thead>
                     <tr>
-                        <th><QueueAnim><div key="1">Username</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">First Name</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Last Name</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Email</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Phone</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Action</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Username</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">First Name</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Last Name</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Email</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Phone</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Action</div></QueueAnim></th>
                     </tr>
                     </thead>
                     <tbody>

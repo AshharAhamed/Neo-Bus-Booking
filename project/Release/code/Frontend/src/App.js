@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 
-import Navbar from './component/tab/NavBar';
+import NavBar from './component/tab/NavBar';
 import LoginPage from './component/login/login';
 import Footer from './component/tab/Footer'
 import ManagerHome from './component/manager/Home'
-import ManagePassengers from './component/manager/ManagePassengers'
+import ManageInspectors from './component/manager/ManageInspectors'
+import ManagePassengers from "./component/manager/ManagePassengers";
 import ManageAdmins from './component/manager/ManageAdmins'
 import AddManager from './component/manager/AddManager'
-import AddPassenger from './component/manager/AddPassenger'
+import AddPassenger from './component/manager/AddInspector'
 
 class App extends Component {
   constructor(props) {
@@ -25,14 +26,15 @@ class App extends Component {
     return (
         <Router>
           <div className="App">
-            <Navbar/>
+            <NavBar/>
 
             <Route exact path="/" component={LoginPage} />
             <Route exact path="/managerHome" component={ManagerHome} />
+            <Route exact path="/manageInspectors" component={ManageInspectors} />
             <Route exact path="/managePassengers" component={ManagePassengers} />
             <Route exact path="/manageAdmins" component={ManageAdmins} />
             <Route exact path="/addManager" component={AddManager} />
-            <Route exact path="/addPassenger" component={AddPassenger} />
+            <Route exact path="/addInspector" component={AddPassenger} />
 
             <Footer/>
           </div>

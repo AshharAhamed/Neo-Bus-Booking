@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ManagerService from '../../services/ManagerService'
 import {Link} from "react-router-dom";
 import QueueAnim from "rc-queue-anim";
+import Modal from "react-awesome-modal";
 
 export default class RegisterPassengerContainer extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ export default class RegisterPassengerContainer extends Component {
                 "email": this.state.Email,
                 "contact": this.state.Phone,
                 "password": this.state.Password,
-                "type": "Passenger"
+                "type": "Inspector"
             }).then(response => {
                 alert(response.data)
             }).catch(error => {
@@ -62,23 +63,23 @@ export default class RegisterPassengerContainer extends Component {
     }
 
     render() {
-        return <div className="container-contact100">
-            <div className="wrap-contact100">
-                <div className="form-inline my-2 my-lg-0">
+        return <div>
+            <div>
+                <div>
                     <ul className="navbar-nav mr-auto">
-                        <div className="navbar-brand"><Link className="navbar-brand" to="/managePassengers"><i
+                        <div className="navbar-brand"><Link className="navbar-brand" to="/manageInspectors"><i
                             className="fa fa-arrow-circle-left" style={{margin: '12px'}}/>Back
                         </Link></div>
                     </ul>
                 </div>
                 <QueueAnim>
                     <div key="1">
-                        <form className="contact100-form validate-form" onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmit}>
 				<span className="contact100-form-title">
-					Add Passenger
+					Add Inspector
 				</span>
                             <div className="wrap-input100 validate-input" data-validate="Name is required">
-                                <span className="label-input100">First Name</span>
+                                <span className="text-left">First Name</span>
                                 <input className="input100" type="text" required={true} value={this.state.FirstName}
                                        onChange={this.onChange} name="FirstName" placeholder="Daniel"/>
                                 <span className="focus-input100"/>

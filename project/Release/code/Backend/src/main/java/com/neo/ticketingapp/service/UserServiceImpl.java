@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private GeneralUtils generalUtils;
 
-    public UserServiceImpl(){
+    public UserServiceImpl() {
         this.generalUtils = new GeneralUtils();
     }
 
@@ -33,18 +33,18 @@ public class UserServiceImpl implements UserService {
         if (!userRepository.findByUsername(user.getUsername()).isEmpty())
             return "Username already exist !";
 
-        if(user.getUsername() == null)
+        if (user.getUsername() == null)
             return "Username cannot be Empty !";
-        if(!( result = generalUtils.isName(user.getFirstName(), "First Name")).equals("Valid"))
-            return  result;
-        if(!( result = generalUtils.isName(user.getLastName(), "Last Name")).equals("Valid"))
+        if (!(result = generalUtils.isName(user.getFirstName(), "First Name")).equals("Valid"))
             return result;
-        if(!( result = generalUtils.isEmail(user.getEmail())).equals("Valid"))
-            return  result;
-        if(!( result = generalUtils.isPhone(user.getContact())).equals("Valid"))
-            return  result;
-        if(!( result = generalUtils.isPassword(user.getPassword())).equals("Valid"))
-            return  result;
+        if (!(result = generalUtils.isName(user.getLastName(), "Last Name")).equals("Valid"))
+            return result;
+        if (!(result = generalUtils.isEmail(user.getEmail())).equals("Valid"))
+            return result;
+        if (!(result = generalUtils.isPhone(user.getContact())).equals("Valid"))
+            return result;
+        if (!(result = generalUtils.isPassword(user.getPassword())).equals("Valid"))
+            return result;
         user.setPassword(generalUtils.encryptPassword(user.getPassword()));
 
         userRepository.insert(user);
@@ -58,15 +58,15 @@ public class UserServiceImpl implements UserService {
         List<User> userById = userRepository.findByUsername(user.getUsername());
         String result;
         User updatedUser;
-        if((updatedUser = getUserByUsername(user.getUsername())) == null)
+        if ((updatedUser = getUserByUsername(user.getUsername())) == null)
             return "Username does not exist !";
 
-        if(!( result = generalUtils.isEmail(user.getEmail())).equals("Valid"))
-            return  result;
-        if(!( result = generalUtils.isPhone(user.getContact())).equals("Valid"))
-            return  result;
-        if(!( result = generalUtils.isPassword(user.getPassword())).equals("Valid"))
-            return  result;
+        if (!(result = generalUtils.isEmail(user.getEmail())).equals("Valid"))
+            return result;
+        if (!(result = generalUtils.isPhone(user.getContact())).equals("Valid"))
+            return result;
+        if (!(result = generalUtils.isPassword(user.getPassword())).equals("Valid"))
+            return result;
 
         updatedUser.setEmail(user.getEmail());
         updatedUser.setContact(user.getContact());
@@ -80,27 +80,30 @@ public class UserServiceImpl implements UserService {
     public User logUser(String username, String password) throws IllegalAccessException {
         logger.debug("Request received to logging to the system by {}", username);
 
-        if(username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty()) {
             return null;
         }
-        User user = getUserByUsername(username);
-        if(user.getPassword().equals(generalUtils.encryptPassword(password))) {
-            return user;
+
+        User user;
+        if ((user = getUserByUsername(username)) != null) {
+            if (user.getPassword().equals(generalUtils.encryptPassword(password))) {
+                return user;
+            }
         }
         return null;
     }
 
     @Override
     public void deleteUser(String username) throws IllegalAccessException {
-        logger.debug("Request received to delete the {}",username);
+        logger.debug("Request received to delete the {}", username);
         User user = getUserByUsername(username);
         userRepository.delete(user);
-        logger.info("{} is successfully deleted",username);
+        logger.info("{} is successfully deleted", username);
     }
 
     private User getUserByUsername(String username) throws IllegalAccessException {
         List<User> userList = userRepository.findByUsername(username);
-        if(userList == null || userList.size() == 0) {
+        if (userList == null || userList.size() == 0) {
             throw new IllegalAccessException("User does not Exist !");
         }
         return userList.get(0);
@@ -108,7 +111,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String userId) {
-        logger.debug("Request received to get the User with Id - {}",userId);
+        logger.debug("Request received to get the User with Id - {}", userId);
         Optional<User> userById = userRepository.findById(userId);
         return userById.get();
     }
@@ -122,15 +125,15 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(newPassword);
         userRepository.save(user);
-        logger.info("Password is reset for {}",username);
+        logger.info("Password is reset for {}", username);
     }
 
     @Override
     public List<User> getAllUsers(String userType) {
-        if(userType.toString().equals("All"))
+        if (userType.toString().equals("All"))
             return userRepository.findAll();
-        else if (UserType.Passenger.toString().equals(userType))
-            return userRepository.findByType(UserType.Passenger);
+        else if (UserType.Inspector.toString().equals(userType))
+            return userRepository.findByType(UserType.Inspector);
         else if (UserType.Manager.toString().equals(userType))
             return userRepository.findByType(UserType.Manager);
         return null;

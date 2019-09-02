@@ -7,10 +7,11 @@ export default class TicketingService {
         this.userService = new UserService();
     }
 
+//----------------------------------Passenger Functions ----------------------------------------------------------------
     //render all Passengers
     getAllPassengers() {
         return new Promise((resolve, reject) => {
-            this.apiService.get("user/getAllUsers/Passenger").then(response => {
+            this.apiService.get("passenger/getAllPassengers/All").then(response => {
                 resolve(response);
             }).catch(error => {
                 reject(error);
@@ -18,7 +19,20 @@ export default class TicketingService {
         })
     }
 
-    //render all Passengers
+    //delete a Passenger
+    deletePassenger(cardID) {
+        return new Promise((resolve, reject) => {
+            this.apiService.delete("passenger/delete/" + cardID).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+//----------------------------------Manager Functions ----------------------------------------------------------------
+
+    //render all Managers
     getAllManagers() {
         return new Promise((resolve, reject) => {
             this.apiService.get("user/getAllUsers/Manager").then(response => {
@@ -29,7 +43,7 @@ export default class TicketingService {
         })
     }
 
-    //render all Passengers
+    //delete a User
     deleteUser(userName) {
         return new Promise((resolve, reject) => {
             this.apiService.delete("user/delete/" + userName).then(response => {
@@ -40,9 +54,23 @@ export default class TicketingService {
         })
     }
 
+    //add a User - Inspector or Manager
     addUser(data) {
         return new Promise((resolve, reject) => {
             this.apiService.post("user/add", data).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+//----------------------------------Inspector Functions ----------------------------------------------------------------
+
+    //render all Inspectors
+    getAllInspectors() {
+        return new Promise((resolve, reject) => {
+            this.apiService.get("user/getAllUsers/Inspector").then(response => {
                 resolve(response);
             }).catch(error => {
                 reject(error);

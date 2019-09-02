@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import OnePassenger from "./onePassenger"
-import TicketService from '../../../../services/ManagerService'
+import ManagerService from '../../../../services/ManagerService'
 import QueueAnim from "rc-queue-anim";
 
 export default class PassengerList extends Component {
@@ -9,11 +9,11 @@ export default class PassengerList extends Component {
         this.state = {
             passengers: []
         };
-        this.ticketService = new TicketService();
+        this.managerService = new ManagerService();
     }
 
     componentDidMount() {
-        this.ticketService.getAllPassengers().then(response => {
+        this.managerService.getAllPassengers().then(response => {
             this.setState({passengers: response.data});
         }).catch(function (error) {
             console.log(error);
@@ -33,12 +33,15 @@ export default class PassengerList extends Component {
                 <table className="table  table-bordered table-hover table-striped ">
                     <thead>
                     <tr>
-                        <th><QueueAnim><div key="1">Username</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">First Name</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Last Name</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Email</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Phone</div></QueueAnim></th>
-                        <th><QueueAnim><div key="1">Action</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Card No</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Name</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Email</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Phone</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Type</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">NIC/Passport ID</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Credit Balance</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Loan Amount</div></QueueAnim></th>
+                        <th className="text-center"><QueueAnim><div key="1">Action</div></QueueAnim></th>
                     </tr>
                     </thead>
                     <tbody>

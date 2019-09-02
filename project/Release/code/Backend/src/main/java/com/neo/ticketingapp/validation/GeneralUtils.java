@@ -1,6 +1,7 @@
 package com.neo.ticketingapp.validation;
 
 import java.security.MessageDigest;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,5 +75,15 @@ public class GeneralUtils {
             e.printStackTrace();
         }
         return generatedPassword;
+    }
+
+    public String isCardNo(String cardNo){
+        String regex = "^[0-9]{4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cardNo);
+        if(matcher.matches())
+            return "Valid";
+        else
+            return "Card is Invalid !";
     }
 }
