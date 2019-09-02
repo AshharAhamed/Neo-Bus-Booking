@@ -1,6 +1,9 @@
 package com.neo.ticketingapp.controller;
 
+import com.neo.ticketingapp.entity.GeneralUser;
+import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.model.User;
+import com.neo.ticketingapp.service.interfaces.PassengerService;
 import com.neo.ticketingapp.service.interfaces.UserService;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PassengerService passengerService;
 
     @PostMapping(value = "/add")
     public ResponseEntity<String> userRegistration(@RequestBody User user) {
@@ -65,11 +70,25 @@ public class UserController {
     }
 
     @PostMapping(value = "/log")
-    public ResponseEntity<User> logUser(@RequestBody User user) {
+    public ResponseEntity<GeneralUser> logUser(@RequestBody GeneralUser generalUser) {
         logger.debug("Request received from user to logging to the system");
         try {
-            if (user != null) {
-                return new ResponseEntity<>(userService.logUser(user.getUsername(), user.getPassword()), HttpStatus.OK);
+            if (generalUser != null) {
+                User user;
+                if ((user = userService.logUser(generalUser.getUsername(), generalUser.getPassword())) != null){
+                    generalUser.setPassword("");
+                    generalUser.setType(user.getType().toString());
+                    return new ResponseEntity<>(generalUser, HttpStatus.OK);
+                }else{
+                    Passenger passenger;
+                    if((passenger = passengerService.logPassenger(generalUser.getUsername(), generalUser.getPassword())) != null){
+                        generalUser.setPassword("");
+                        generalUser.setType(passenger.getType().toString());
+                        return new ResponseEntity<>(generalUser, HttpStatus.OK);
+                    }else{
+                        return new ResponseEntity<>(null, HttpStatus.OK);
+                    }
+                }
             }
         } catch (IllegalArgumentException ex) {
             logger.info(ex.getMessage());

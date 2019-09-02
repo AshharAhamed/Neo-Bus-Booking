@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 
+import UserService from "./services/UserService";
 import NavBar from './component/tab/NavBar';
 import LoginPage from './component/login/login';
 import Footer from './component/tab/Footer'
@@ -13,14 +14,15 @@ import AddManager from './component/manager/AddManager'
 import AddInspector from './component/manager/AddInspector'
 import AddPassenger from "./component/manager/AddPassenger";
 
+import InspectorHome from "./component/inspector/Home";
+
+import PassengerHome from "./component/passenger/Home";
+import PassengerProfile from "./component/passenger/Profile";
+import PassengerAccount from "./component/passenger/Account";
+
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.userService = new UserService();
-    // this.state = {
-    //   isLoggedIn: this.userService.isLoggedIn,
-    //   userType: this.userService.Type
-    // };
   }
 
   render() {
@@ -37,6 +39,12 @@ class App extends Component {
             <Route exact path="/addManager" component={AddManager} />
             <Route exact path="/addInspector" component={AddInspector} />
             <Route exact path="/addPassenger" component={AddPassenger} />
+
+            <Route exact path="/inspectorHome" component={InspectorHome} />
+
+            <Route exact path="/passengerHome" component={PassengerHome} />
+            <Route exact path="/passengerProfile" component={PassengerProfile} />
+            <Route exact path="/passengerAccount" component={PassengerAccount} />
 
             <Footer/>
           </div>

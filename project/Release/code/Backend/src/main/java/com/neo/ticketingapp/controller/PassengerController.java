@@ -67,4 +67,16 @@ public class PassengerController {
         logger.debug("Request received to get all Service users");
         return passengerService.getAllPassengers(type);
     }
+
+    @GetMapping(value = "/getPassenger/{cardNo}")
+    public ResponseEntity<Passenger> getPassenger(@PathVariable String cardNo) {
+        logger.debug("Request received to get Passenger");
+        return new ResponseEntity<>( passengerService.getPassenger(cardNo), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/getPassengerAccount/{cardNo}")
+    public ResponseEntity<Passenger> getPassengerAccount(@PathVariable String cardNo) {
+        logger.debug("Request received to get Passenger Account");
+        return new ResponseEntity<>( passengerService.getPassenger(cardNo), HttpStatus.OK);
+    }
 }

@@ -16,5 +16,11 @@ public interface PassengerService {
 
     List<Passenger> getAllPassengers(String userType);
 
-    public Passenger getPassengerByCardId(String cardID) throws IllegalAccessException;
+    public Passenger getPassengerByCardNo(String cardID) throws IllegalAccessException;
+
+    Passenger logPassenger(String cardNo, String nic) throws IllegalAccessException;
+
+    public Passenger getPassenger(String cardNo);
+
+    public Passenger getPassengerAccount(String cardNo);
 }

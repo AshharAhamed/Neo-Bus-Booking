@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
     private User getUserByUsername(String username) throws IllegalAccessException {
         List<User> userList = userRepository.findByUsername(username);
         if (userList == null || userList.size() == 0) {
-            throw new IllegalAccessException("User does not Exist !");
+            return null;
         }
         return userList.get(0);
     }

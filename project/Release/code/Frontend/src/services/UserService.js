@@ -7,8 +7,10 @@ export default class UserService {
             alert('Login Successful !');
             if (Type === 'Manager')
                 window.location.href = "/managerHome";
-            else if (Type === 'Passenger')
-                window.location.href = "/";
+            else if (Type === 'Inspector')
+                window.location.href = "/inspectorHome";
+            else if (Type === 'Local' || Type === 'Foreign')
+                window.location.href = "/passengerHome";
     }
 
     get Type(){

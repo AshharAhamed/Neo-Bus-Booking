@@ -26,9 +26,9 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public String insertPassenger(Passenger passenger){
-        logger.debug("Request to add New User received by the System");
+        logger.debug("Request to add New Passenger received by the System");
         String result;
-        if((getPassengerByCardId(passenger.getCardNo())) != null)
+        if((getPassengerByCardNo(passenger.getCardNo())) != null)
             return "Card already exist !";
         if (!(result = generalUtils.isName(passenger.getFirstName(), "First Name")).equals("Valid"))
             return result;
@@ -53,8 +53,8 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public String updatePassengerDetails(Passenger passenger) {
         logger.debug("Request to Update {} received by the System", passenger.getCardNo());
-        Passenger passengerById = getPassengerByCardId(passenger.getCardNo());
-        if((passengerById = getPassengerByCardId(passenger.getCardNo())) != null){
+        Passenger passengerById = getPassengerByCardNo(passenger.getCardNo());
+        if((passengerById = getPassengerByCardNo(passenger.getCardNo())) != null){
             String result;
             if (!(result = generalUtils.isEmail(passenger.getEmail())).equals("Valid"))
                 return result;
@@ -71,7 +71,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger getPassengerByCardId(String cardID){
+    public Passenger getPassengerByCardNo(String cardID){
         logger.debug("Request received to get the Passenger with Card Id - {}", cardID);
         List<Passenger> passengerList = passengerRepository.findByCardNo(cardID);
         if (passengerList == null || passengerList.size() == 0) {
@@ -82,7 +82,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public String deletePassenger(String cardID) throws IllegalAccessException {
-        Passenger passengerById = getPassengerByCardId(cardID);
+        Passenger passengerById = getPassengerByCardNo(cardID);
         if(passengerById != null){
             passengerRepository.delete(passengerById);
             logger.info("{} is successfully deleted", cardID);
@@ -106,5 +106,34 @@ public class PassengerServiceImpl implements PassengerService {
         else if (PassengerType.Foreign.toString().equals(userType))
             return passengerRepository.findByType(PassengerType.Foreign);
         return null;
+    }
+
+    public Passenger logPassenger(String cardNo, String nic) throws IllegalAccessException {
+        logger.debug("Request received to logging to the system by {}", cardNo);
+
+        if (cardNo.isEmpty() || nic.isEmpty()) {
+            return null;
+        }
+
+        Passenger passenger;
+        if ((passenger = getPassengerByCardNo(cardNo)) != null) {
+            if (passenger.getNic().equals(nic)) {
+                return passenger;
+            }else if (passenger.getPassport().equals(nic)){
+                return passenger;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Passenger getPassenger(String cardNo){
+        return getPassengerByCardNo(cardNo);
+    }
+
+    @Override
+    public Passenger getPassengerAccount(String cardNo){
+        Passenger passenger = getPassengerByCardNo(cardNo);
+        return passenger;
     }
 }
