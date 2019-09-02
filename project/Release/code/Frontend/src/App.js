@@ -10,7 +10,8 @@ import ManageInspectors from './component/manager/ManageInspectors'
 import ManagePassengers from "./component/manager/ManagePassengers";
 import ManageAdmins from './component/manager/ManageAdmins'
 import AddManager from './component/manager/AddManager'
-import AddPassenger from './component/manager/AddInspector'
+import AddInspector from './component/manager/AddInspector'
+import AddPassenger from "./component/manager/AddPassenger";
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends Component {
   render() {
     return (
         <Router>
-          <div className="App">
+          <div>
             <NavBar/>
 
             <Route exact path="/" component={LoginPage} />
@@ -34,7 +35,8 @@ class App extends Component {
             <Route exact path="/managePassengers" component={ManagePassengers} />
             <Route exact path="/manageAdmins" component={ManageAdmins} />
             <Route exact path="/addManager" component={AddManager} />
-            <Route exact path="/addInspector" component={AddPassenger} />
+            <Route exact path="/addInspector" component={AddInspector} />
+            <Route exact path="/addPassenger" component={AddPassenger} />
 
             <Footer/>
           </div>

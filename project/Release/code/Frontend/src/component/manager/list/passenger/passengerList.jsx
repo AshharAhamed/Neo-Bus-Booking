@@ -29,7 +29,6 @@ export default class PassengerList extends Component {
     render() {
         return (
             <div>
-                <h4>Registered Passengers </h4>
                 <table className="table  table-bordered table-hover table-striped ">
                     <thead>
                     <tr>

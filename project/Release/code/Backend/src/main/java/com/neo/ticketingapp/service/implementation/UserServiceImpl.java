@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.service;
+package com.neo.ticketingapp.service.implementation;
 
 import com.neo.ticketingapp.enums.UserType;
 import com.neo.ticketingapp.model.User;
@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUserDetails(User user) throws IllegalAccessException {
         logger.debug("Request to Update {} received by the System", user.getUsername());
-        List<User> userById = userRepository.findByUsername(user.getUsername());
         String result;
         User updatedUser;
         if ((updatedUser = getUserByUsername(user.getUsername())) == null)

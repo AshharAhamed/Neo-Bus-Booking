@@ -29,7 +29,6 @@ export default class AdminList extends Component {
     render() {
         return (
             <div>
-                <h4>Registered Managers </h4>
                 <table className="table  table-bordered table-hover table-striped ">
                     <thead>
                     <tr>

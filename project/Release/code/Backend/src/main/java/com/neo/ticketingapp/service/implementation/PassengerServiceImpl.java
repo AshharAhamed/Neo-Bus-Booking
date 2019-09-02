@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.service;
+package com.neo.ticketingapp.service.implementation;
 
 import com.neo.ticketingapp.enums.PassengerType;
 import com.neo.ticketingapp.model.Passenger;

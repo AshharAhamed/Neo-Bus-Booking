@@ -41,14 +41,14 @@ export default class LoginContainer extends Component {
 				</span>
 
 
-                    <div className="wrap-input100 validate-input" data-validate="Name is required">
+                    <div className="login-wrap-input100 validate-input" data-validate="Name is required">
                         <span className="label-input100">Username</span>
                         <input className="input100" type="text" required={true} value={this.state.Username}
                                onChange={this.onChange} name="Username"/>
                         <span className="focus-input100"/>
                     </div>
 
-                    <div className="wrap-input100 validate-input" data-validate="Name is required">
+                    <div className="login-wrap-input100 validate-input" data-validate="Name is required">
                         <span className="label-input100">Password</span>
                         <input className="input100" type="password" required={true} value={this.state.Password}
                                onChange={this.onChange} name="Password"/>
