@@ -81,6 +81,8 @@ export default class PassengerProfile extends Component {
                 <div className="container p-2" style={{paddingBottom: '500px'}}>
                     <form onSubmit={this.onSubmit}>
                         <QueueAnim duration="1000" interval="400">
+                            <span className="contact100-form-title float-lg-left">My Profile</span>
+                            <br/><br/><br/><br/>
 
                             <div key="1" className="wrap-input100 validate-input" data-validate="Name is required">
                                 <span className="label-input100">Account ID : </span>

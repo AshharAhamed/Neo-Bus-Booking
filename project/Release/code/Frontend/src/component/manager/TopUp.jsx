@@ -6,7 +6,7 @@ export default class AdminTopUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            travelCardID : '',
+            travelCardID: '',
             amount: ''
         };
         this.managerService = new ManagerService();
@@ -23,7 +23,7 @@ export default class AdminTopUp extends Component {
 
     clearForm(e) {
         this.setState({
-            travelCardID : '',
+            travelCardID: '',
             amount: ''
         });
     }
@@ -31,10 +31,10 @@ export default class AdminTopUp extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.managerService.topUpPassenger(this.state.travelCardID, {
-            "amount" : this.state.amount
-        }).then( response => {
+            "amount": this.state.amount
+        }).then(response => {
             alert(response.data)
-        }).catch( error => {
+        }).catch(error => {
             console.log(error)
         })
     }
@@ -42,8 +42,13 @@ export default class AdminTopUp extends Component {
     render() {
         return (
             <div>
+
                 <div className="container p-2" style={{paddingBottom: '500px'}}>
                     <form onSubmit={this.onSubmit}>
+
+                        <span className="contact100-form-title float-lg-left">Top Up Passenger Credits</span>
+                        <br/><br/><br/><br/>
+
                         <QueueAnim duration="1000" interval="400">
 
                             <div key="1" className="wrap-input100 validate-input" data-validate="Name is required">

@@ -77,6 +77,8 @@ export default class PassengerTopUp extends Component {
                 <div className="container p-2" style={{paddingBottom: '500px'}}>
                     <form onSubmit={this.onSubmit}>
                         <QueueAnim duration="1000" interval="400">
+                            <span className="contact100-form-title float-lg-left">Top Up</span>
+                            <br/><br/><br/><br/>
 
                             <div key="1" className="wrap-input100 validate-input float-sm-left" data-validate="Name is required">
                                 <span className="label-input100">Amount : </span>
@@ -85,7 +87,7 @@ export default class PassengerTopUp extends Component {
                                 <span className="focus-input100"/>
                             </div>
 
-                            <div className="input100-select" style={{marginLeft : "800px", marginTop : "100px"}}>
+                            <div className="input100-select" style={{marginLeft : "800px", marginTop : "10px"}}>
                                 <span className="label-input100">Select Card</span><br/>
                                 <div>
                                     <Select onChange={this.handleChange}  value={selectedCard} options={this.state.cardOptions} />

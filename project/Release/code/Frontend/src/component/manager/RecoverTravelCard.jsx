@@ -44,6 +44,9 @@ export default class RecoverTravelCard extends Component {
             <div>
                 <div className="container p-2" style={{paddingBottom: '500px'}}>
                     <form onSubmit={this.onSubmit}>
+                        <span className="contact100-form-title float-lg-left">Recover Passenger Travel Card</span>
+                        <br/><br/><br/><br/>
+
                         <QueueAnim duration="1000" interval="400">
 
                             <div key="1" className="wrap-input100 validate-input" data-validate="Name is required">
