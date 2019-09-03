@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers(String userType) {
-        if (userType.toString().equals("All"))
+        if (userType.equals("All"))
             return userRepository.findAll();
         else if (UserType.Inspector.toString().equals(userType))
             return userRepository.findByType(UserType.Inspector);

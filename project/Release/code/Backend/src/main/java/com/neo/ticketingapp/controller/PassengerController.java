@@ -116,7 +116,6 @@ public class PassengerController {
     public ResponseEntity<String> topUp(@PathVariable String travelCardNo, @RequestBody JSONObject sampleObject) {
         logger.debug("Request received to top up a passenger in the system");
         try {
-            System.out.println(sampleObject.get("test"));
             if (travelCardNo != null) {
                 double amount = Double.valueOf(sampleObject.get("amount").toString()) ;
                 return new ResponseEntity<>(passengerService.topUp(travelCardNo, sampleObject.get("paymentCardNo").toString(), amount), HttpStatus.CREATED);

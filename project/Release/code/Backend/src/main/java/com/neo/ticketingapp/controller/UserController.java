@@ -8,6 +8,7 @@ import com.neo.ticketingapp.service.interfaces.UserService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -104,5 +105,33 @@ public class UserController {
     public List<User> getServiceUsers(@PathVariable String type) {
         logger.debug("Request received to get all Service users");
         return userService.getAllUsers(type);
+    }
+
+    @PostMapping(value = "/topUp/{travelCardNo}")
+    public ResponseEntity<String> topUp(@PathVariable String travelCardNo, @RequestBody JSONObject sampleObject) {
+        logger.debug("Request received to top up a passenger in the system");
+        try {
+            if (travelCardNo != null) {
+                double amount = Double.valueOf(sampleObject.get("amount").toString()) ;
+                return new ResponseEntity<>(passengerService.topUpByCash(travelCardNo, amount), HttpStatus.CREATED);
+            }
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>("Object is Empty", HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(value = "/recover/{nic}")
+    public ResponseEntity<String> recoverTravelCard(@PathVariable String nic, @RequestBody JSONObject sampleObject) {
+        logger.debug("Request received to recover a passenger in the system");
+        try {
+            if (nic != null) {
+                String travelCardID = sampleObject.get("travelCardID").toString();
+                return new ResponseEntity<>(passengerService.recoverTravelCard(nic, travelCardID), HttpStatus.CREATED);
+            }
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>("Object is Empty", HttpStatus.NO_CONTENT);
     }
 }

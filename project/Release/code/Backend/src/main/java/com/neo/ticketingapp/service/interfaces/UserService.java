@@ -18,4 +18,5 @@ public interface UserService {
     User logUser(String username, String password) throws IllegalAccessException;
 
     List<User> getAllUsers(String userType);
+
 }

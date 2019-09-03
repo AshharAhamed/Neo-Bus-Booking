@@ -33,4 +33,12 @@ public interface PassengerService {
     public ArrayList<String> getCards(String travelCardNo);
 
     public String topUp(String travelCardNo, String paymentCardNo, double amount);
+
+    public String topUpByCash(String travelCardNo, double amount) throws IllegalAccessException;
+
+    public String recoverTravelCard(String nic, String travelCardNo) throws IllegalAccessException;
+
+    public Passenger getPassengerByPassport(String Passport);
+
+    public Passenger getPassengerByNIC(String NIC);
 }

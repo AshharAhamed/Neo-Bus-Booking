@@ -10,4 +10,6 @@ import java.util.List;
 public interface PassengerRepository extends MongoRepository<Passenger,String> {
     List<Passenger> findByCardNo(String cardNo);
     List<Passenger> findByType(PassengerType type);
+    List<Passenger> findByNic(String nic);
+    List<Passenger> findByPassport(String passport);
 }

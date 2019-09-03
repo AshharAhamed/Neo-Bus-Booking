@@ -41,6 +41,26 @@ export default class TicketingService {
         })
     }
 
+    topUpPassenger(travelCardNo, data) {
+        return new Promise((resolve, reject) => {
+            this.apiService.post("user/topUp/" + travelCardNo, data).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    recoverTravelCard(nic, data) {
+        return new Promise((resolve, reject) => {
+            this.apiService.post("user/recover/" + nic, data).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
 //----------------------------------Manager Functions ----------------------------------------------------------------
 
     //render all Managers

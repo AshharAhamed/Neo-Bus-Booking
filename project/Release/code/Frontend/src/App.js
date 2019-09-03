@@ -5,14 +5,17 @@ import './App.css';
 import UserService from "./services/UserService";
 import NavBar from './component/tab/NavBar';
 import LoginPage from './component/login/login';
-import Footer from './component/tab/Footer'
-import ManagerHome from './component/manager/Home'
-import ManageInspectors from './component/manager/ManageInspectors'
+import Footer from './component/tab/Footer';
+
+import ManagerHome from './component/manager/Home';
+import ManageInspectors from './component/manager/ManageInspectors';
 import ManagePassengers from "./component/manager/ManagePassengers";
-import ManageAdmins from './component/manager/ManageAdmins'
-import AddManager from './component/manager/AddManager'
-import AddInspector from './component/manager/AddInspector'
+import ManageAdmins from './component/manager/ManageAdmins';
+import AddManager from './component/manager/AddManager';
+import AddInspector from './component/manager/AddInspector';
 import AddPassenger from "./component/manager/AddPassenger";
+import TopUp from './component/manager/TopUp'
+import RecoverTravelCard from "./component/manager/RecoverTravelCard";
 
 import InspectorHome from "./component/inspector/Home";
 
@@ -41,6 +44,8 @@ class App extends Component {
             <Route exact path="/addManager" component={AddManager} />
             <Route exact path="/addInspector" component={AddInspector} />
             <Route exact path="/addPassenger" component={AddPassenger} />
+            <Route exact path="/topUpPassenger" component={TopUp} />
+            <Route exact path="/recoverCard" component={RecoverTravelCard} />
 
             <Route exact path="/inspectorHome" component={InspectorHome} />
 

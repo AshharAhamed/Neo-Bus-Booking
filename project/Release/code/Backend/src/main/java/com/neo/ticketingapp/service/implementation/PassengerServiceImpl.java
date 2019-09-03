@@ -7,6 +7,7 @@ import com.neo.ticketingapp.repository.CardRepository;
 import com.neo.ticketingapp.repository.PassengerRepository;
 import com.neo.ticketingapp.service.interfaces.CardService;
 import com.neo.ticketingapp.service.interfaces.PassengerService;
+import com.neo.ticketingapp.service.interfaces.PaymentService;
 import com.neo.ticketingapp.validation.GeneralUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -146,7 +147,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public String addCard(String travelCardNo, Card card) throws IllegalAccessException {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
-        if(cardService.getCardByCardNo(card.getCardNo()) == null) {
+        if (cardService.getCardByCardNo(card.getCardNo()) == null) {
             List<Card> cardList = new ArrayList<Card>();
             if ((cardList = passenger.getCardList()).isEmpty()) {
                 cardList = new ArrayList<Card>();
@@ -156,21 +157,21 @@ public class PassengerServiceImpl implements PassengerService {
             passengerRepository.save(passenger);
             cardService.insertCard(card);
             return "Card added Successfully !";
-        }else
+        } else
             return "Card Already Exist !";
     }
 
     @Override
-    public String deleteCard(String travelCardNo, String cardNo){
+    public String deleteCard(String travelCardNo, String cardNo) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
-        if(cardService.getCardByCardNo(cardNo) != null) {
+        if (cardService.getCardByCardNo(cardNo) != null) {
             List<Card> cardList = new ArrayList<Card>();
             if ((cardList = passenger.getCardList()).isEmpty()) {
                 cardList = new ArrayList<Card>();
             }
             int index = 0;
-            for (Card cardTemp: cardList) {
-                if(cardTemp.getCardNo().equals(cardNo)) {
+            for (Card cardTemp : cardList) {
+                if (cardTemp.getCardNo().equals(cardNo)) {
                     cardList.remove(index);
                     break;
                 }
@@ -180,12 +181,12 @@ public class PassengerServiceImpl implements PassengerService {
             passengerRepository.save(passenger);
             cardService.deleteCard(cardNo);
             return "Card deleted Successfully !";
-        }else
+        } else
             return "Card does not Exist !";
     }
 
     @Override
-    public ArrayList<String> getCards(String travelCardNo){
+    public ArrayList<String> getCards(String travelCardNo) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
         List<Card> cardList = new ArrayList<Card>();
         ArrayList<String> cardNameList = new ArrayList<String>();
@@ -193,23 +194,74 @@ public class PassengerServiceImpl implements PassengerService {
         if ((cardList = passenger.getCardList()).isEmpty()) {
             cardList = new ArrayList<Card>();
         }
-        for (Card cardTemp: cardList) {
+        for (Card cardTemp : cardList) {
             cardNameList.add(cardTemp.getCardNo());
         }
         return cardNameList;
     }
 
     @Override
-    public String topUp(String travelCardNo, String paymentCardNo, double amount){
+    public String topUp(String travelCardNo, String paymentCardNo, double amount) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
-        if(passenger != null){
-            if(cardService.getCardByCardNo(paymentCardNo) != null){
-                passenger.setCreditBalance(passenger.getCreditBalance() + amount);
-                passengerRepository.save(passenger);
-                return "Account Topped Up Succesfully !";
+        if (passenger != null) {
+            Card card;
+            if ((card = cardService.getCardByCardNo(paymentCardNo)) != null) {
+                PaymentService paymentService = new PaymentServiceImpl();
+                if ((paymentService.processPayment(paymentCardNo, card.getCcNo(), amount))) {
+                    passenger.setCreditBalance(passenger.getCreditBalance() + amount);
+                    passengerRepository.save(passenger);
+                    return "Account Topped Up Successfully !";
+                }
+                return "Sorry ! Transaction Failed";
             }
             return "Payment Card not Found !";
         }
         return "Passenger not Found !";
+    }
+
+    @Override
+    public String topUpByCash(String travelCardNo, double amount) throws IllegalAccessException {
+        Passenger passenger = getPassengerByCardNo(travelCardNo);
+        if (passenger != null) {
+            passenger.setCreditBalance(passenger.getCreditBalance() + amount);
+            passengerRepository.save(passenger);
+            return "Account Topped Up Successfully !";
+        }
+        return "Passenger not Found !";
+    }
+
+    @Override
+    public Passenger getPassengerByNIC(String NIC) {
+        logger.debug("Request received to get the Passenger with NIC - {}", NIC);
+        List<Passenger> passengerList = passengerRepository.findByNic(NIC);
+        if (passengerList == null || passengerList.size() == 0) {
+            return null;
+        }
+        return passengerList.get(0);
+    }
+
+    @Override
+    public Passenger getPassengerByPassport(String Passport) {
+        logger.debug("Request received to get the Passenger with Passport - {}", Passport);
+        List<Passenger> passengerList = passengerRepository.findByPassport(Passport);
+        if (passengerList == null || passengerList.size() == 0) {
+            return null;
+        }
+        return passengerList.get(0);
+    }
+
+    @Override
+    public String recoverTravelCard(String nic, String travelCardNo) throws IllegalAccessException {
+        Passenger passenger;
+        if ((passenger = getPassengerByNIC(nic)) != null) {
+            passenger.setCardNo(travelCardNo);
+            passengerRepository.save(passenger);
+            return "New Travel Card No is " + travelCardNo;
+        } else if ((passenger = getPassengerByPassport(nic)) != null) {
+            passenger.setCardNo(travelCardNo);
+            passengerRepository.save(passenger);
+            return "New Travel Card No is " + travelCardNo;
+        } else
+            return "Passenger not Found !";
     }
 }
