@@ -4,6 +4,7 @@ import com.neo.ticketingapp.enums.PassengerType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,10 @@ public class Passenger {
     private double creditBalance;
     private double loanAmount;
     private List<Card> cardList;
+
+    public Passenger(){
+        this.cardList = new ArrayList<Card>();
+    }
 
     public String getLastName() {
         return lastName;

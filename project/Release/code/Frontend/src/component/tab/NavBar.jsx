@@ -129,7 +129,7 @@ export default class NavigationBar extends Component {
                                                 Passenger Services
                                             </Link>
                                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <Link className="dropdown-item" to="/">Account Top-Up</Link>
+                                                <Link className="dropdown-item" to="/passengerTopUp">Account Top-Up</Link>
                                                 <Link className="dropdown-item" to="/">Recover Card</Link>
                                             </div>
                                         </div>

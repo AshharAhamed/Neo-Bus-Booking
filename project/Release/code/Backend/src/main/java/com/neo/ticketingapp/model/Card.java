@@ -9,6 +9,7 @@ import java.util.Date;
 public class Card {
 
     @Id
+    private String cardId;
     private String cardNo;
     private Date expiryDate;
     private String ccNo;
@@ -19,6 +20,14 @@ public class Card {
 
     public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public Date getExpiryDate() {

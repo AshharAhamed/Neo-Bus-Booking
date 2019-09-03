@@ -1,7 +1,9 @@
 package com.neo.ticketingapp.service.interfaces;
 
+import com.neo.ticketingapp.model.Card;
 import com.neo.ticketingapp.model.Passenger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface PassengerService {
@@ -23,4 +25,12 @@ public interface PassengerService {
     public Passenger getPassenger(String cardNo);
 
     public Passenger getPassengerAccount(String cardNo);
+
+    public String addCard(String travelCardNo, Card card) throws IllegalAccessException;
+
+    public String deleteCard(String travelCardNo, String cardNo);
+
+    public ArrayList<String> getCards(String travelCardNo);
+
+    public String topUp(String travelCardNo, String paymentCardNo, double amount);
 }

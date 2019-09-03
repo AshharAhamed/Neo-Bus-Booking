@@ -19,6 +19,8 @@ import InspectorHome from "./component/inspector/Home";
 import PassengerHome from "./component/passenger/Home";
 import PassengerProfile from "./component/passenger/Profile";
 import PassengerAccount from "./component/passenger/Account";
+import AddPassengerCard from "./component/passenger/AddCard";
+import PassengerTopUp from "./component/passenger/TopUp";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +47,8 @@ class App extends Component {
             <Route exact path="/passengerHome" component={PassengerHome} />
             <Route exact path="/passengerProfile" component={PassengerProfile} />
             <Route exact path="/passengerAccount" component={PassengerAccount} />
+            <Route exact path="/addPassengerCard" component={AddPassengerCard} />
+            <Route exact path="/passengerTopUp" component={PassengerTopUp} />
 
             <Footer/>
           </div>

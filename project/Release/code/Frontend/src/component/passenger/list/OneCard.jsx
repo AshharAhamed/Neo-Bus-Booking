@@ -1,18 +1,22 @@
 import React, {Component} from 'react'
+import PassengerService from "../../../services/PassengerService";
+import UserService from "../../../services/UserService";
 
 class OneCard extends Component {
     constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
+        this.passengerService = new PassengerService();
+        this.userService = new UserService();
     }
 
     delete() {
-        // this.ticketService.deleteUser(this.props.obj.username).then(response => {
-        //     alert(response.data);
-        //     window.location.reload();
-        // }).catch(err => {
-        //     console.log(err)
-        // })
+        this.passengerService.deleteCard(this.userService.username, this.props.obj.cardNo).then(response => {
+            alert(response.data);
+            window.location.reload();
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     render() {

@@ -3,6 +3,8 @@ import PassengerService from '../../services/PassengerService'
 import UserService from "../../services/UserService";
 import QueueAnim from "rc-queue-anim";
 import OneCard from "./list/OneCard";
+import Ripples from "react-ripples";
+import {Button} from "react-bootstrap";
 
 export default class PassengerAccount extends Component {
     constructor(props) {
@@ -93,7 +95,16 @@ export default class PassengerAccount extends Component {
                             </div>
 
                             <div>
-                                Cards
+                                My Cards
+
+                                <div key="1" className="col-lg mt-3" style={{marginBottom: "10px"}}>
+                                    <Ripples>
+                                        <Button className="btn btn-success" onClick={() => {
+                                            window.location.href = "/addPassengerCard";
+                                        }}>Add Card <i className="fa fa-credit-card"/></Button>
+                                    </Ripples>
+                                </div>
+
                                 <table className="table  table-bordered table-hover table-striped ">
                                     <thead>
                                     <tr>
