@@ -37,7 +37,7 @@ export default class NavigationBar extends Component {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Manage Routes</Link>
+                                <Link className="nav-link" to="/manageRoutes">Manage Routes</Link>
                             </li>
 
                             <li className="nav-item">

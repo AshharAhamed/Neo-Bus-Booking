@@ -108,4 +108,30 @@ export default class TicketingService {
             })
         })
     }
+
+//----------------------------------Route Functions ----------------------------------------------------------------
+
+    //add a Route
+    addRoute(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService.post("route/add", data).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    //render all Routes
+    getAllRoutes() {
+        return new Promise((resolve, reject) => {
+            this.apiService.get("route/getAllRoutes").then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
 }
+

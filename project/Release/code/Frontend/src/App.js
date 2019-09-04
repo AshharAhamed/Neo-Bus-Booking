@@ -14,8 +14,10 @@ import ManageAdmins from './component/manager/ManageAdmins';
 import AddManager from './component/manager/AddManager';
 import AddInspector from './component/manager/AddInspector';
 import AddPassenger from "./component/manager/AddPassenger";
+import AddRoute from "./component/manager/AddRoute";
 import TopUp from './component/manager/TopUp'
 import RecoverTravelCard from "./component/manager/RecoverTravelCard";
+import ManageRoutes from "./component/manager/ManageRoutes";
 
 import InspectorHome from "./component/inspector/Home";
 
@@ -41,9 +43,12 @@ class App extends Component {
             <Route exact path="/manageInspectors" component={ManageInspectors} />
             <Route exact path="/managePassengers" component={ManagePassengers} />
             <Route exact path="/manageAdmins" component={ManageAdmins} />
+            <Route exact path="/manageRoutes" component={ManageRoutes} />
             <Route exact path="/addManager" component={AddManager} />
             <Route exact path="/addInspector" component={AddInspector} />
             <Route exact path="/addPassenger" component={AddPassenger} />
+            <Route exact path="/addRoute" component={AddRoute} />
+
             <Route exact path="/topUpPassenger" component={TopUp} />
             <Route exact path="/recoverCard" component={RecoverTravelCard} />
 

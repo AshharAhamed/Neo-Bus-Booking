@@ -4,6 +4,15 @@ public class GeneralUser {
     private String username;
     private String password;
     private String type;
+    private String loginFlag;
+
+    public String getLoginFlag() {
+        return loginFlag;
+    }
+
+    public void setLoginFlag(String loginFlag) {
+        this.loginFlag = loginFlag;
+    }
 
     public String getType() {
         return type;

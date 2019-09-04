@@ -72,22 +72,25 @@ public class UserController {
 
     @PostMapping(value = "/log")
     public ResponseEntity<GeneralUser> logUser(@RequestBody GeneralUser generalUser) {
-        logger.debug("Request received from user to logging to the system");
+        logger.info("Request received from user to logging to the system");
         try {
             if (generalUser != null) {
                 User user;
                 if ((user = userService.logUser(generalUser.getUsername(), generalUser.getPassword())) != null){
                     generalUser.setPassword("");
                     generalUser.setType(user.getType().toString());
+                    generalUser.setLoginFlag("true");
                     return new ResponseEntity<>(generalUser, HttpStatus.OK);
                 }else{
                     Passenger passenger;
                     if((passenger = passengerService.logPassenger(generalUser.getUsername(), generalUser.getPassword())) != null){
                         generalUser.setPassword("");
                         generalUser.setType(passenger.getType().toString());
+                        generalUser.setLoginFlag("true");
                         return new ResponseEntity<>(generalUser, HttpStatus.OK);
                     }else{
-                        return new ResponseEntity<>(null, HttpStatus.OK);
+                        generalUser.setLoginFlag("false");
+                        return new ResponseEntity<>(generalUser, HttpStatus.OK);
                     }
                 }
             }
