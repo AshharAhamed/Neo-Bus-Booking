@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import ManagerService from '../../services/ManagerService'
 import QueueAnim from "rc-queue-anim";
 import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import Ripples from "react-ripples";
 
 export default class AddRoute extends Component {
     constructor(props) {
@@ -10,11 +12,14 @@ export default class AddRoute extends Component {
             routeName: '',
             routeNo : '',
             busHalts: '',
+            busHaltArray: []
         };
         this.managerService = new ManagerService();
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.clearForm = this.clearForm.bind(this);
+        this.addBusStation = this.addBusStation.bind(this);
+
     }
 
     onChange(e) {
@@ -32,16 +37,30 @@ export default class AddRoute extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const busHaltsTemp =  this.state.busHalts.toString().split(',');
         this.managerService.addRoute({
             "routeName": this.state.routeName,
             "routeNo": this.state.routeNo,
-            "busHalts": busHaltsTemp
+            "busHalts": this.state.busHaltArray
         }).then(response => {
             alert(response.data)
         }).catch(error => {
             console.log(error)
         })
+    }
+
+    addBusStation(e){
+        e.preventDefault();
+        this.setState({busHaltArray: [...this.state.busHaltArray, ""]})
+    }
+
+    handleChange(e, index){
+        this.state.busHaltArray[index] = e.target.value;
+        this.setState({busHaltArray : this.state.busHaltArray})
+    }
+
+    handleRemove(index){
+        this.state.busHaltArray.splice(index, 1)
+        this.setState({busHaltArray: this.state.busHaltArray})
     }
 
     render() {
@@ -72,24 +91,42 @@ export default class AddRoute extends Component {
                             <div className="wrap-input100 validate-input" data-validate="Name is required">
                                 <span className="label-input100 float-left">Route No</span>
                                 <br/>
-                                <input className="input100" type="routeNo" required={true} value={this.state.routeNo}
+                                <input className="input100" type="text" required={true} value={this.state.routeNo}
                                        onChange={this.onChange} name="routeNo" placeholder="178"/>
                                 <span className="focus-input100"/>
                             </div>
 
-                            <div className="wrap-input100 validate-input" data-validate="Name is required">
-                                <span className="label-input100  float-left">Bus Halts</span>
-                                <input className="input100" type="text" required={true} value={this.state.busHalts}
-                                       onChange={this.onChange} name="busHalts" placeholder="Nugegoda-Nawala-Borella"/>
-                                <span className="focus-input100"/>
+                            <div>
+                                <span className="label-input100">Bus Halts</span><br/><br/>
+                                {
+                                    this.state.busHaltArray.map((busHalt, index) => {
+                                        return(
+                                            <div key={index} className="wrap-input100 validate-input" data-validate="Name is required">
+                                                <span className="label-input100 float-left">Bus Halt</span>
+                                                <br/>
+                                                <input className="input100" type="text" placeholder="Borella" value={busHalt} onChange={(e) => this.handleChange(e, index)}/>
+                                                <span className="focus-input100"/>
+                                                    <Ripples>
+                                                        <button className="btn btn-danger" onClick={(e) => this.handleRemove(index)}>Remove <i className="fa fa-times"/></button>
+                                                    </Ripples>
+                                            </div>
+                                        )
+                                    })
+                                }
+
+                                <div key="1" className="col-lg mt-3" style={{marginBottom: "10px"}}>
+                                    <Ripples>
+                                        <button className="btn btn-success" onClick={(e) => this.addBusStation(e)}>Add Bus Station <i className="fa fa-bus"/></button>
+                                    </Ripples>
+                                </div>
                             </div>
 
-                            <div className="container-contact100-form-btn float-left">
+                                <div className="container-contact100-form-btn float-left">
                                 <div className="wrap-contact100-form-btn">
                                     <div className="contact100-form-bgbtn"/>
                                     <button className="contact100-form-btn">
 							<span>
-                                Register  <i className="fa fa-paper-plane"/>
+                                Add Bus Route  <i className="fa fa-paper-plane"/>
                             <input type="submit" value=""/>
 							</span>
                                     </button>
