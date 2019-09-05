@@ -10,7 +10,7 @@ export default class AddRoute extends Component {
         super(props);
         this.state = {
             routeName: '',
-            routeNo : '',
+            routeNo: '',
             busHalts: '',
             busHaltArray: []
         };
@@ -48,22 +48,32 @@ export default class AddRoute extends Component {
         })
     }
 
-    addBusStation(e){
+    addBusStation(e) {
         e.preventDefault();
         this.setState({busHaltArray: [...this.state.busHaltArray, ""]})
     }
 
-    handleChange(e, index){
+    handleChange(e, index) {
         this.state.busHaltArray[index] = e.target.value;
-        this.setState({busHaltArray : this.state.busHaltArray})
+        this.setState({busHaltArray: this.state.busHaltArray})
     }
 
-    handleRemove(index){
+    handleRemove(index) {
         this.state.busHaltArray.splice(index, 1)
         this.setState({busHaltArray: this.state.busHaltArray})
     }
 
     render() {
+        const ColoredLine = ({ color }) => (
+            <hr
+                style={{
+                    color: color,
+                    backgroundColor: color,
+                    width : "400px"
+                }}
+            />
+        );
+
         return (
             <div>
                 <div className="float-sm-left">
@@ -100,15 +110,17 @@ export default class AddRoute extends Component {
                                 <span className="label-input100">Bus Halts</span><br/><br/>
                                 {
                                     this.state.busHaltArray.map((busHalt, index) => {
-                                        return(
-                                            <div key={index} className="wrap-input100 validate-input" data-validate="Name is required">
-                                                <span className="label-input100 float-left">Bus Halt</span>
-                                                <br/>
-                                                <input className="input100" type="text" placeholder="Borella" value={busHalt} onChange={(e) => this.handleChange(e, index)}/>
-                                                <span className="focus-input100"/>
-                                                    <Ripples>
-                                                        <button className="btn btn-danger" onClick={(e) => this.handleRemove(index)}>Remove <i className="fa fa-times"/></button>
-                                                    </Ripples>
+                                        return (
+                                            <div key={index}>
+                                                <input type="text" style={{width: "400px"}} placeholder="Borella"
+                                                       value={busHalt} onChange={(e) => this.handleChange(e, index)}/>
+                                                <span/>
+                                                <Ripples>
+                                                    <button className="btn btn-danger"
+                                                            onClick={(e) => this.handleRemove(index)}>Remove <i
+                                                        className="fa fa-times"/></button>
+                                                </Ripples>
+                                                <ColoredLine color="black" />
                                             </div>
                                         )
                                     })
@@ -116,12 +128,13 @@ export default class AddRoute extends Component {
 
                                 <div key="1" className="col-lg mt-3" style={{marginBottom: "10px"}}>
                                     <Ripples>
-                                        <button className="btn btn-success" onClick={(e) => this.addBusStation(e)}>Add Bus Station <i className="fa fa-bus"/></button>
+                                        <button className="btn btn-success" onClick={(e) => this.addBusStation(e)}>Add
+                                            Bus Station <i className="fa fa-bus"/></button>
                                     </Ripples>
                                 </div>
                             </div>
 
-                                <div className="container-contact100-form-btn float-left">
+                            <div className="container-contact100-form-btn float-left">
                                 <div className="wrap-contact100-form-btn">
                                     <div className="contact100-form-bgbtn"/>
                                     <button className="contact100-form-btn">
