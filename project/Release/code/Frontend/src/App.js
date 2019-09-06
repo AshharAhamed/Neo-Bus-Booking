@@ -11,10 +11,12 @@ import ManagerHome from './component/manager/Home';
 import ManageInspectors from './component/manager/ManageInspectors';
 import ManagePassengers from "./component/manager/ManagePassengers";
 import ManageAdmins from './component/manager/ManageAdmins';
+import ManageJourneys from "./component/manager/ManageJourneys";
 import AddManager from './component/manager/AddManager';
 import AddInspector from './component/manager/AddInspector';
 import AddPassenger from "./component/manager/AddPassenger";
 import AddRoute from "./component/manager/AddRoute";
+import AddJourney from "./component/manager/AddJourney";
 import TopUp from './component/manager/TopUp'
 import RecoverTravelCard from "./component/manager/RecoverTravelCard";
 import ManageRoutes from "./component/manager/ManageRoutes";
@@ -44,10 +46,12 @@ class App extends Component {
             <Route exact path="/managePassengers" component={ManagePassengers} />
             <Route exact path="/manageAdmins" component={ManageAdmins} />
             <Route exact path="/manageRoutes" component={ManageRoutes} />
+            <Route exact path="/manageJourneys" component={ManageJourneys} />
             <Route exact path="/addManager" component={AddManager} />
             <Route exact path="/addInspector" component={AddInspector} />
             <Route exact path="/addPassenger" component={AddPassenger} />
             <Route exact path="/addRoute" component={AddRoute} />
+            <Route exact path="/addJourney" component={AddJourney} />
 
             <Route exact path="/topUpPassenger" component={TopUp} />
             <Route exact path="/recoverCard" component={RecoverTravelCard} />

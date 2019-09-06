@@ -1,10 +1,10 @@
 package com.neo.ticketingapp.controller;
 
-import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.model.Route;
 import com.neo.ticketingapp.service.interfaces.RouteService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +36,14 @@ public class RouteController {
     }
 
     @GetMapping(value = "/getAllRoutes")
-    public List<Route> getPassengers() {
+    public List<Route> getRoutes() {
         logger.debug("Request received to get all Routes");
         return routeService.getAllRoutes();
+    }
+
+    @GetMapping(value = "/getAllRouteNames")
+    public JSONObject getRouteNames() {
+        logger.debug("Request received to get all Route Names");
+        return routeService.getAllRouteNames();
     }
 }

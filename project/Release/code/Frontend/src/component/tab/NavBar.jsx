@@ -58,6 +58,21 @@ export default class NavigationBar extends Component {
                                 </div>
                             </div>
 
+                            <div className="row top-buffer">
+                                <div className="col">
+                                    <div className="dropdown">
+                                        <Link className="nav-link dropdown-toggle" to="#" data-toggle="dropdown">
+                                            Journey
+                                        </Link>
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <Link className="dropdown-item" to="/addJourney">Start Journey</Link>
+                                            <Link className="dropdown-item" to="/manageJourneys">View on going Journeys</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div className="form-inline my-2 my-lg-0" style={{marginLeft: 550}}>
                                 <ul className="navbar-nav mr-auto">
                                     <div className="navbar-brand" onClick={this.userService.logout}>Log Out <i

@@ -133,5 +133,62 @@ export default class TicketingService {
         })
     }
 
+    //render all Routes
+    getAllRouteNames() {
+        return new Promise((resolve, reject) => {
+            this.apiService.get("route/getAllRouteNames").then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+//----------------------------------Passenger Functions ----------------------------------------------------------------
+
+    //add a journey
+    startJourney(routeName, data) {
+        return new Promise((resolve, reject) => {
+            this.apiService.post("journey/add/" + routeName, data).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    //render all Journeys
+    getAllJourneys() {
+        return new Promise((resolve, reject) => {
+            this.apiService.get("journey/getAllJourneys").then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    //render all Journeys
+    getAllActiveJourneys() {
+        return new Promise((resolve, reject) => {
+            this.apiService.get("journey/getAllActiveJourneys").then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    //delete a Journey
+    deleteJourney(journeyID) {
+        return new Promise((resolve, reject) => {
+            this.apiService.delete("journey/delete/" + journeyID).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
+
 

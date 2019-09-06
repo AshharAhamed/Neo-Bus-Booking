@@ -1,7 +1,6 @@
 package com.neo.ticketingapp.controller;
 
 import com.neo.ticketingapp.model.Card;
-import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.service.interfaces.CardService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
