@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PassengerService from '../../services/PassengerService'
 import UserService from "../../services/UserService";
 import QueueAnim from "rc-queue-anim";
-import OneCard from "./list/OneCard";
+import OneCard from "./list/card/OneCard";
 import Ripples from "react-ripples";
 import {Button} from "react-bootstrap";
 

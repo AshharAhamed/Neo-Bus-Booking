@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import PassengerService from "../../../services/PassengerService";
-import UserService from "../../../services/UserService";
+import PassengerService from "../../../../services/PassengerService";
+import UserService from "../../../../services/UserService";
 
 class OneCard extends Component {
     constructor(props) {

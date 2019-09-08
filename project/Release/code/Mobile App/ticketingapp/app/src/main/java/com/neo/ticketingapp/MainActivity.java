@@ -2,6 +2,7 @@ package com.neo.ticketingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 if(response.body().getLoginFlag().equals("true")){
-                    GeneralUtil.toastShort(response.body().getUsername(), getBaseContext()).show();
+                    Intent intent = new Intent(MainActivity.this, PassengerHome.class);
+                    GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
+                    startActivity(intent);
                 }else {
                     GeneralUtil.toastShort("Invalid Username or Password", getBaseContext()).show();
                 }

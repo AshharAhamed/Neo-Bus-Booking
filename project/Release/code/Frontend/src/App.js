@@ -28,6 +28,7 @@ import PassengerProfile from "./component/passenger/Profile";
 import PassengerAccount from "./component/passenger/Account";
 import AddPassengerCard from "./component/passenger/AddCard";
 import PassengerTopUp from "./component/passenger/TopUp";
+import ViewRoutes from "./component/passenger/ViewRoutes";
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class App extends Component {
             <Route exact path="/passengerAccount" component={PassengerAccount} />
             <Route exact path="/addPassengerCard" component={AddPassengerCard} />
             <Route exact path="/passengerTopUp" component={PassengerTopUp} />
+            <Route exact path="/passengerRoutes" component={ViewRoutes} />
 
             <Footer/>
           </div>
