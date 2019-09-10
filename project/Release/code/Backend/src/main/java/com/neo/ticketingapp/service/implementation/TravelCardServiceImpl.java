@@ -1,8 +1,7 @@
 package com.neo.ticketingapp.service.implementation;
 
-import com.neo.ticketingapp.enums.BooleanType;
+import com.neo.ticketingapp.common.enums.BooleanType;
 import com.neo.ticketingapp.model.TravelCard;
-import com.neo.ticketingapp.model.User;
 import com.neo.ticketingapp.repository.TravelCardRepository;
 import com.neo.ticketingapp.service.interfaces.TravelCardService;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,8 @@ import java.util.List;
 @Service
 public class TravelCardServiceImpl  implements TravelCardService {
 
-    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(TravelCardServiceImpl.class);
+
     @Autowired
     TravelCardRepository travelCardRepository;
 
@@ -23,7 +23,7 @@ public class TravelCardServiceImpl  implements TravelCardService {
     public TravelCard getTravelCardByNo(String cardNo) throws IllegalAccessException {
         logger.debug("Request to add New User received by the System");
         List<TravelCard> cardList = travelCardRepository.findByCardNo(cardNo);
-        if (cardList == null || cardList.size() == 0) {
+        if (cardList == null || cardList.isEmpty()) {
             return null;
         }
         return cardList.get(0);

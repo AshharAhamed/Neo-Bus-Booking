@@ -13,7 +13,7 @@ public class Journey {
     private String journeyID;
     private String routeID;
     private String busNo;
-    private LocalDateTime startTime;
+    private Date startTime;
     private String nextStation;
 
     public String getJourneyID() {
@@ -40,11 +40,11 @@ public class Journey {
         this.busNo = busNo;
     }
 
-    public LocalDateTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 

@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.enums;
+package com.neo.ticketingapp.common.enums;
 
 public enum UserType {
     Manager,

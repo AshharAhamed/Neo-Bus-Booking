@@ -31,7 +31,7 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     private RouteService routeService;
 
     @Override
-    public String insertJourneyPassenger(JourneyPassenger journeyPassenger) throws IllegalAccessException {
+    public String insertJourneyPassenger(JourneyPassenger journeyPassenger){
         if(getJourneyByJourneyID(journeyPassenger.getJourneyID()) == null){
             journeyPassengerRepository.insert(journeyPassenger);
             return "true";
@@ -40,13 +40,10 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     }
 
     @Override
-    public String addPassenger(String journeyID, String travelCardID) throws IllegalAccessException {
+    public String addPassenger(String journeyID, String travelCardID){
         JourneyPassenger journeyPassenger;
         if((journeyPassenger = getJourneyByJourneyID(journeyID)) != null){
-            List<String> passengerList = new ArrayList<String>();
-            if ((passengerList = journeyPassenger.getTravelCardList()).isEmpty()) {
-                passengerList = new ArrayList<String>();
-            }
+            List<String> passengerList = journeyPassenger.getTravelCardList();
             passengerList.add(travelCardID);
             journeyPassenger.setTravelCardList(passengerList);
             journeyPassengerRepository.save(journeyPassenger);
@@ -56,13 +53,10 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     }
 
     @Override
-    public String removePassenger(String journeyID, String travelCardID) throws IllegalAccessException {
+    public String removePassenger(String journeyID, String travelCardID) {
         JourneyPassenger journeyPassenger;
         if((journeyPassenger = getJourneyByJourneyID(journeyID)) != null){
-            List<String> passengerList = new ArrayList<String>();
-            if ((passengerList = journeyPassenger.getTravelCardList()).isEmpty()) {
-                passengerList = new ArrayList<String>();
-            }
+            List<String> passengerList = journeyPassenger.getTravelCardList();
             int index = 0;
             for( String passengerTemp : passengerList){
                 if(passengerTemp.equals(travelCardID)){
@@ -82,7 +76,7 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     public JourneyPassenger getJourneyByJourneyID(String journeyID) {
         logger.debug("Request received to get the Route with Name - {}", journeyID);
         List<JourneyPassenger> journeyPassengerList = journeyPassengerRepository.findByJourneyID(journeyID);
-        if (journeyPassengerList == null || journeyPassengerList.size() == 0) {
+        if (journeyPassengerList == null || journeyPassengerList.isEmpty()) {
             return null;
         }
         return journeyPassengerList.get(0);
