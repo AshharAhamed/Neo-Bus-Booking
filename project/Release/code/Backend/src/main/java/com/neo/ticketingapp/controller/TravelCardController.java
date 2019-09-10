@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/travelCard")
 public class TravelCardController {
 
-    private static final Logger logger = LogManager.getLogger(UserController.class);
+    private static final Logger logger = LogManager.getLogger(TravelCardController.class);
 
     @Autowired
     private TravelCardService travelCardService;

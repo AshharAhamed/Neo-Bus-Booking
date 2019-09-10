@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/passenger")
 public class PassengerController {
-    private static final Logger logger = LogManager.getLogger(UserController.class);
+    private static final Logger logger = LogManager.getLogger(PassengerController.class);
+    private static final String EMPTY_USER_OBJECT = "User Object is Empty";
 
     @Autowired
     private PassengerService passengerService;
@@ -33,7 +32,7 @@ public class PassengerController {
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>("User Object is Empty", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(EMPTY_USER_OBJECT, HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(value = "/update")
@@ -46,7 +45,7 @@ public class PassengerController {
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>("User Object is Empty", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(EMPTY_USER_OBJECT, HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(value = "/delete/{cardID}")
@@ -93,21 +92,21 @@ public class PassengerController {
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>("User Object is Empty", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(EMPTY_USER_OBJECT, HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping(value = "/deleteCard/{travelCardNo}/{CardNo}")
-    public ResponseEntity<String> deletePaymentCard(@PathVariable String travelCardNo, @PathVariable String CardNo) {
+    @DeleteMapping(value = "/deleteCard/{travelCardNo}/{cardNo}")
+    public ResponseEntity<String> deletePaymentCard(@PathVariable String travelCardNo, @PathVariable String cardNo) {
         logger.debug("Request received to add a card to passenger to the system");
         try {
-            return new ResponseEntity<>(passengerService.deleteCard(travelCardNo, CardNo), HttpStatus.CREATED);
+            return new ResponseEntity<>(passengerService.deleteCard(travelCardNo, cardNo), HttpStatus.CREATED);
         } catch (IllegalArgumentException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @GetMapping(value = "/getCard/{travelCardNo}")
-    public ResponseEntity<ArrayList> getCards(@PathVariable String travelCardNo) {
+    public ResponseEntity<List> getCards(@PathVariable String travelCardNo) {
         logger.debug("Request received to get Passenger Payments Cards");
         return new ResponseEntity<>(passengerService.getCards(travelCardNo), HttpStatus.OK);
     }
@@ -117,13 +116,13 @@ public class PassengerController {
         logger.debug("Request received to top up a passenger in the system");
         try {
             if (travelCardNo != null) {
-                double amount = Double.valueOf(sampleObject.get("amount").toString()) ;
+                double amount = Double.parseDouble(sampleObject.get("amount").toString()) ;
                 return new ResponseEntity<>(passengerService.topUp(travelCardNo, sampleObject.get("paymentCardNo").toString(), amount), HttpStatus.CREATED);
             }
         } catch (IllegalArgumentException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>("User Object is Empty", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(EMPTY_USER_OBJECT, HttpStatus.NO_CONTENT);
     }
 
     @PostMapping(value = "/startJourney")
@@ -134,8 +133,8 @@ public class PassengerController {
                 return new ResponseEntity<>(passengerService.startJourney(jsonObject.get("travelCardID").toString(), jsonObject.get("startStation").toString(), jsonObject.get("endStation").toString(), jsonObject.get("journeyID").toString()), HttpStatus.CREATED);
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {
-            return new ResponseEntity<JSONObject>((JSONObject) new JSONObject().put("Error", ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>((JSONObject) new JSONObject().put("Error", ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<JSONObject>((JSONObject) new JSONObject().put("Error", "Empty JSON Object"), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>((JSONObject) new JSONObject().put("Error", "Empty JSON Object"), HttpStatus.NO_CONTENT);
     }
 }

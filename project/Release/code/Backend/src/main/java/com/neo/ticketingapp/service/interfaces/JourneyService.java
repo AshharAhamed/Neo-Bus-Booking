@@ -13,5 +13,5 @@ public interface JourneyService {
     Journey getJourneyByBusNo(String busNo);
     List<Journey> getAllJourneys();
     List<HashMap> getAllActiveJourneys();
-    public String deleteJourney(String journeyID) throws IllegalAccessException;
+    String deleteJourney(String journeyID) throws IllegalAccessException;
 }

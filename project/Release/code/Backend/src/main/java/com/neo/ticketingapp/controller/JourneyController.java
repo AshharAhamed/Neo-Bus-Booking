@@ -4,12 +4,12 @@ import com.neo.ticketingapp.model.Journey;
 import com.neo.ticketingapp.service.interfaces.JourneyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/journey")
 public class JourneyController {
 
-    private static final Logger logger = LogManager.getLogger(UserController.class);
+    private static final Logger logger = LogManager.getLogger(JourneyController.class);
 
     @Autowired
     private JourneyService journeyService;
@@ -30,7 +30,7 @@ public class JourneyController {
             if (journey != null) {
                 return new ResponseEntity<>(journeyService.addJourney(journey, routeName), HttpStatus.CREATED);
             }
-        } catch (IllegalArgumentException | IllegalAccessException ex) {
+        } catch (IllegalArgumentException | IllegalAccessException | ParseException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
         return new ResponseEntity<>("Journey Object is Empty", HttpStatus.NO_CONTENT);

@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/route")
 public class RouteController {
 
-    private static final Logger logger = LogManager.getLogger(UserController.class);
+    private static final Logger logger = LogManager.getLogger(RouteController.class);
 
     @Autowired
     private RouteService routeService;
