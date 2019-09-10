@@ -1,9 +1,7 @@
 package com.neo.ticketingapp.service.implementation;
 
 import com.neo.ticketingapp.model.Card;
-import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.repository.CardRepository;
-import com.neo.ticketingapp.repository.PassengerRepository;
 import com.neo.ticketingapp.service.interfaces.CardService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +13,7 @@ import java.util.List;
 @Service
 public class CardServiceImpl implements CardService {
 
-    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(CardServiceImpl.class);
 
     @Autowired
     private CardRepository cardRepository;
@@ -39,7 +37,7 @@ public class CardServiceImpl implements CardService {
     public Card getCardByCardNo(String cardNo) {
         logger.debug("Request received to get the Passenger with Card Id - {}", cardNo);
         List<Card> cardList = cardRepository.findByCardNo(cardNo);
-        if (cardList == null || cardList.size() == 0) {
+        if (cardList == null || cardList.isEmpty()) {
             return null;
         }
         return cardList.get(0);

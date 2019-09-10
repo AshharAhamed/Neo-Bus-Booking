@@ -45,6 +45,7 @@ public class JourneyServiceImpl implements JourneyService {
             Journey newJourney = journeyRepository.insert(journey);
             JourneyPassenger journeyPassenger = new JourneyPassenger();
             journeyPassenger.setJourneyID(newJourney.getJourneyID());
+            journeyPassenger.setTravelCardList( new ArrayList<>());
             journeyPassengerService.insertJourneyPassenger(journeyPassenger);
             return "Journey Added Successfully !";
         } else {
@@ -115,7 +116,7 @@ public class JourneyServiceImpl implements JourneyService {
         journeyRepository.delete(journey);
         journeyPassengerService.deleteJourneyPassenger(journeyID);
         logger.info("{} is successfully deleted", journeyID);
-        return "Journey " + journeyID + "removed Successfully !";
+        return "Journey " + journeyID + " removed Successfully !";
     }
 
 }

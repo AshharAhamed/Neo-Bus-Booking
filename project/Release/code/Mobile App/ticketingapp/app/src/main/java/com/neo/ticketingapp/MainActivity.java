@@ -77,11 +77,16 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                if(response.body().getLoginFlag().equals("true")){
+                if(response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Local") || (response.body().getType().equals("Foreign")))){
                     Intent intent = new Intent(MainActivity.this, PassengerHome.class);
                     GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
                     startActivity(intent);
-                }else {
+                }else if(response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Inspector"))){
+                    Intent intent = new Intent(MainActivity.this, InspectorHome.class);
+                    GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
+                    startActivity(intent);
+                }
+                else {
                     GeneralUtil.toastShort("Invalid Username or Password", getBaseContext()).show();
                 }
             }

@@ -125,4 +125,17 @@ public class PassengerController {
         }
         return new ResponseEntity<>("User Object is Empty", HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping(value = "/startJourney")
+    public ResponseEntity<JSONObject> startJourney(@RequestBody JSONObject jsonObject) {
+        logger.debug("Request received to start to the system");
+        try {
+            if (jsonObject != null) {
+                return new ResponseEntity<>(passengerService.startJourney(jsonObject.get("travelCardID").toString(), jsonObject.get("startStation").toString(), jsonObject.get("endStation").toString(), jsonObject.get("journeyID").toString()), HttpStatus.CREATED);
+            }
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            return new ResponseEntity<JSONObject>((JSONObject) new JSONObject().put("Error", ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<JSONObject>((JSONObject) new JSONObject().put("Error", "Empty JSON Object"), HttpStatus.NO_CONTENT);
+    }
 }

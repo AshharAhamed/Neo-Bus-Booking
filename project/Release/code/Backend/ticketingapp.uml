@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.neo.ticketingapp</OriginalElement>
+  <nodes>
+    <node x="0.0" y="2260.0">com.neo.ticketingapp.TicketingappApplication</node>
+    <node x="144.0" y="1237.0">com.neo.ticketingapp.repository.TravelCardRepository</node>
+    <node x="1687.3103809837503" y="625.0">com.neo.ticketingapp.service.interfaces.PassengerService</node>
+    <node x="824.9285628019325" y="1259.0">com.neo.ticketingapp.service.implementation.PaymentServiceImpl</node>
+    <node x="3161.794696969697" y="1137.0">com.neo.ticketingapp.service.implementation.UserServiceImpl</node>
+    <node x="2349.34788098375" y="768.0">com.neo.ticketingapp.entity.GeneralUser</node>
+    <node x="3356.794696969697" y="790.0">com.neo.ticketingapp.repository.UserRepository</node>
+    <node x="1382.8577610342536" y="1701.0">com.neo.ticketingapp.service.implementation.PassengerServiceImpl</node>
+    <node x="5246.188732433024" y="1910.5">com.neo.ticketingapp.controller.JourneyPassengerController</node>
+    <node x="2599.0591595300816" y="1888.5">com.neo.ticketingapp.service.implementation.CardServiceImpl</node>
+    <node x="2218.2478809837503" y="1159.5">com.neo.ticketingapp.controller.UserController</node>
+    <node x="4481.949843544135" y="1259.0">com.neo.ticketingapp.repository.JourneyPassengerRepository</node>
+    <node x="2620.2478809837503" y="350.5">com.neo.ticketingapp.repository.CardRepository</node>
+    <node x="3634.7744277009206" y="1866.0">com.neo.ticketingapp.service.implementation.RouteServiceImpl</node>
+    <node x="3774.282612812912" y="768.0">com.neo.ticketingapp.model.Route</node>
+    <node x="2110.211363636364" y="1910.5">com.neo.ticketingapp.controller.CardController</node>
+    <node x="2776.2478809837503" y="1215.0">com.neo.ticketingapp.validation.GeneralUtilsTest</node>
+    <node x="3858.532612812912" y="1214.5">com.neo.ticketingapp.service.interfaces.RouteService</node>
+    <node x="3016.2478809837503" y="735.0">com.neo.ticketingapp.service.interfaces.UserService</node>
+    <node x="581.458333333333" y="1877.5">com.neo.ticketingapp.controller.TravelCardController</node>
+    <node x="1426.3785628019323" y="196.0">com.neo.ticketingapp.model.Passenger</node>
+    <node x="5101.299843544135" y="1192.5">com.neo.ticketingapp.service.interfaces.JourneyPassengerService</node>
+    <node x="1957.9492794795783" y="0.0">com.neo.ticketingapp.model.Card</node>
+    <node x="4805.949843544136" y="1237.0">com.neo.ticketingapp.repository.JourneyRepository</node>
+    <node x="3189.387343544135" y="273.5">com.neo.ticketingapp.model.User</node>
+    <node x="433.0" y="1215.0">com.neo.ticketingapp.service.interfaces.TravelCardService</node>
+    <node x="3340.262343544135" y="1888.0">com.neo.ticketingapp.controller.RouteController</node>
+    <node x="1333.893025362317" y="22.0">com.neo.ticketingapp.enums.PassengerType</node>
+    <node x="1978.3103809837503" y="1237.0">com.neo.ticketingapp.service.interfaces.CardService</node>
+    <node x="4307.012343544135" y="1822.0">com.neo.ticketingapp.service.implementation.JourneyPassengerImpl</node>
+    <node x="402.13946256038435" y="768.0">com.neo.ticketingapp.model.TravelCard</node>
+    <node x="1713.5603809837503" y="1811.5">com.neo.ticketingapp.controller.PassengerController</node>
+    <node x="3587.532612812912" y="1248.0">com.neo.ticketingapp.repository.RouteRepository</node>
+    <node x="2742.2478809837503" y="723.5">com.neo.ticketingapp.validation.GeneralUtils</node>
+    <node x="0.0" y="1248.0">com.neo.ticketingapp.enums.BooleanType</node>
+    <node x="4363.795797650417" y="757.0">com.neo.ticketingapp.model.Journey</node>
+    <node x="3963.012343544135" y="1888.0">com.neo.ticketingapp.controller.JourneyController</node>
+    <node x="4958.063862812912" y="790.0">com.neo.ticketingapp.model.JourneyPassenger</node>
+    <node x="4866.838732433024" y="1822.0">com.neo.ticketingapp.service.implementation.JourneyServiceImpl</node>
+    <node x="904.9285628019325" y="801.0">com.neo.ticketingapp.service.interfaces.PaymentService</node>
+    <node x="4196.949843544135" y="1192.5">com.neo.ticketingapp.service.interfaces.JourneyService</node>
+    <node x="78.5" y="1866.5">com.neo.ticketingapp.service.implementation.TravelCardServiceImpl</node>
+    <node x="1223.9285628019322" y="768.0">com.neo.ticketingapp.repository.PassengerRepository</node>
+    <node x="3318.5117794795783" y="22.0">com.neo.ticketingapp.enums.UserType</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.neo.ticketingapp.repository.PassengerRepository" target="com.neo.ticketingapp.enums.PassengerType">
+      <point x="-71.0" y="-58.0" />
+      <point x="1294.9285628019322" y="176.0" />
+      <point x="1385.268025362317" y="176.0" />
+      <point x="-17.125" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.UserController" target="com.neo.ticketingapp.service.interfaces.UserService">
+      <point x="152.4000000000001" y="-124.5" />
+      <point x="2561.1478809837504" y="1117.0" />
+      <point x="3081.4978809837503" y="1117.0" />
+      <point x="-65.25" y="91.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.service.interfaces.JourneyPassengerService">
+      <point x="138.22222222222217" y="-136.0" />
+      <point x="5160.560954655246" y="1681.0" />
+      <point x="5254.299843544135" y="1681.0" />
+      <point x="0.0" y="91.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.TravelCardService" target="com.neo.ticketingapp.model.TravelCard">
+      <point x="0.0" y="-69.0" />
+      <point x="585.5" y="1117.0" />
+      <point x="475.88946256038435" y="1117.0" />
+      <point x="14.75" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.repository.JourneyRepository">
+      <point x="0.0" y="-136.0" />
+      <point x="5022.338732433024" y="1451.0" />
+      <point x="4930.949843544136" y="1451.0" />
+      <point x="0.0" y="47.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.CardService" target="com.neo.ticketingapp.model.Card">
+      <point x="0.0" y="-47.0" />
+      <point x="2083.3103809837503" y="176.0" />
+      <point x="2027.004835035134" y="176.0" />
+      <point x="12.555555555555657" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.JourneyPassengerRepository" target="com.neo.ticketingapp.model.JourneyPassenger">
+      <point x="0.0" y="-25.0" />
+      <point x="4633.449843544135" y="1117.0" />
+      <point x="5009.363862812912" y="1117.0" />
+      <point x="-34.19999999999999" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.UserServiceImpl" target="com.neo.ticketingapp.service.interfaces.UserService">
+      <point x="-21.75" y="-147.0" />
+      <point x="3270.544696969697" y="1087.0" />
+      <point x="3211.9978809837503" y="1087.0" />
+      <point x="65.25" y="91.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.PassengerController" target="com.neo.ticketingapp.model.Card">
+      <point x="45.375" y="-146.5" />
+      <point x="1940.4353809837503" y="1621.0" />
+      <point x="1967.8103809837503" y="1621.0" />
+      <point x="1967.8103809837503" y="176.0" />
+      <point x="2014.4492794795783" y="176.0" />
+      <point x="0.0" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.CardServiceImpl" target="com.neo.ticketingapp.repository.CardRepository">
+      <point x="26.25" y="-69.5" />
+      <point x="2730.3091595300816" y="1651.0" />
+      <point x="2731.7478809837503" y="1651.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.service.interfaces.RouteService">
+      <point x="-109.0625" y="-136.0" />
+      <point x="4372.449843544135" y="1541.0" />
+      <point x="4011.032612812912" y="1541.0" />
+      <point x="30.5" y="69.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.UserRepository" target="com.neo.ticketingapp.enums.UserType">
+      <point x="58.25" y="-36.0" />
+      <point x="3531.544696969697" y="176.0" />
+      <point x="3382.2617794795783" y="176.0" />
+      <point x="12.75" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.model.Route">
+      <point x="-65.4375" y="-136.0" />
+      <point x="4416.074843544135" y="1531.0" />
+      <point x="4186.449843544135" y="1531.0" />
+      <point x="4186.449843544135" y="1097.0" />
+      <point x="3883.032612812912" y="1097.0" />
+      <point x="36.25" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.TravelCardController" target="com.neo.ticketingapp.service.interfaces.TravelCardService">
+      <point x="-123.66666666666697" y="-80.5" />
+      <point x="643.2916666666661" y="1651.0" />
+      <point x="661.75" y="1651.0" />
+      <point x="76.25" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.model.Card">
+      <point x="0.0" y="-257.0" />
+      <point x="1517.8577610342536" y="1591.0" />
+      <point x="1578.8785628019323" y="1591.0" />
+      <point x="1578.8785628019323" y="156.0" />
+      <point x="1989.338168368467" y="156.0" />
+      <point x="-25.111111111111313" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.repository.JourneyPassengerRepository">
+      <point x="109.0625" y="-136.0" />
+      <point x="4590.574843544135" y="1671.0" />
+      <point x="4633.449843544135" y="1671.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.TravelCardController" target="com.neo.ticketingapp.controller.UserController">
+      <point x="123.66666666666697" y="-80.5" />
+      <point x="890.625" y="1641.0" />
+      <point x="2256.34788098375" y="1641.0" />
+      <point x="-152.4000000000001" y="124.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.repository.PassengerRepository">
+      <point x="-49.09090909090901" y="-257.0" />
+      <point x="1468.7668519433446" y="1601.0" />
+      <point x="1365.9285628019322" y="1601.0" />
+      <point x="0.0" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.enums.PassengerType">
+      <point x="-122.72727272727298" y="-257.0" />
+      <point x="1395.1304883069806" y="1631.0" />
+      <point x="814.4285628019325" y="1631.0" />
+      <point x="814.4285628019325" y="166.0" />
+      <point x="1351.018025362317" y="166.0" />
+      <point x="-51.375" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.service.interfaces.JourneyService">
+      <point x="-69.11111111111109" y="-136.0" />
+      <point x="4953.227621321913" y="1471.0" />
+      <point x="4407.783176877469" y="1471.0" />
+      <point x="84.33333333333326" y="91.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.JourneyService" target="com.neo.ticketingapp.model.Journey">
+      <point x="0.0" y="-91.5" />
+      <point x="4323.449843544135" y="1117.0" />
+      <point x="4412.695797650417" y="1117.0" />
+      <point x="-32.59999999999991" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.service.interfaces.JourneyPassengerService">
+      <point x="152.6875" y="-136.0" />
+      <point x="4634.199843544135" y="1681.0" />
+      <point x="5152.299843544135" y="1681.0" />
+      <point x="-102.0" y="91.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.PassengerService" target="com.neo.ticketingapp.model.Card">
+      <point x="67.5" y="-201.0" />
+      <point x="1889.8103809837503" y="166.0" />
+      <point x="2001.8937239240227" y="166.0" />
+      <point x="-12.555555555555657" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.service.implementation.UserServiceImpl">
+      <point x="122.72727272727298" y="-257.0" />
+      <point x="1640.5850337615266" y="1671.0" />
+      <point x="3227.044696969697" y="1671.0" />
+      <point x="-65.25" y="147.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.service.interfaces.PassengerService">
+      <point x="24.54545454545496" y="-257.0" />
+      <point x="1542.4032155797086" y="1601.0" />
+      <point x="1589.8785628019323" y="1601.0" />
+      <point x="1589.8785628019323" y="1087.0" />
+      <point x="1732.3103809837503" y="1087.0" />
+      <point x="-90.0" y="201.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.CardController" target="com.neo.ticketingapp.controller.UserController">
+      <point x="98.33333333333348" y="-47.5" />
+      <point x="2356.044696969697" y="1651.0" />
+      <point x="2408.7478809837503" y="1651.0" />
+      <point x="0.0" y="124.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.UserController" target="com.neo.ticketingapp.entity.GeneralUser">
+      <point x="0.0" y="-124.5" />
+      <point x="2408.7478809837503" y="1087.0" />
+      <point x="2410.84788098375" y="1087.0" />
+      <point x="0.0" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.validation.GeneralUtils">
+      <point x="49.09090909090901" y="-257.0" />
+      <point x="1566.9486701251626" y="1611.0" />
+      <point x="1600.8785628019323" y="1611.0" />
+      <point x="1600.8785628019323" y="1097.0" />
+      <point x="2763.414547650417" y="1097.0" />
+      <point x="-105.83333333333348" y="102.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.CardServiceImpl" target="com.neo.ticketingapp.model.Card">
+      <point x="-26.25" y="-69.5" />
+      <point x="2677.8091595300816" y="1611.0" />
+      <point x="2609.7478809837503" y="1611.0" />
+      <point x="2609.7478809837503" y="156.0" />
+      <point x="2052.115946146245" y="156.0" />
+      <point x="37.666666666666515" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.model.Journey">
+      <point x="34.55555555555566" y="-136.0" />
+      <point x="5056.89428798858" y="1671.0" />
+      <point x="5066.449843544136" y="1671.0" />
+      <point x="5066.449843544136" y="1067.0" />
+      <point x="4510.495797650417" y="1067.0" />
+      <point x="65.20000000000005" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.PassengerController" target="com.neo.ticketingapp.controller.UserController">
+      <point x="136.125" y="-146.5" />
+      <point x="2031.1853809837503" y="1651.0" />
+      <point x="2332.5478809837505" y="1651.0" />
+      <point x="-76.19999999999982" y="124.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.UserServiceImpl" target="com.neo.ticketingapp.enums.UserType">
+      <point x="108.75" y="-147.0" />
+      <point x="3401.044696969697" y="1087.0" />
+      <point x="3600.294696969697" y="1087.0" />
+      <point x="3600.294696969697" y="166.0" />
+      <point x="3407.7617794795783" y="166.0" />
+      <point x="38.25" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.JourneyController" target="com.neo.ticketingapp.model.Journey">
+      <point x="0.0" y="-70.0" />
+      <point x="4125.012343544135" y="1681.0" />
+      <point x="4137.782612812912" y="1681.0" />
+      <point x="4137.782612812912" y="1107.0" />
+      <point x="4380.095797650417" y="1107.0" />
+      <point x="-65.20000000000005" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.JourneyPassengerService" target="com.neo.ticketingapp.model.JourneyPassenger">
+      <point x="0.0" y="-91.5" />
+      <point x="5254.299843544135" y="1117.0" />
+      <point x="5111.963862812912" y="1117.0" />
+      <point x="68.39999999999998" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.service.interfaces.RouteService">
+      <point x="-103.66666666666663" y="-136.0" />
+      <point x="4918.672065766357" y="1481.0" />
+      <point x="4072.032612812912" y="1481.0" />
+      <point x="91.5" y="69.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.service.interfaces.JourneyService">
+      <point x="-21.8125" y="-136.0" />
+      <point x="4459.699843544135" y="1521.0" />
+      <point x="4323.449843544135" y="1521.0" />
+      <point x="0.0" y="91.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.CardServiceImpl" target="com.neo.ticketingapp.service.interfaces.CardService">
+      <point x="-78.75" y="-69.5" />
+      <point x="2625.3091595300816" y="1621.0" />
+      <point x="2153.3103809837503" y="1621.0" />
+      <point x="70.0" y="47.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.PassengerRepository" target="com.neo.ticketingapp.model.Passenger">
+      <point x="71.0" y="-58.0" />
+      <point x="1436.9285628019322" y="605.0" />
+      <point x="1440.578562801932" y="605.0" />
+      <point x="-56.80000000000018" y="179.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.UserController" target="com.neo.ticketingapp.model.User">
+      <point x="76.19999999999982" y="-124.5" />
+      <point x="2484.94788098375" y="1087.0" />
+      <point x="2535.3577610342536" y="1087.0" />
+      <point x="2535.3577610342536" y="595.0" />
+      <point x="3204.012343544135" y="595.0" />
+      <point x="-43.875" y="102.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.model.Route">
+      <point x="-34.55555555555566" y="-136.0" />
+      <point x="4987.783176877469" y="1461.0" />
+      <point x="4795.449843544136" y="1461.0" />
+      <point x="4795.449843544136" y="1087.0" />
+      <point x="3907.1992794795788" y="1087.0" />
+      <point x="60.41666666666674" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.TravelCardRepository" target="com.neo.ticketingapp.model.TravelCard">
+      <point x="0.0" y="-47.0" />
+      <point x="278.5" y="1117.0" />
+      <point x="446.38946256038435" y="1117.0" />
+      <point x="-14.75" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.JourneyController" target="com.neo.ticketingapp.service.interfaces.JourneyService">
+      <point x="108.0" y="-70.0" />
+      <point x="4233.012343544135" y="1681.0" />
+      <point x="4239.116510210802" y="1681.0" />
+      <point x="-84.33333333333326" y="91.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.RouteController" target="com.neo.ticketingapp.controller.UserController">
+      <point x="-89.0" y="-70.0" />
+      <point x="3384.762343544135" y="1601.0" />
+      <point x="2484.94788098375" y="1601.0" />
+      <point x="76.19999999999982" y="124.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.model.Journey">
+      <point x="21.8125" y="-136.0" />
+      <point x="4503.324843544135" y="1511.0" />
+      <point x="4460.449843544135" y="1511.0" />
+      <point x="4460.449843544135" y="1117.0" />
+      <point x="4445.295797650417" y="1117.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.RouteServiceImpl" target="com.neo.ticketingapp.service.implementation.UserServiceImpl">
+      <point x="-91.5" y="-92.0" />
+      <point x="3665.2744277009206" y="1591.0" />
+      <point x="3314.044696969697" y="1591.0" />
+      <point x="21.75" y="147.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.TravelCardServiceImpl" target="com.neo.ticketingapp.service.interfaces.TravelCardService">
+      <point x="61.0" y="-91.5" />
+      <point x="292.0" y="1651.0" />
+      <point x="509.25" y="1651.0" />
+      <point x="-76.25" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.UserRepository" target="com.neo.ticketingapp.model.User">
+      <point x="-58.25" y="-36.0" />
+      <point x="3415.044696969697" y="595.0" />
+      <point x="3291.762343544135" y="595.0" />
+      <point x="43.875" y="102.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.service.interfaces.PaymentService">
+      <point x="-73.63636363636351" y="-257.0" />
+      <point x="1444.22139739789" y="1611.0" />
+      <point x="1134.4285628019325" y="1611.0" />
+      <point x="1134.4285628019325" y="1117.0" />
+      <point x="1129.1785628019325" y="1117.0" />
+      <point x="74.75" y="25.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.validation.GeneralUtilsTest" target="com.neo.ticketingapp.validation.GeneralUtils">
+      <point x="46.5" y="-69.0" />
+      <point x="2915.7478809837503" y="1107.0" />
+      <point x="2890.414547650417" y="1107.0" />
+      <point x="21.166666666666515" y="102.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.model.Passenger" target="com.neo.ticketingapp.enums.PassengerType">
+      <point x="-17.75" y="-179.5" />
+      <point x="1479.6285628019323" y="176.0" />
+      <point x="1453.768025362317" y="176.0" />
+      <point x="51.375" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.UserController" target="com.neo.ticketingapp.model.Passenger">
+      <point x="-76.19999999999982" y="-124.5" />
+      <point x="2332.5478809837505" y="1087.0" />
+      <point x="2313.612343544135" y="1087.0" />
+      <point x="2313.612343544135" y="575.0" />
+      <point x="1554.1785628019325" y="575.0" />
+      <point x="56.80000000000018" y="179.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.service.implementation.UserServiceImpl">
+      <point x="-152.6875" y="-136.0" />
+      <point x="4328.824843544135" y="1551.0" />
+      <point x="3357.544696969697" y="1551.0" />
+      <point x="65.25" y="147.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.CardServiceImpl" target="com.neo.ticketingapp.service.implementation.UserServiceImpl">
+      <point x="78.75" y="-69.5" />
+      <point x="2782.8091595300816" y="1681.0" />
+      <point x="3270.544696969697" y="1681.0" />
+      <point x="-21.75" y="147.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.PassengerController" target="com.neo.ticketingapp.model.Passenger">
+      <point x="-136.125" y="-146.5" />
+      <point x="1758.9353809837503" y="1621.0" />
+      <point x="1625.9978809837503" y="1621.0" />
+      <point x="1625.9978809837503" y="595.0" />
+      <point x="1497.3785628019323" y="595.0" />
+      <point x="0.0" y="179.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.model.Passenger" target="com.neo.ticketingapp.model.Card">
+      <point x="53.25" y="-179.5" />
+      <point x="1550.6285628019323" y="146.0" />
+      <point x="1976.7826128129118" y="146.0" />
+      <point x="-37.666666666666515" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.CardRepository" target="com.neo.ticketingapp.model.Card">
+      <point x="0.0" y="-25.0" />
+      <point x="2731.7478809837503" y="146.0" />
+      <point x="2064.6715017018005" y="146.0" />
+      <point x="50.22222222222217" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.JourneyController" target="com.neo.ticketingapp.controller.UserController">
+      <point x="-108.0" y="-70.0" />
+      <point x="4017.012343544135" y="1561.0" />
+      <point x="2561.1478809837504" y="1561.0" />
+      <point x="152.4000000000001" y="124.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.UserServiceImpl" target="com.neo.ticketingapp.validation.GeneralUtils">
+      <point x="-108.75" y="-147.0" />
+      <point x="3183.544696969697" y="1107.0" />
+      <point x="2932.7478809837503" y="1107.0" />
+      <point x="63.5" y="102.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.TravelCardServiceImpl" target="com.neo.ticketingapp.model.TravelCard">
+      <point x="-61.0" y="-91.5" />
+      <point x="170.0" y="1681.0" />
+      <point x="133.5" y="1681.0" />
+      <point x="133.5" y="1107.0" />
+      <point x="416.88946256038435" y="1107.0" />
+      <point x="-44.25" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.JourneyRepository" target="com.neo.ticketingapp.model.Journey">
+      <point x="0.0" y="-47.0" />
+      <point x="4930.949843544136" y="1077.0" />
+      <point x="4477.895797650417" y="1077.0" />
+      <point x="32.59999999999991" y="69.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.PassengerController" target="com.neo.ticketingapp.service.interfaces.PassengerService">
+      <point x="-45.375" y="-146.5" />
+      <point x="1849.6853809837503" y="1621.0" />
+      <point x="1822.3103809837503" y="1621.0" />
+      <point x="0.0" y="201.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.service.interfaces.CardService">
+      <point x="98.18181818181802" y="-257.0" />
+      <point x="1616.0395792160716" y="1631.0" />
+      <point x="2013.3103809837503" y="1631.0" />
+      <point x="-70.0" y="47.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.RouteServiceImpl" target="com.neo.ticketingapp.service.interfaces.RouteService">
+      <point x="91.5" y="-92.0" />
+      <point x="3848.2744277009206" y="1681.0" />
+      <point x="3950.032612812912" y="1681.0" />
+      <point x="-30.5" y="69.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.UserController" target="com.neo.ticketingapp.service.interfaces.PassengerService">
+      <point x="-152.4000000000001" y="-124.5" />
+      <point x="2256.34788098375" y="1087.0" />
+      <point x="1912.3103809837503" y="1087.0" />
+      <point x="90.0" y="201.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.model.User" target="com.neo.ticketingapp.enums.UserType">
+      <point x="-29.25" y="-102.0" />
+      <point x="3218.637343544135" y="166.0" />
+      <point x="3331.2617794795783" y="166.0" />
+      <point x="-38.25" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.UserServiceImpl" target="com.neo.ticketingapp.model.User">
+      <point x="21.75" y="-147.0" />
+      <point x="3314.044696969697" y="1117.0" />
+      <point x="3287.7478809837503" y="1117.0" />
+      <point x="3287.7478809837503" y="605.0" />
+      <point x="3262.512343544135" y="605.0" />
+      <point x="14.625" y="102.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.repository.RouteRepository" target="com.neo.ticketingapp.model.Route">
+      <point x="0.0" y="-36.0" />
+      <point x="3713.032612812912" y="1117.0" />
+      <point x="3834.6992794795788" y="1117.0" />
+      <point x="-12.083333333333258" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.model.Passenger">
+      <point x="-24.545454545454504" y="-257.0" />
+      <point x="1493.312306488799" y="1581.0" />
+      <point x="1518.4285628019322" y="1581.0" />
+      <point x="1518.4285628019322" y="605.0" />
+      <point x="1468.9785628019322" y="605.0" />
+      <point x="-28.40000000000009" y="179.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.TravelCardServiceImpl" target="com.neo.ticketingapp.service.implementation.UserServiceImpl">
+      <point x="122.0" y="-91.5" />
+      <point x="353.0" y="1661.0" />
+      <point x="3183.544696969697" y="1661.0" />
+      <point x="-108.75" y="147.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PassengerServiceImpl" target="com.neo.ticketingapp.service.implementation.PaymentServiceImpl">
+      <point x="-98.18181818181802" y="-257.0" />
+      <point x="1419.6759428524356" y="1621.0" />
+      <point x="974.4285628019325" y="1621.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.PassengerService" target="com.neo.ticketingapp.model.Passenger">
+      <point x="-67.5" y="-201.0" />
+      <point x="1754.8103809837503" y="585.0" />
+      <point x="1525.778562801932" y="585.0" />
+      <point x="28.399999999999636" y="179.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.RouteService" target="com.neo.ticketingapp.model.Route">
+      <point x="0.0" y="-69.5" />
+      <point x="3980.532612812912" y="1117.0" />
+      <point x="3858.865946146245" y="1117.0" />
+      <point x="12.083333333333258" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.RouteController" target="com.neo.ticketingapp.service.interfaces.RouteService">
+      <point x="89.0" y="-70.0" />
+      <point x="3562.762343544135" y="1671.0" />
+      <point x="3889.032612812912" y="1671.0" />
+      <point x="-91.5" y="69.5" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.RouteServiceImpl" target="com.neo.ticketingapp.model.Route">
+      <point x="-30.5" y="-92.0" />
+      <point x="3726.2744277009206" y="1581.0" />
+      <point x="3564.262343544135" y="1581.0" />
+      <point x="3564.262343544135" y="1107.0" />
+      <point x="3810.532612812912" y="1107.0" />
+      <point x="-36.25" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.interfaces.UserService" target="com.neo.ticketingapp.model.User">
+      <point x="0.0" y="-91.0" />
+      <point x="3146.7478809837503" y="605.0" />
+      <point x="3233.262343544135" y="605.0" />
+      <point x="-14.625" y="102.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.CardController" target="com.neo.ticketingapp.service.interfaces.CardService">
+      <point x="-98.33333333333348" y="-47.5" />
+      <point x="2159.37803030303" y="1631.0" />
+      <point x="2083.3103809837503" y="1631.0" />
+      <point x="0.0" y="47.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.TravelCardServiceImpl" target="com.neo.ticketingapp.repository.TravelCardRepository">
+      <point x="0.0" y="-91.5" />
+      <point x="231.0" y="1681.0" />
+      <point x="278.5" y="1681.0" />
+      <point x="0.0" y="47.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.model.JourneyPassenger">
+      <point x="69.11111111111131" y="-136.0" />
+      <point x="5091.449843544136" y="1671.0" />
+      <point x="5079.799843544135" y="1671.0" />
+      <point x="5079.799843544135" y="1057.0" />
+      <point x="5043.563862812912" y="1057.0" />
+      <point x="0.0" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyServiceImpl" target="com.neo.ticketingapp.service.implementation.UserServiceImpl">
+      <point x="-138.22222222222217" y="-136.0" />
+      <point x="4884.1165102108025" y="1491.0" />
+      <point x="3401.044696969697" y="1491.0" />
+      <point x="108.75" y="147.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.TravelCardServiceImpl" target="com.neo.ticketingapp.enums.BooleanType">
+      <point x="-122.0" y="-91.5" />
+      <point x="109.0" y="1681.0" />
+      <point x="61.5" y="1681.0" />
+      <point x="0.0" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.CardController" target="com.neo.ticketingapp.model.Card">
+      <point x="0.0" y="-47.5" />
+      <point x="2257.711363636364" y="1631.0" />
+      <point x="2207.7478809837503" y="1631.0" />
+      <point x="2207.7478809837503" y="166.0" />
+      <point x="2039.5603905906896" y="166.0" />
+      <point x="25.111111111111313" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.RouteServiceImpl" target="com.neo.ticketingapp.repository.RouteRepository">
+      <point x="30.5" y="-92.0" />
+      <point x="3787.2744277009206" y="1571.0" />
+      <point x="3713.032612812912" y="1571.0" />
+      <point x="0.0" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.JourneyPassengerImpl" target="com.neo.ticketingapp.model.JourneyPassenger">
+      <point x="65.4375" y="-136.0" />
+      <point x="4546.949843544135" y="1501.0" />
+      <point x="4471.449843544135" y="1501.0" />
+      <point x="4471.449843544135" y="1107.0" />
+      <point x="4975.163862812911" y="1107.0" />
+      <point x="-68.40000000000009" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.PaymentServiceImpl" target="com.neo.ticketingapp.service.interfaces.PaymentService">
+      <point x="0.0" y="-25.0" />
+      <point x="974.4285628019325" y="1117.0" />
+      <point x="979.6785628019325" y="1117.0" />
+      <point x="-74.75" y="25.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.service.implementation.UserServiceImpl" target="com.neo.ticketingapp.repository.UserRepository">
+      <point x="65.25" y="-147.0" />
+      <point x="3357.544696969697" y="1077.0" />
+      <point x="3473.294696969697" y="1077.0" />
+      <point x="0.0" y="36.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.TravelCardController" target="com.neo.ticketingapp.model.TravelCard">
+      <point x="0.0" y="-80.5" />
+      <point x="766.958333333333" y="1651.0" />
+      <point x="748.4999999999998" y="1651.0" />
+      <point x="748.4999999999998" y="1107.0" />
+      <point x="505.38946256038435" y="1107.0" />
+      <point x="44.25" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.RouteController" target="com.neo.ticketingapp.model.Route">
+      <point x="0.0" y="-70.0" />
+      <point x="3473.762343544135" y="1681.0" />
+      <point x="3520.5742794795783" y="1681.0" />
+      <point x="3520.5742794795783" y="1097.0" />
+      <point x="3786.365946146245" y="1097.0" />
+      <point x="-60.41666666666674" y="58.0" />
+    </edge>
+    <edge source="com.neo.ticketingapp.controller.JourneyPassengerController" target="com.neo.ticketingapp.service.interfaces.JourneyPassengerService">
+      <point x="0.0" y="-47.5" />
+      <point x="5401.688732433024" y="1681.0" />
+      <point x="5356.299843544135" y="1681.0" />
+      <point x="102.0" y="91.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6" x="1145.0" y="717.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

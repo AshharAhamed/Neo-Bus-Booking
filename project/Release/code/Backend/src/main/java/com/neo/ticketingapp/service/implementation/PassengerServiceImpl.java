@@ -1,16 +1,14 @@
 package com.neo.ticketingapp.service.implementation;
 
 import com.neo.ticketingapp.enums.PassengerType;
-import com.neo.ticketingapp.model.Card;
-import com.neo.ticketingapp.model.Passenger;
+import com.neo.ticketingapp.model.*;
 import com.neo.ticketingapp.repository.CardRepository;
 import com.neo.ticketingapp.repository.PassengerRepository;
-import com.neo.ticketingapp.service.interfaces.CardService;
-import com.neo.ticketingapp.service.interfaces.PassengerService;
-import com.neo.ticketingapp.service.interfaces.PaymentService;
+import com.neo.ticketingapp.service.interfaces.*;
 import com.neo.ticketingapp.validation.GeneralUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +21,15 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     private CardService cardService;
+
+    @Autowired
+    private RouteService routeService;
+
+    @Autowired
+    private JourneyPassengerService journeyPassengerService;
+
+    @Autowired
+    private JourneyService journeyService;
 
     public PassengerServiceImpl() {
         this.generalUtils = new GeneralUtils();
@@ -263,5 +270,68 @@ public class PassengerServiceImpl implements PassengerService {
             return "New Travel Card No is " + travelCardNo;
         } else
             return "Passenger not Found !";
+    }
+
+    @Override
+    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException {
+        JSONObject jsonObject = new JSONObject();
+        Passenger passenger = getPassengerByCardNo(travelCardID);
+        Journey journey = journeyService.getJourneyByJourneyID(journeyID);
+        Route route = routeService.getRouteByRouteID(journey.getRouteID());
+        double creditBalance = passenger.getCreditBalance();
+        double ticketPrice = calculateTicketPrice(route.getBusHalts(), startStation, endStation);
+        if(ticketPrice == -1){
+            jsonObject.put("Error", "Start Station is after End Station");
+            return jsonObject;
+        }else if (ticketPrice == -2){
+            jsonObject.put("Error", "Station does not Exist");
+            return jsonObject;
+        }
+        if((getBusHaltPosition(route.getBusHalts(), journey.getNextStation())) > getBusHaltPosition(route.getBusHalts(), startStation)){
+            jsonObject.put("Error", "Bus has already passed");
+            return jsonObject;
+        }
+        if(creditBalance >= ticketPrice) {
+            creditBalance -= ticketPrice;
+            passenger.setCreditBalance(creditBalance);
+            passengerRepository.save(passenger);
+            journeyPassengerService.addPassenger(journeyID, travelCardID);
+            jsonObject.put("Message", "Trip started !");
+            return jsonObject;
+        }
+        else{
+            jsonObject.put("Error", "Not Sufficient Credit Balance");
+            return jsonObject;
+        }
+    }
+
+    private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation){
+        int stations = this.getBusHaltDifference(busHaltList, startStation, endStation);
+        if(stations == -1)
+            return -1;
+        else if(stations == -2)
+            return -2;
+        else
+            return (stations * 15.0);
+    }
+
+    private int getBusHaltDifference(List<String> busHaltList, String startStation, String endStation){
+        int startPoint = getBusHaltPosition(busHaltList, startStation);
+        int endPoint = getBusHaltPosition(busHaltList, endStation);
+        if(startPoint == -1 || endPoint == -1)
+            return -2;
+        if(startPoint >= endPoint)
+            return -1;
+        return endPoint - startPoint;
+    }
+
+    private int getBusHaltPosition(List<String> busHaltList, String halt){
+        int index = 0;
+        for (String busHalt: busHaltList) {
+            if(halt.equals(busHalt))
+                return index;
+            ++index;
+        }
+        return -1;
     }
 }

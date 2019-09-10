@@ -26,7 +26,7 @@ public class Passenger {
     private double loanAmount;
     private List<Card> cardList;
 
-    public Passenger(){
+    public Passenger() {
         this.cardList = new ArrayList<Card>();
     }
 

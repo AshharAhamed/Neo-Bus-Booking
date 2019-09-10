@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JourneyPassengerImpl implements JourneyPassengerService {
+public class JourneyPassengerServiceImpl implements JourneyPassengerService {
 
-    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(JourneyPassengerServiceImpl.class);
 
     @Autowired
     private JourneyPassengerRepository journeyPassengerRepository;

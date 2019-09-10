@@ -2,6 +2,7 @@ package com.neo.ticketingapp.service.interfaces;
 
 import com.neo.ticketingapp.model.Card;
 import com.neo.ticketingapp.model.Passenger;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,4 +42,6 @@ public interface PassengerService {
     public Passenger getPassengerByPassport(String Passport);
 
     public Passenger getPassengerByNIC(String NIC);
+
+    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException;
 }

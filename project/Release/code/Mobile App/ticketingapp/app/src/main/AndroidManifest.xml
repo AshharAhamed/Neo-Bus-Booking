@@ -11,7 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PassengerOnGoingJourneyActivity"></activity>
+        <activity android:name=".InspectorJourney"></activity>
+        <activity android:name=".InspectorHome" />
+        <activity android:name=".InspectorOnGoingJourney" />
+        <activity android:name=".PassengerJourneyActivity" />
+        <activity android:name=".PassengerOnGoingJourneyActivity" />
         <activity android:name=".PassengerProfileActivity" />
         <activity android:name=".PassengerAccountActivity" />
         <activity android:name=".PassengerHome" />

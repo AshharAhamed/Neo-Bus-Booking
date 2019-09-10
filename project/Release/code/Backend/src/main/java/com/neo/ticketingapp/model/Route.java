@@ -3,6 +3,7 @@ package com.neo.ticketingapp.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -12,6 +13,11 @@ public class Route {
     private String routeID;
     private String routeName;
     private String routeNo;
+    private List<String> busHalts;
+
+    public Route() {
+        this.busHalts = new ArrayList<>();
+    }
 
     public String getRouteNo() {
         return routeNo;
@@ -20,8 +26,6 @@ public class Route {
     public void setRouteNo(String routeNo) {
         this.routeNo = routeNo;
     }
-
-    private List<String> busHalts;
 
     public String getRouteID() {
         return routeID;
