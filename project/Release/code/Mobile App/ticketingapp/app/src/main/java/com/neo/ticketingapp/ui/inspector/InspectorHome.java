@@ -1,10 +1,12 @@
-package com.neo.ticketingapp;
+package com.neo.ticketingapp.ui.inspector;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.neo.ticketingapp.R;
 
 public class InspectorHome extends AppCompatActivity implements View.OnClickListener{
 

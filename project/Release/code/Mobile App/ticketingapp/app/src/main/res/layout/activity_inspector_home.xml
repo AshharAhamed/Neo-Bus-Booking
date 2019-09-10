@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InspectorHome">
+    tools:context=".ui.inspector.InspectorHome">
 
     <Button
         android:id="@+id/viewAllJourneysBtn"

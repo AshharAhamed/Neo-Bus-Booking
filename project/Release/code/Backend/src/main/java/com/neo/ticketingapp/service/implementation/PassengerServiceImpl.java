@@ -11,6 +11,9 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -36,6 +39,9 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     private PassengerRepository passengerRepository;
+
+    @Autowired
+    private PassengerLogService passengerLogService;
 
     public PassengerServiceImpl() {
         this.generalUtils = new GeneralUtils();
@@ -214,7 +220,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public String topUpByCash(String travelCardNo, double amount){
+    public String topUpByCash(String travelCardNo, double amount) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
         if (passenger != null) {
             passenger.setCreditBalance(passenger.getCreditBalance() + amount);
@@ -245,7 +251,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public String recoverTravelCard(String nic, String travelCardNo){
+    public String recoverTravelCard(String nic, String travelCardNo) {
         Passenger passenger;
         if ((passenger = getPassengerByNIC(nic)) != null) {
             passenger.setCardNo(travelCardNo);
@@ -260,62 +266,103 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException {
+    public JSONObject validateJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException {
         JSONObject jsonObject = new JSONObject();
         Passenger passenger = getPassengerByCardNo(travelCardID);
         Journey journey = journeyService.getJourneyByJourneyID(journeyID);
         Route route = routeService.getRouteByRouteID(journey.getRouteID());
         double creditBalance = passenger.getCreditBalance();
         double ticketPrice = calculateTicketPrice(route.getBusHalts(), startStation, endStation);
-        if(ticketPrice == -1){
+        if (ticketPrice == -1) {
             jsonObject.put(ERROR, "Start Station is after End Station");
             return jsonObject;
-        }else if (ticketPrice == -2){
+        } else if (ticketPrice == -2) {
             jsonObject.put(ERROR, "Station does not Exist");
             return jsonObject;
         }
-        if((getBusHaltPosition(route.getBusHalts(), journey.getNextStation())) > getBusHaltPosition(route.getBusHalts(), startStation)){
+        if ((getBusHaltPosition(route.getBusHalts(), journey.getNextStation())) > getBusHaltPosition(route.getBusHalts(), startStation)) {
             jsonObject.put(ERROR, "Bus has already passed");
             return jsonObject;
         }
-        if(creditBalance >= ticketPrice) {
-            creditBalance -= ticketPrice;
-            passenger.setCreditBalance(creditBalance);
-            passengerRepository.save(passenger);
-            journeyPassengerService.addPassenger(journeyID, travelCardID);
-            jsonObject.put(MESSAGE, "Trip started !");
+        if (creditBalance >= ticketPrice) {
+            jsonObject.put(MESSAGE, "Success");
+            passenger.setCreditBalance(creditBalance - ticketPrice);
+            jsonObject.put("Passenger", passenger);
+            jsonObject.put("ticketPrice", ticketPrice);
             return jsonObject;
-        }
-        else{
+        } else {
             jsonObject.put(ERROR, "Not Sufficient Credit Balance");
             return jsonObject;
         }
     }
 
-    private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation){
+    @Override
+    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException, ParseException {
+        JSONObject jsonObject = validateJourney(travelCardID, startStation, endStation, journeyID);
+        Passenger passenger = (Passenger) jsonObject.get("Passenger");
+        if (jsonObject.get(ERROR) != null)
+            return jsonObject;
+        else {
+            passengerRepository.save(passenger);
+            journeyPassengerService.addPassenger(journeyID, travelCardID);
+
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String dateString = dateFormat.format(date);
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+
+            PassengerLog passengerLog = new PassengerLog();
+            passengerLog.setTravelCardID(travelCardID);
+            passengerLog.setJourneyID(journeyID);
+            passengerLog.setTicketPrice(Double.parseDouble(jsonObject.get("ticketPrice").toString()));
+            passengerLog.setStartStation(startStation);
+            passengerLog.setEndStation(endStation);
+            passengerLog.setStartTime(date);
+            passengerLog = passengerLogService.insertLog(passengerLog);
+            jsonObject.put("logID", passengerLog.getLogID());
+            jsonObject.put(MESSAGE, "Trip started !");
+            return jsonObject;
+        }
+    }
+
+    @Override
+    public String endJourney(String logID) throws IllegalAccessException, ParseException {
+        PassengerLog passengerLog = passengerLogService.getLogByLogID(logID);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String dateString = dateFormat.format(date);
+        date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        passengerLog.setEndTime(date);
+        passengerLogService.updateLogDetails(logID, passengerLog);
+        journeyPassengerService.removePassenger(passengerLogService.getLogByLogID(logID).getJourneyID(), passengerLogService.getLogByLogID(logID).getTravelCardID());
+        return "SUCCESS";
+    }
+
+    private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation) {
         int stations = this.getBusHaltDifference(busHaltList, startStation, endStation);
-        if(stations == -1)
+        if (stations == -1)
             return -1;
-        else if(stations == -2)
+        else if (stations == -2)
             return -2;
         else
             return (stations * 15.0);
     }
 
-    private int getBusHaltDifference(List<String> busHaltList, String startStation, String endStation){
+    private int getBusHaltDifference(List<String> busHaltList, String startStation, String endStation) {
         int startPoint = getBusHaltPosition(busHaltList, startStation);
         int endPoint = getBusHaltPosition(busHaltList, endStation);
-        if(startPoint == -1 || endPoint == -1)
+        if (startPoint == -1 || endPoint == -1)
             return -2;
-        if(startPoint >= endPoint)
+        if (startPoint >= endPoint)
             return -1;
         return endPoint - startPoint;
     }
 
-    private int getBusHaltPosition(List<String> busHaltList, String halt){
+    private int getBusHaltPosition(List<String> busHaltList, String halt) {
         int index = 0;
-        for (String busHalt: busHaltList) {
-            if(halt.equals(busHalt))
+        for (String busHalt : busHaltList) {
+            if (halt.equals(busHalt))
                 return index;
             ++index;
         }

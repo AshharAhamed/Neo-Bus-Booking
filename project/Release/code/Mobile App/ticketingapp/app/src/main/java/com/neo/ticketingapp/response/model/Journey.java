@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.responseModels;
+package com.neo.ticketingapp.response.model;
 
 import java.io.Serializable;
 
@@ -12,8 +12,6 @@ public class Journey implements Serializable {
 
     public Journey() {
     }
-
-
 
     public String getRouteID() {
         return routeID;

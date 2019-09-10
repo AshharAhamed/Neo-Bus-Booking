@@ -3,6 +3,8 @@ package com.neo.ticketingapp.service.interfaces;
 import com.neo.ticketingapp.model.Card;
 import com.neo.ticketingapp.model.Passenger;
 import org.json.simple.JSONObject;
+
+import java.text.ParseException;
 import java.util.List;
 
 public interface PassengerService {
@@ -41,5 +43,9 @@ public interface PassengerService {
 
     Passenger getPassengerByNIC(String nic);
 
-    JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException;
+    JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException, ParseException;
+
+    JSONObject validateJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException;
+
+    String endJourney(String logID) throws IllegalAccessException, ParseException;
 }

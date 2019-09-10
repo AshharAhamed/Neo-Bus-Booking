@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ManagerService from '../../services/ManagerService'
 import QueueAnim from "rc-queue-anim";
 import {Link} from "react-router-dom";
-import {Button} from "react-bootstrap";
 import Ripples from "react-ripples";
 
 export default class AddRoute extends Component {

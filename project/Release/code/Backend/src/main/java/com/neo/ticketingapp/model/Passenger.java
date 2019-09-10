@@ -27,7 +27,7 @@ public class Passenger {
     private List<Card> cardList;
 
     public Passenger() {
-        this.cardList = new ArrayList<Card>();
+        this.cardList = new ArrayList<>();
     }
 
     public String getLastName() {

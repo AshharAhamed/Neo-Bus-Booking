@@ -1,6 +1,9 @@
 package com.neo.ticketingapp.service;
 
-import com.neo.ticketingapp.responseModels.PassengerAccountResult;
+import com.neo.ticketingapp.response.model.PassengerAccountResult;
+import com.neo.ticketingapp.response.model.PassengerLogResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,4 +15,8 @@ public interface PassengerAccountService {
     @Headers("Content-Type: application/json")
     @GET("passenger/getPassengerAccount/{travelCardID}")
     Call<PassengerAccountResult> getPassengerAccount(@Path("travelCardID") String travelCardID);
+
+    @Headers("Content-Type: application/json")
+    @GET("log/get/{travelCardID}")
+    Call<List<PassengerLogResponse>> getPassengerLog(@Path("travelCardID") String travelCardID);
 }

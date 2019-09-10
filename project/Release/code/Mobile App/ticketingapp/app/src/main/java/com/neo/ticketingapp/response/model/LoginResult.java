@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.responseModels;
+package com.neo.ticketingapp.response.model;
 
 public class LoginResult {
    private String username;

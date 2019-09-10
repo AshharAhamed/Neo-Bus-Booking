@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.neo.ticketingapp.R;
-import com.neo.ticketingapp.responseModels.Card;
+import com.neo.ticketingapp.response.model.Card;
 
 import java.util.List;
 

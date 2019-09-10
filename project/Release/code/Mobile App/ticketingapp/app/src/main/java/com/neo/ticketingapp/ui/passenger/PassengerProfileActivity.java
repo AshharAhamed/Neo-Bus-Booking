@@ -1,14 +1,14 @@
-package com.neo.ticketingapp;
+package com.neo.ticketingapp.ui.passenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.neo.ticketingapp.adapter.CardAdapter;
+import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.common.constants.Server;
-import com.neo.ticketingapp.responseModels.PassengerAccountResult;
+import com.neo.ticketingapp.response.model.PassengerAccountResult;
 import com.neo.ticketingapp.service.PassengerAccountService;
 
 import retrofit2.Call;

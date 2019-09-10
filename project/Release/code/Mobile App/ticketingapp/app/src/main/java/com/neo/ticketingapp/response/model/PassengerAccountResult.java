@@ -1,4 +1,6 @@
-package com.neo.ticketingapp.responseModels;
+package com.neo.ticketingapp.response.model;
+
+import com.neo.ticketingapp.response.model.Card;
 
 import java.util.List;
 

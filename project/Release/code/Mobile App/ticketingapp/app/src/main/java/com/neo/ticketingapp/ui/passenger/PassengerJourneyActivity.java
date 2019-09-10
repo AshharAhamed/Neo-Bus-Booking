@@ -1,4 +1,4 @@
-package com.neo.ticketingapp;
+package com.neo.ticketingapp.ui.passenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.common.constants.Server;
-import com.neo.ticketingapp.requestModels.StartJourneyRequest;
-import com.neo.ticketingapp.responseModels.Journey;
-import com.neo.ticketingapp.responseModels.StartJourneyResult;
+import com.neo.ticketingapp.request.model.StartJourneyRequest;
+import com.neo.ticketingapp.response.model.Journey;
+import com.neo.ticketingapp.response.model.StartJourneyResult;
 import com.neo.ticketingapp.service.JourneyService;
 
 import retrofit2.Call;
@@ -30,8 +31,8 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
     private TextView NextStationTxt;
     private EditText startStation;
     private EditText endStation;
-    private Button tapOutBtn;
     private Button tapBtn;
+    private Button confirmBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,10 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         this.NextStationTxt = findViewById(R.id.NextStationTxt);
         this.startStation = findViewById(R.id.startStation);
         this.endStation = findViewById(R.id.endStation);
-        this.tapOutBtn = findViewById(R.id.tapOutBtn);
         this.tapBtn = findViewById(R.id.tapBtn);
+        this.confirmBtn = findViewById(R.id.confirmBtn);
 
-        tapOutBtn.setVisibility(View.GONE);
-
+        tapBtn.setVisibility(View.GONE);
         busNoTxt.setText(journey.getBusNo());
         NextStationTxt.setText(journey.getNextStation());
     }
@@ -77,8 +77,13 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
                         GeneralUtil.toastShort(response.body().getError(), getBaseContext()).show();
                     } else {
                         GeneralUtil.toastShort(response.body().getMessage(), getBaseContext()).show();
-                        tapOutBtn.setVisibility(View.VISIBLE);
-                        tapBtn.setVisibility(View.GONE);
+                        Intent intent = new Intent(PassengerJourneyActivity.this, PassengerTripDetail.class);
+                        intent.putExtra("Journey", journey);
+                        intent.putExtra("ticketPrice", response.body().getTicketPrice());
+                        intent.putExtra("startStation",  startStation.getText().toString());
+                        intent.putExtra("endStation",  endStation.getText().toString());
+                        intent.putExtra("logID", response.body().getLogID());
+                        startActivity(intent);
                     }
                 }
 
@@ -88,7 +93,36 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
                     GeneralUtil.toastShort(t.getMessage(), getBaseContext()).show();
                 }
             });
+        }else if (v.getId() == R.id.confirmBtn) {
 
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Server.SERVER_BASE_URL)
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            JourneyService service = retrofit.create(JourneyService.class);
+
+            Call<StartJourneyResult> call = service.validateJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStation.getText().toString(), endStation.getText().toString(), journey.getJourneyID()));
+
+            call.enqueue(new Callback<StartJourneyResult>() {
+                @Override
+                public void onResponse(Call<StartJourneyResult> call, Response<StartJourneyResult> response) {
+                    if (response.body().getError() != null) {
+                        GeneralUtil.toastShort(response.body().getError(), getBaseContext()).show();
+                    } else {
+                        GeneralUtil.toastShort(response.body().getMessage(), getBaseContext()).show();
+                        tapBtn.setVisibility(View.VISIBLE);
+                        confirmBtn.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<StartJourneyResult> call, Throwable t) {
+                    //To get network errors
+                    GeneralUtil.toastShort(t.getMessage(), getBaseContext()).show();
+                }
+            });
         }
     }
 }
