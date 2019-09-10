@@ -9,6 +9,6 @@ public interface RouteService {
     String addRoute(Route route);
     Route getRouteByRouteName(String routeName);
     Route getRouteByRouteID(String routeID);
-    public List<Route> getAllRoutes();
-    public JSONObject getAllRouteNames();
+    List<Route> getAllRoutes();
+    JSONObject getAllRouteNames();
 }

@@ -11,14 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InspectorJourney"></activity>
-        <activity android:name=".InspectorHome" />
-        <activity android:name=".InspectorOnGoingJourney" />
-        <activity android:name=".PassengerJourneyActivity" />
-        <activity android:name=".PassengerOnGoingJourneyActivity" />
-        <activity android:name=".PassengerProfileActivity" />
-        <activity android:name=".PassengerAccountActivity" />
-        <activity android:name=".PassengerHome" />
+        <activity android:name=".ui.passenger.PassengerLog"></activity>
+        <activity android:name=".ui.passenger.PassengerTripDetail" />
+        <activity android:name=".ui.inspector.InspectorJourney" />
+        <activity android:name=".ui.inspector.InspectorHome" />
+        <activity android:name=".ui.inspector.InspectorOnGoingJourney" />
+        <activity android:name=".ui.passenger.PassengerJourneyActivity" />
+        <activity android:name=".ui.passenger.PassengerOnGoingJourneyActivity" />
+        <activity android:name=".ui.passenger.PassengerProfileActivity" />
+        <activity android:name=".ui.passenger.PassengerAccountActivity" />
+        <activity android:name=".ui.passenger.PassengerHome" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

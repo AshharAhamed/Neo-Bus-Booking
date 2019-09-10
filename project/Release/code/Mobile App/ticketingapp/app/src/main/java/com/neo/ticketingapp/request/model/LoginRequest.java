@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.requestModels;
+package com.neo.ticketingapp.request.model;
 
 public class LoginRequest {
     private String username;

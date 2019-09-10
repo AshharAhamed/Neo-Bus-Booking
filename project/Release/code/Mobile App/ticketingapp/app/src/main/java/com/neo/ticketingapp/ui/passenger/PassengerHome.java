@@ -1,10 +1,12 @@
-package com.neo.ticketingapp;
+package com.neo.ticketingapp.ui.passenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.neo.ticketingapp.R;
 
 public class PassengerHome extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +26,9 @@ public class PassengerHome extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }else if (v.getId() == R.id.OnGoingJourneyBtn) {
             Intent intent = new Intent(PassengerHome.this, PassengerOnGoingJourneyActivity.class);
+            startActivity(intent);
+        }else if (v.getId() == R.id.pastLogBtn) {
+            Intent intent = new Intent(PassengerHome.this, PassengerLog.class);
             startActivity(intent);
         }
     }

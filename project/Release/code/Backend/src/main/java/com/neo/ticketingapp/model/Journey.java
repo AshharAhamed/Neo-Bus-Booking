@@ -3,7 +3,6 @@ package com.neo.ticketingapp.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Document
@@ -13,7 +12,7 @@ public class Journey {
     private String journeyID;
     private String routeID;
     private String busNo;
-    private LocalDateTime startTime;
+    private Date startTime;
     private String nextStation;
 
     public String getJourneyID() {
@@ -40,11 +39,11 @@ public class Journey {
         this.busNo = busNo;
     }
 
-    public LocalDateTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 

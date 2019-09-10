@@ -4,7 +4,7 @@ import com.neo.ticketingapp.model.Card;
 import com.neo.ticketingapp.model.Passenger;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.List;
 
 public interface PassengerService {
@@ -19,29 +19,33 @@ public interface PassengerService {
 
     List<Passenger> getAllPassengers(String userType);
 
-    public Passenger getPassengerByCardNo(String cardID) throws IllegalAccessException;
+    Passenger getPassengerByCardNo(String cardID) throws IllegalAccessException;
 
     Passenger logPassenger(String cardNo, String nic) throws IllegalAccessException;
 
-    public Passenger getPassenger(String cardNo);
+    Passenger getPassenger(String cardNo);
 
-    public Passenger getPassengerAccount(String cardNo);
+    Passenger getPassengerAccount(String cardNo);
 
-    public String addCard(String travelCardNo, Card card) throws IllegalAccessException;
+    String addCard(String travelCardNo, Card card) throws IllegalAccessException;
 
-    public String deleteCard(String travelCardNo, String cardNo);
+    String deleteCard(String travelCardNo, String cardNo);
 
-    public ArrayList<String> getCards(String travelCardNo);
+    List<String> getCards(String travelCardNo);
 
-    public String topUp(String travelCardNo, String paymentCardNo, double amount);
+    String topUp(String travelCardNo, String paymentCardNo, double amount);
 
-    public String topUpByCash(String travelCardNo, double amount) throws IllegalAccessException;
+    String topUpByCash(String travelCardNo, double amount) throws IllegalAccessException;
 
-    public String recoverTravelCard(String nic, String travelCardNo) throws IllegalAccessException;
+    String recoverTravelCard(String nic, String travelCardNo) throws IllegalAccessException;
 
-    public Passenger getPassengerByPassport(String Passport);
+    Passenger getPassengerByPassport(String passport);
 
-    public Passenger getPassengerByNIC(String NIC);
+    Passenger getPassengerByNIC(String nic);
 
-    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException;
+    JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException, ParseException;
+
+    JSONObject validateJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException;
+
+    String endJourney(String logID) throws IllegalAccessException, ParseException;
 }

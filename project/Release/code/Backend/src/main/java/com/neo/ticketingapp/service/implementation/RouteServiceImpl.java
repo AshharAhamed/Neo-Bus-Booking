@@ -1,8 +1,5 @@
 package com.neo.ticketingapp.service.implementation;
 
-import com.neo.ticketingapp.enums.PassengerType;
-import com.neo.ticketingapp.model.Card;
-import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.model.Route;
 import com.neo.ticketingapp.repository.RouteRepository;
 import com.neo.ticketingapp.service.interfaces.RouteService;
@@ -18,7 +15,7 @@ import java.util.List;
 @Service
 public class RouteServiceImpl implements RouteService {
 
-    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(RouteServiceImpl.class);
 
     @Autowired
     private RouteRepository routeRepository;
@@ -38,7 +35,7 @@ public class RouteServiceImpl implements RouteService {
     public Route getRouteByRouteName(String routeName) {
         logger.debug("Request received to get the Route with Name - {}", routeName);
         List<Route> routeList = routeRepository.findByRouteName(routeName);
-        if (routeList == null || routeList.size() == 0) {
+        if (routeList == null || routeList.isEmpty()) {
             return null;
         }
         return routeList.get(0);
@@ -48,7 +45,7 @@ public class RouteServiceImpl implements RouteService {
     public Route getRouteByRouteID(String routeID) {
         logger.debug("Request received to get the Route with Name - {}", routeID);
         List<Route> routeList = routeRepository.findByRouteID(routeID);
-        if (routeList == null || routeList.size() == 0) {
+        if (routeList == null || routeList.isEmpty()) {
             return null;
         }
         return routeList.get(0);

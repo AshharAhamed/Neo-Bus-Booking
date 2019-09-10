@@ -1,6 +1,6 @@
 package com.neo.ticketingapp.model;
 
-import com.neo.ticketingapp.enums.UserType;
+import com.neo.ticketingapp.common.enums.UserType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

@@ -1,10 +1,11 @@
 package com.neo.ticketingapp.service.implementation;
 
-import com.neo.ticketingapp.enums.UserType;
+import com.neo.ticketingapp.common.enums.UserType;
 import com.neo.ticketingapp.model.User;
 import com.neo.ticketingapp.repository.UserRepository;
 import com.neo.ticketingapp.service.interfaces.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,14 +18,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final String VALID = "Valid";
+
     private GeneralUtils generalUtils;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public UserServiceImpl() {
         this.generalUtils = new GeneralUtils();
     }
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public String insertUser(User user) {
@@ -35,15 +38,15 @@ public class UserServiceImpl implements UserService {
 
         if (user.getUsername() == null)
             return "Username cannot be Empty !";
-        if (!(result = generalUtils.isName(user.getFirstName(), "First Name")).equals("Valid"))
+        if (!(result = generalUtils.isName(user.getFirstName(), "First Name")).equals(VALID))
             return result;
-        if (!(result = generalUtils.isName(user.getLastName(), "Last Name")).equals("Valid"))
+        if (!(result = generalUtils.isName(user.getLastName(), "Last Name")).equals(VALID))
             return result;
-        if (!(result = generalUtils.isEmail(user.getEmail())).equals("Valid"))
+        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
             return result;
-        if (!(result = generalUtils.isPhone(user.getContact())).equals("Valid"))
+        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
             return result;
-        if (!(result = generalUtils.isPassword(user.getPassword())).equals("Valid"))
+        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
             return result;
         user.setPassword(generalUtils.encryptPassword(user.getPassword()));
 
@@ -60,11 +63,11 @@ public class UserServiceImpl implements UserService {
         if ((updatedUser = getUserByUsername(user.getUsername())) == null)
             return "Username does not exist !";
 
-        if (!(result = generalUtils.isEmail(user.getEmail())).equals("Valid"))
+        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
             return result;
-        if (!(result = generalUtils.isPhone(user.getContact())).equals("Valid"))
+        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
             return result;
-        if (!(result = generalUtils.isPassword(user.getPassword())).equals("Valid"))
+        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
             return result;
 
         updatedUser.setEmail(user.getEmail());
@@ -100,9 +103,9 @@ public class UserServiceImpl implements UserService {
         logger.info("{} is successfully deleted", username);
     }
 
-    private User getUserByUsername(String username) throws IllegalAccessException {
+    private User getUserByUsername(String username){
         List<User> userList = userRepository.findByUsername(username);
-        if (userList == null || userList.size() == 0) {
+        if (userList == null || userList.isEmpty()) {
             return null;
         }
         return userList.get(0);
@@ -112,11 +115,11 @@ public class UserServiceImpl implements UserService {
     public User getUserById(String userId) {
         logger.debug("Request received to get the User with Id - {}", userId);
         Optional<User> userById = userRepository.findById(userId);
-        return userById.get();
+        return userById.orElse(null);
     }
 
     @Override
-    public void resetPassword(String username, String currentPassword, String newPassword) throws IllegalAccessException {
+    public void resetPassword(String username, String currentPassword, String newPassword){
         logger.debug("Request received to reset the password from {}", username);
 
         List<User> userById = userRepository.findByUsername(username);
@@ -135,6 +138,6 @@ public class UserServiceImpl implements UserService {
             return userRepository.findByType(UserType.Inspector);
         else if (UserType.Manager.toString().equals(userType))
             return userRepository.findByType(UserType.Manager);
-        return null;
+        return new ArrayList<>();
     }
 }

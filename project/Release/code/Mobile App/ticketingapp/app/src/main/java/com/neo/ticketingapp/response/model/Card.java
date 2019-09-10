@@ -1,4 +1,4 @@
-package com.neo.ticketingapp.responseModels;
+package com.neo.ticketingapp.response.model;
 
 public class Card {
     private String cardId;

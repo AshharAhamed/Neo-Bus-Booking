@@ -1,4 +1,4 @@
-package com.neo.ticketingapp;
+package com.neo.ticketingapp.ui.passenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.adapter.JourneyAdapter;
 import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.common.constants.Server;
-import com.neo.ticketingapp.responseModels.Journey;
+import com.neo.ticketingapp.response.model.Journey;
 import com.neo.ticketingapp.service.JourneyService;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class InspectorOnGoingJourney extends AppCompatActivity {
+public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
 
     private ListView journeyList;
     private List<Journey> activeJourneyList;
@@ -32,7 +33,7 @@ public class InspectorOnGoingJourney extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inspector_on_going_journey);
+        setContentView(R.layout.activity_passenger_on_going_journey);
         this.journeyList = (ListView) findViewById(R.id.OnGoingJourneyList);
         activeJourneyList = new ArrayList<>();
         this.getOnGoingJourneys();
@@ -68,10 +69,11 @@ public class InspectorOnGoingJourney extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Journey journey = activeJourneyList.get(i);
-                Intent intent = new Intent(InspectorOnGoingJourney.this, InspectorJourney.class);
+                Intent intent = new Intent(PassengerOnGoingJourneyActivity.this, PassengerJourneyActivity.class);
                 intent.putExtra("Journey", journey);
                 startActivity(intent);
             }
         });
     }
+
 }

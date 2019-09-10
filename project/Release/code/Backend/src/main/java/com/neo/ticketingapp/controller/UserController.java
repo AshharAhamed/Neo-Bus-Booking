@@ -115,7 +115,7 @@ public class UserController {
         logger.debug("Request received to top up a passenger in the system");
         try {
             if (travelCardNo != null) {
-                double amount = Double.valueOf(sampleObject.get("amount").toString()) ;
+                double amount = Double.parseDouble(sampleObject.get("amount").toString()) ;
                 return new ResponseEntity<>(passengerService.topUpByCash(travelCardNo, amount), HttpStatus.CREATED);
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {

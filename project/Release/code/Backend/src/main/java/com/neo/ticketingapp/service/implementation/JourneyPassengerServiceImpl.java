@@ -2,10 +2,12 @@ package com.neo.ticketingapp.service.implementation;
 
 import com.neo.ticketingapp.model.Journey;
 import com.neo.ticketingapp.model.JourneyPassenger;
+import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.model.Route;
 import com.neo.ticketingapp.repository.JourneyPassengerRepository;
 import com.neo.ticketingapp.service.interfaces.JourneyPassengerService;
 import com.neo.ticketingapp.service.interfaces.JourneyService;
+import com.neo.ticketingapp.service.interfaces.PassengerService;
 import com.neo.ticketingapp.service.interfaces.RouteService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -30,9 +33,12 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     @Autowired
     private RouteService routeService;
 
+    @Autowired
+    private PassengerService passengerService;
+
     @Override
-    public String insertJourneyPassenger(JourneyPassenger journeyPassenger) throws IllegalAccessException {
-        if(getJourneyByJourneyID(journeyPassenger.getJourneyID()) == null){
+    public String insertJourneyPassenger(JourneyPassenger journeyPassenger) {
+        if (getJourneyByJourneyID(journeyPassenger.getJourneyID()) == null) {
             journeyPassengerRepository.insert(journeyPassenger);
             return "true";
         }
@@ -40,13 +46,10 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     }
 
     @Override
-    public String addPassenger(String journeyID, String travelCardID) throws IllegalAccessException {
+    public String addPassenger(String journeyID, String travelCardID) {
         JourneyPassenger journeyPassenger;
-        if((journeyPassenger = getJourneyByJourneyID(journeyID)) != null){
-            List<String> passengerList = new ArrayList<String>();
-            if ((passengerList = journeyPassenger.getTravelCardList()).isEmpty()) {
-                passengerList = new ArrayList<String>();
-            }
+        if ((journeyPassenger = getJourneyByJourneyID(journeyID)) != null) {
+            List<String> passengerList = journeyPassenger.getTravelCardList();
             passengerList.add(travelCardID);
             journeyPassenger.setTravelCardList(passengerList);
             journeyPassengerRepository.save(journeyPassenger);
@@ -56,16 +59,13 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     }
 
     @Override
-    public String removePassenger(String journeyID, String travelCardID) throws IllegalAccessException {
+    public String removePassenger(String journeyID, String travelCardID) {
         JourneyPassenger journeyPassenger;
-        if((journeyPassenger = getJourneyByJourneyID(journeyID)) != null){
-            List<String> passengerList = new ArrayList<String>();
-            if ((passengerList = journeyPassenger.getTravelCardList()).isEmpty()) {
-                passengerList = new ArrayList<String>();
-            }
+        if ((journeyPassenger = getJourneyByJourneyID(journeyID)) != null) {
+            List<String> passengerList = journeyPassenger.getTravelCardList();
             int index = 0;
-            for( String passengerTemp : passengerList){
-                if(passengerTemp.equals(travelCardID)){
+            for (String passengerTemp : passengerList) {
+                if (passengerTemp.equals(travelCardID)) {
                     passengerList.remove(index);
                     break;
                 }
@@ -82,7 +82,7 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     public JourneyPassenger getJourneyByJourneyID(String journeyID) {
         logger.debug("Request received to get the Route with Name - {}", journeyID);
         List<JourneyPassenger> journeyPassengerList = journeyPassengerRepository.findByJourneyID(journeyID);
-        if (journeyPassengerList == null || journeyPassengerList.size() == 0) {
+        if (journeyPassengerList == null || journeyPassengerList.isEmpty()) {
             return null;
         }
         return journeyPassengerList.get(0);
@@ -94,10 +94,10 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
     }
 
     @Override
-    public JSONObject getAllCurrentJourneysWithDetail(){
+    public JSONObject getAllCurrentJourneysWithDetail() {
         List<JourneyPassenger> journeyPassengerList = getAllCurrentJourneys();
         JSONObject jsonObject = new JSONObject();
-        for (JourneyPassenger journeyPassenger: journeyPassengerList) {
+        for (JourneyPassenger journeyPassenger : journeyPassengerList) {
             Journey journey = journeyService.getJourneyByJourneyID(journeyPassenger.getJourneyID());
             Route route = routeService.getRouteByRouteID(journey.getRouteID());
 
@@ -115,5 +115,26 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
         JourneyPassenger journeyPassenger = getJourneyByJourneyID(journeyID);
         journeyPassengerRepository.delete(journeyPassenger);
         logger.info("{} is successfully deleted", journeyID);
+    }
+
+    @Override
+    public List<HashMap> getJourneyPassengers(String journeyID) throws IllegalAccessException {
+        JourneyPassenger journeyPassenger = getJourneyByJourneyID(journeyID);
+        List<HashMap> activePassengerList = new ArrayList<>();
+        for (String travelCardID : journeyPassenger.getTravelCardList()) {
+            Passenger passenger = passengerService.getPassengerByCardNo(travelCardID);
+            HashMap<String, String> tempMap = new HashMap<>();
+
+            tempMap.put("travelCardID", travelCardID);
+            tempMap.put("name", passenger.getFirstName() + " " + passenger.getLastName());
+            tempMap.put("type", passenger.getType().toString());
+            if (passenger.getNic() != null)
+                tempMap.put("nic", passenger.getNic());
+            else if (passenger.getPassport() != null)
+                tempMap.put("nic", passenger.getPassport());
+
+            activePassengerList.add(tempMap);
+        }
+        return activePassengerList;
     }
 }

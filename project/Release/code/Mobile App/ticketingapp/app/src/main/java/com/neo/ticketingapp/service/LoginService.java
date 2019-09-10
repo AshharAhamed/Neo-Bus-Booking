@@ -1,7 +1,7 @@
 package com.neo.ticketingapp.service;
 
-import com.neo.ticketingapp.requestModels.LoginRequest;
-import com.neo.ticketingapp.responseModels.LoginResult;
+import com.neo.ticketingapp.request.model.LoginRequest;
+import com.neo.ticketingapp.response.model.LoginResult;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

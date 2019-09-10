@@ -1,6 +1,6 @@
 package com.neo.ticketingapp.repository;
 
-import com.neo.ticketingapp.enums.UserType;
+import com.neo.ticketingapp.common.enums.UserType;
 import com.neo.ticketingapp.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

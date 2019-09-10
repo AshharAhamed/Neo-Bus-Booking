@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.common.constants.Server;
-import com.neo.ticketingapp.requestModels.LoginRequest;
-import com.neo.ticketingapp.responseModels.LoginResult;
+import com.neo.ticketingapp.ui.inspector.InspectorHome;
+import com.neo.ticketingapp.ui.passenger.PassengerHome;
+import com.neo.ticketingapp.request.model.LoginRequest;
+import com.neo.ticketingapp.response.model.LoginResult;
 import com.neo.ticketingapp.service.LoginService;
 
 import retrofit2.Call;

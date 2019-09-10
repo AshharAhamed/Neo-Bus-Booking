@@ -19,7 +19,7 @@ public class CardServiceImpl implements CardService {
     private CardRepository cardRepository;
 
     @Override
-    public String insertCard(Card card) throws IllegalAccessException {
+    public String insertCard(Card card) {
         if((getCardByCardNo(card.getCardNo())) == null ){
             cardRepository.insert(card);
             return "Card Added Successfully !";

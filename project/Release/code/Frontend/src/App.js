@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 
-import UserService from "./services/UserService";
 import NavBar from './component/tab/NavBar';
 import LoginPage from './component/login/login';
 import Footer from './component/tab/Footer';
@@ -31,10 +30,6 @@ import PassengerTopUp from "./component/passenger/TopUp";
 import ViewRoutes from "./component/passenger/ViewRoutes";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
         <Router>

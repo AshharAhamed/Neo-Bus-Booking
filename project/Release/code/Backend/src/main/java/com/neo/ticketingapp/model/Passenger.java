@@ -1,6 +1,6 @@
 package com.neo.ticketingapp.model;
 
-import com.neo.ticketingapp.enums.PassengerType;
+import com.neo.ticketingapp.common.enums.PassengerType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -27,7 +27,7 @@ public class Passenger {
     private List<Card> cardList;
 
     public Passenger() {
-        this.cardList = new ArrayList<Card>();
+        this.cardList = new ArrayList<>();
     }
 
     public String getLastName() {

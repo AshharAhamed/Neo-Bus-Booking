@@ -1,8 +1,7 @@
 package com.neo.ticketingapp.service.implementation;
 
-import com.neo.ticketingapp.enums.PassengerType;
+import com.neo.ticketingapp.common.enums.PassengerType;
 import com.neo.ticketingapp.model.*;
-import com.neo.ticketingapp.repository.CardRepository;
 import com.neo.ticketingapp.repository.PassengerRepository;
 import com.neo.ticketingapp.service.interfaces.*;
 import com.neo.ticketingapp.validation.GeneralUtils;
@@ -12,12 +11,19 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
 public class PassengerServiceImpl implements PassengerService {
-    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(PassengerServiceImpl.class);
     private GeneralUtils generalUtils;
+    private static final String VALID = "Valid";
+    private static final String ERROR = "Error";
+    private static final String MESSAGE = "Message";
+    private static final String PASSENGER_NOT_FOUND = "Passenger not Found !";
 
     @Autowired
     private CardService cardService;
@@ -31,12 +37,15 @@ public class PassengerServiceImpl implements PassengerService {
     @Autowired
     private JourneyService journeyService;
 
+    @Autowired
+    private PassengerRepository passengerRepository;
+
+    @Autowired
+    private PassengerLogService passengerLogService;
+
     public PassengerServiceImpl() {
         this.generalUtils = new GeneralUtils();
     }
-
-    @Autowired
-    private PassengerRepository passengerRepository;
 
     @Override
     public String insertPassenger(Passenger passenger) {
@@ -44,15 +53,15 @@ public class PassengerServiceImpl implements PassengerService {
         String result;
         if ((getPassengerByCardNo(passenger.getCardNo())) != null)
             return "Card already exist !";
-        if (!(result = generalUtils.isName(passenger.getFirstName(), "First Name")).equals("Valid"))
+        if (!(result = generalUtils.isName(passenger.getFirstName(), "First Name")).equals(VALID))
             return result;
-        if (!(result = generalUtils.isName(passenger.getLastName(), "Last Name")).equals("Valid"))
+        if (!(result = generalUtils.isName(passenger.getLastName(), "Last Name")).equals(VALID))
             return result;
-        if (!(result = generalUtils.isEmail(passenger.getEmail())).equals("Valid"))
+        if (!(result = generalUtils.isEmail(passenger.getEmail())).equals(VALID))
             return result;
-        if (!(result = generalUtils.isPhone(passenger.getContact())).equals("Valid"))
+        if (!(result = generalUtils.isPhone(passenger.getContact())).equals(VALID))
             return result;
-        if (!(result = generalUtils.isCardNo(passenger.getCardNo())).equals("Valid"))
+        if (!(result = generalUtils.isCardNo(passenger.getCardNo())).equals(VALID))
             return result;
         if (passenger.getType().equals(PassengerType.Local) && passenger.getNic() == null)
             return "Local Account should have a NIC";
@@ -67,12 +76,12 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public String updatePassengerDetails(Passenger passenger) {
         logger.debug("Request to Update {} received by the System", passenger.getCardNo());
-        Passenger passengerById = getPassengerByCardNo(passenger.getCardNo());
+        Passenger passengerById;
         if ((passengerById = getPassengerByCardNo(passenger.getCardNo())) != null) {
             String result;
-            if (!(result = generalUtils.isEmail(passenger.getEmail())).equals("Valid"))
+            if (!(result = generalUtils.isEmail(passenger.getEmail())).equals(VALID))
                 return result;
-            if (!(result = generalUtils.isPhone(passenger.getContact())).equals("Valid"))
+            if (!(result = generalUtils.isPhone(passenger.getContact())).equals(VALID))
                 return result;
             passengerById.setEmail(passenger.getEmail());
             passengerById.setContact(passenger.getContact());
@@ -88,7 +97,7 @@ public class PassengerServiceImpl implements PassengerService {
     public Passenger getPassengerByCardNo(String cardID) {
         logger.debug("Request received to get the Passenger with Card Id - {}", cardID);
         List<Passenger> passengerList = passengerRepository.findByCardNo(cardID);
-        if (passengerList == null || passengerList.size() == 0) {
+        if (passengerList == null || passengerList.isEmpty()) {
             return null;
         }
         return passengerList.get(0);
@@ -113,28 +122,23 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public List<Passenger> getAllPassengers(String userType) {
-        if (userType.toString().equals("All"))
+        if (userType.equals("All"))
             return passengerRepository.findAll();
         else if (PassengerType.Local.toString().equals(userType))
             return passengerRepository.findByType(PassengerType.Local);
         else if (PassengerType.Foreign.toString().equals(userType))
             return passengerRepository.findByType(PassengerType.Foreign);
-        return null;
+        return new ArrayList<>();
     }
 
     public Passenger logPassenger(String cardNo, String nic) throws IllegalAccessException {
         logger.debug("Request received to logging to the system by {}", cardNo);
-
-        if (cardNo.isEmpty() || nic.isEmpty()) {
-            return null;
-        }
-
-        Passenger passenger;
-        if ((passenger = getPassengerByCardNo(cardNo)) != null) {
-            if (passenger.getNic().equals(nic)) {
-                return passenger;
-            } else if (passenger.getPassport().equals(nic)) {
-                return passenger;
+        if (!cardNo.isEmpty() || !nic.isEmpty()) {
+            Passenger passenger;
+            if ((passenger = getPassengerByCardNo(cardNo)) != null) {
+                if (passenger.getNic().equals(nic) || passenger.getPassport().equals(nic)) {
+                    return passenger;
+                }
             }
         }
         return null;
@@ -147,18 +151,14 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger getPassengerAccount(String cardNo) {
-        Passenger passenger = getPassengerByCardNo(cardNo);
-        return passenger;
+        return getPassengerByCardNo(cardNo);
     }
 
     @Override
     public String addCard(String travelCardNo, Card card) throws IllegalAccessException {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
         if (cardService.getCardByCardNo(card.getCardNo()) == null) {
-            List<Card> cardList = new ArrayList<Card>();
-            if ((cardList = passenger.getCardList()).isEmpty()) {
-                cardList = new ArrayList<Card>();
-            }
+            List<Card> cardList = passenger.getCardList();
             cardList.add(card);
             passenger.setCardList(cardList);
             passengerRepository.save(passenger);
@@ -172,10 +172,7 @@ public class PassengerServiceImpl implements PassengerService {
     public String deleteCard(String travelCardNo, String cardNo) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
         if (cardService.getCardByCardNo(cardNo) != null) {
-            List<Card> cardList = new ArrayList<Card>();
-            if ((cardList = passenger.getCardList()).isEmpty()) {
-                cardList = new ArrayList<Card>();
-            }
+            List<Card> cardList = passenger.getCardList();
             int index = 0;
             for (Card cardTemp : cardList) {
                 if (cardTemp.getCardNo().equals(cardNo)) {
@@ -195,12 +192,8 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public ArrayList<String> getCards(String travelCardNo) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
-        List<Card> cardList = new ArrayList<Card>();
-        ArrayList<String> cardNameList = new ArrayList<String>();
-
-        if ((cardList = passenger.getCardList()).isEmpty()) {
-            cardList = new ArrayList<Card>();
-        }
+        List<Card> cardList = passenger.getCardList();
+        ArrayList<String> cardNameList = new ArrayList<>();
         for (Card cardTemp : cardList) {
             cardNameList.add(cardTemp.getCardNo());
         }
@@ -223,42 +216,42 @@ public class PassengerServiceImpl implements PassengerService {
             }
             return "Payment Card not Found !";
         }
-        return "Passenger not Found !";
+        return PASSENGER_NOT_FOUND;
     }
 
     @Override
-    public String topUpByCash(String travelCardNo, double amount) throws IllegalAccessException {
+    public String topUpByCash(String travelCardNo, double amount) {
         Passenger passenger = getPassengerByCardNo(travelCardNo);
         if (passenger != null) {
             passenger.setCreditBalance(passenger.getCreditBalance() + amount);
             passengerRepository.save(passenger);
             return "Account Topped Up Successfully !";
         }
-        return "Passenger not Found !";
+        return PASSENGER_NOT_FOUND;
     }
 
     @Override
-    public Passenger getPassengerByNIC(String NIC) {
-        logger.debug("Request received to get the Passenger with NIC - {}", NIC);
-        List<Passenger> passengerList = passengerRepository.findByNic(NIC);
-        if (passengerList == null || passengerList.size() == 0) {
+    public Passenger getPassengerByNIC(String nic) {
+        logger.debug("Request received to get the Passenger with NIC - {}", nic);
+        List<Passenger> passengerList = passengerRepository.findByNic(nic);
+        if (passengerList == null || passengerList.isEmpty()) {
             return null;
         }
         return passengerList.get(0);
     }
 
     @Override
-    public Passenger getPassengerByPassport(String Passport) {
-        logger.debug("Request received to get the Passenger with Passport - {}", Passport);
-        List<Passenger> passengerList = passengerRepository.findByPassport(Passport);
-        if (passengerList == null || passengerList.size() == 0) {
+    public Passenger getPassengerByPassport(String passport) {
+        logger.debug("Request received to get the Passenger with Passport - {}", passport);
+        List<Passenger> passengerList = passengerRepository.findByPassport(passport);
+        if (passengerList == null || passengerList.isEmpty()) {
             return null;
         }
         return passengerList.get(0);
     }
 
     @Override
-    public String recoverTravelCard(String nic, String travelCardNo) throws IllegalAccessException {
+    public String recoverTravelCard(String nic, String travelCardNo) {
         Passenger passenger;
         if ((passenger = getPassengerByNIC(nic)) != null) {
             passenger.setCardNo(travelCardNo);
@@ -269,66 +262,107 @@ public class PassengerServiceImpl implements PassengerService {
             passengerRepository.save(passenger);
             return "New Travel Card No is " + travelCardNo;
         } else
-            return "Passenger not Found !";
+            return PASSENGER_NOT_FOUND;
     }
 
     @Override
-    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException {
+    public JSONObject validateJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException {
         JSONObject jsonObject = new JSONObject();
         Passenger passenger = getPassengerByCardNo(travelCardID);
         Journey journey = journeyService.getJourneyByJourneyID(journeyID);
         Route route = routeService.getRouteByRouteID(journey.getRouteID());
         double creditBalance = passenger.getCreditBalance();
         double ticketPrice = calculateTicketPrice(route.getBusHalts(), startStation, endStation);
-        if(ticketPrice == -1){
-            jsonObject.put("Error", "Start Station is after End Station");
+        if (ticketPrice == -1) {
+            jsonObject.put(ERROR, "Start Station is after End Station");
             return jsonObject;
-        }else if (ticketPrice == -2){
-            jsonObject.put("Error", "Station does not Exist");
-            return jsonObject;
-        }
-        if((getBusHaltPosition(route.getBusHalts(), journey.getNextStation())) > getBusHaltPosition(route.getBusHalts(), startStation)){
-            jsonObject.put("Error", "Bus has already passed");
+        } else if (ticketPrice == -2) {
+            jsonObject.put(ERROR, "Station does not Exist");
             return jsonObject;
         }
-        if(creditBalance >= ticketPrice) {
-            creditBalance -= ticketPrice;
-            passenger.setCreditBalance(creditBalance);
-            passengerRepository.save(passenger);
-            journeyPassengerService.addPassenger(journeyID, travelCardID);
-            jsonObject.put("Message", "Trip started !");
+        if ((getBusHaltPosition(route.getBusHalts(), journey.getNextStation())) > getBusHaltPosition(route.getBusHalts(), startStation)) {
+            jsonObject.put(ERROR, "Bus has already passed");
             return jsonObject;
         }
-        else{
-            jsonObject.put("Error", "Not Sufficient Credit Balance");
+        if (creditBalance >= ticketPrice) {
+            jsonObject.put(MESSAGE, "Success");
+            passenger.setCreditBalance(creditBalance - ticketPrice);
+            jsonObject.put("Passenger", passenger);
+            jsonObject.put("ticketPrice", ticketPrice);
+            return jsonObject;
+        } else {
+            jsonObject.put(ERROR, "Not Sufficient Credit Balance");
             return jsonObject;
         }
     }
 
-    private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation){
+    @Override
+    public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException, ParseException {
+        JSONObject jsonObject = validateJourney(travelCardID, startStation, endStation, journeyID);
+        Passenger passenger = (Passenger) jsonObject.get("Passenger");
+        if (jsonObject.get(ERROR) != null)
+            return jsonObject;
+        else {
+            passengerRepository.save(passenger);
+            journeyPassengerService.addPassenger(journeyID, travelCardID);
+
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String dateString = dateFormat.format(date);
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+
+            PassengerLog passengerLog = new PassengerLog();
+            passengerLog.setTravelCardID(travelCardID);
+            passengerLog.setJourneyID(journeyID);
+            passengerLog.setTicketPrice(Double.parseDouble(jsonObject.get("ticketPrice").toString()));
+            passengerLog.setStartStation(startStation);
+            passengerLog.setEndStation(endStation);
+            passengerLog.setStartTime(date);
+            passengerLog = passengerLogService.insertLog(passengerLog);
+            jsonObject.put("logID", passengerLog.getLogID());
+            jsonObject.put(MESSAGE, "Trip started !");
+            return jsonObject;
+        }
+    }
+
+    @Override
+    public String endJourney(String logID) throws IllegalAccessException, ParseException {
+        PassengerLog passengerLog = passengerLogService.getLogByLogID(logID);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String dateString = dateFormat.format(date);
+        date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        passengerLog.setEndTime(date);
+        passengerLogService.updateLogDetails(logID, passengerLog);
+        journeyPassengerService.removePassenger(passengerLogService.getLogByLogID(logID).getJourneyID(), passengerLogService.getLogByLogID(logID).getTravelCardID());
+        return "SUCCESS";
+    }
+
+    private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation) {
         int stations = this.getBusHaltDifference(busHaltList, startStation, endStation);
-        if(stations == -1)
+        if (stations == -1)
             return -1;
-        else if(stations == -2)
+        else if (stations == -2)
             return -2;
         else
             return (stations * 15.0);
     }
 
-    private int getBusHaltDifference(List<String> busHaltList, String startStation, String endStation){
+    private int getBusHaltDifference(List<String> busHaltList, String startStation, String endStation) {
         int startPoint = getBusHaltPosition(busHaltList, startStation);
         int endPoint = getBusHaltPosition(busHaltList, endStation);
-        if(startPoint == -1 || endPoint == -1)
+        if (startPoint == -1 || endPoint == -1)
             return -2;
-        if(startPoint >= endPoint)
+        if (startPoint >= endPoint)
             return -1;
         return endPoint - startPoint;
     }
 
-    private int getBusHaltPosition(List<String> busHaltList, String halt){
+    private int getBusHaltPosition(List<String> busHaltList, String halt) {
         int index = 0;
-        for (String busHalt: busHaltList) {
-            if(halt.equals(busHalt))
+        for (String busHalt : busHaltList) {
+            if (halt.equals(busHalt))
                 return index;
             ++index;
         }
