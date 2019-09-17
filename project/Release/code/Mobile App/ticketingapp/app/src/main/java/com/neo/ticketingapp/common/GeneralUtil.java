@@ -9,17 +9,18 @@ public class GeneralUtil {
 
     private String travelCardID;
 
-    private GeneralUtil(){}
+    private GeneralUtil() {
+    }
 
-    public static GeneralUtil getGeneralUtilInstance(){
-        if(generalUtil == null){
+    public static GeneralUtil getGeneralUtilInstance() {
+        if (generalUtil == null) {
             generalUtil = new GeneralUtil();
         }
         return generalUtil;
     }
 
-    public static Toast toastShort(String text, Context baseContext){
-        return Toast.makeText(baseContext, text,Toast.LENGTH_SHORT);
+    public static Toast toastShort(String text, Context baseContext) {
+        return Toast.makeText(baseContext, text, Toast.LENGTH_SHORT);
     }
 
     public String getTravelCardID() {

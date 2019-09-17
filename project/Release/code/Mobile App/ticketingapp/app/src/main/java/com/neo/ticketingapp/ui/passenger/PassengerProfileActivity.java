@@ -20,27 +20,27 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class PassengerProfileActivity extends AppCompatActivity {
 
-    private TextView AccountTxt;
-    private TextView FirstNameTxt;
-    private TextView LastNameTxt;
-    private TextView EmailTxt;
-    private TextView MobileTxt;
-    private TextView TypeTxt;
-    private TextView NICTxt;
-    private TextView DoBTxt;
+    private TextView accountTxt;
+    private TextView firstNameTxt;
+    private TextView lastNameTxt;
+    private TextView emailTxt;
+    private TextView mobileTxt;
+    private TextView typeTxt;
+    private TextView nicTxt;
+    private TextView dobtxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_profile);
-        this.AccountTxt = findViewById(R.id.AccountTxt);
-        this.FirstNameTxt = findViewById(R.id.FirstNameTxt);
-        this.LastNameTxt = findViewById(R.id.LastNameTxt);
-        this.EmailTxt = findViewById(R.id.EmailTxt);
-        this.MobileTxt = findViewById(R.id.MobileTxt);
-        this.TypeTxt = findViewById(R.id.TypeTxt);
-        this.NICTxt = findViewById(R.id.NICTxt);
-        this.DoBTxt = findViewById(R.id.DoBTxt);
+        this.accountTxt = findViewById(R.id.AccountTxt);
+        this.firstNameTxt = findViewById(R.id.FirstNameTxt);
+        this.lastNameTxt = findViewById(R.id.LastNameTxt);
+        this.emailTxt = findViewById(R.id.EmailTxt);
+        this.mobileTxt = findViewById(R.id.MobileTxt);
+        this.typeTxt = findViewById(R.id.TypeTxt);
+        this.nicTxt = findViewById(R.id.NICTxt);
+        this.dobtxt = findViewById(R.id.DoBTxt);
         this.getPassengerAccountDetails();
     }
 
@@ -56,14 +56,14 @@ public class PassengerProfileActivity extends AppCompatActivity {
         call.enqueue(new Callback<PassengerAccountResult>() {
             @Override
             public void onResponse(Call<PassengerAccountResult> call, Response<PassengerAccountResult> response) {
-                AccountTxt.setText(response.body().getAccountId());
-                FirstNameTxt.setText(response.body().getFirstName());
-                LastNameTxt.setText(response.body().getLastName());
-                EmailTxt.setText(response.body().getEmail());
-                MobileTxt.setText(response.body().getContact());
-                TypeTxt.setText(response.body().getType());
-                NICTxt.setText(response.body().getNic());
-                DoBTxt.setText(response.body().getDob());
+                accountTxt.setText(response.body().getAccountId());
+                firstNameTxt.setText(response.body().getFirstName());
+                lastNameTxt.setText(response.body().getLastName());
+                emailTxt.setText(response.body().getEmail());
+                mobileTxt.setText(response.body().getContact());
+                typeTxt.setText(response.body().getType());
+                nicTxt.setText(response.body().getNic());
+                dobtxt.setText(response.body().getDob());
             }
             @Override
             public void onFailure(Call<PassengerAccountResult> call, Throwable t) {
