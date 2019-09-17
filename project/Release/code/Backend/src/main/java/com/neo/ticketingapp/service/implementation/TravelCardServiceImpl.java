@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TravelCardServiceImpl  implements TravelCardService {
+public class TravelCardServiceImpl implements TravelCardService {
 
     private static final Logger logger = LogManager.getLogger(TravelCardServiceImpl.class);
 
@@ -31,7 +31,7 @@ public class TravelCardServiceImpl  implements TravelCardService {
 
     @Override
     public String insertTravelCard(TravelCard travelCard) throws IllegalAccessException {
-        if(getTravelCardByNo(travelCard.getCardNo()) != null)
+        if (getTravelCardByNo(travelCard.getCardNo()) != null)
             return "Travel Card already Exist !";
         travelCardRepository.insert(travelCard);
         return "Travel Card Successfully Added !";
@@ -40,7 +40,7 @@ public class TravelCardServiceImpl  implements TravelCardService {
     @Override
     public String updateTravelCardActiveStatus(TravelCard travelCard) throws IllegalAccessException {
         TravelCard updatedTravelCard;
-        if((updatedTravelCard = getTravelCardByNo(travelCard.getCardNo())) == null)
+        if ((updatedTravelCard = getTravelCardByNo(travelCard.getCardNo())) == null)
             return "Travel Card does not Exist !";
         updatedTravelCard.setActive(travelCard.isActive());
         travelCardRepository.save(updatedTravelCard);
@@ -57,11 +57,11 @@ public class TravelCardServiceImpl  implements TravelCardService {
 
     @Override
     public List<TravelCard> getAllTravelCards(String activeStatus) {
-        if(activeStatus.equals(BooleanType.True.toString())){
+        if (activeStatus.equals(BooleanType.True.toString())) {
             return travelCardRepository.findByActive(true);
-        }else if (activeStatus.equals(BooleanType.False.toString())){
+        } else if (activeStatus.equals(BooleanType.False.toString())) {
             return travelCardRepository.findByActive(false);
-        }else{
+        } else {
             return travelCardRepository.findAll();
         }
     }

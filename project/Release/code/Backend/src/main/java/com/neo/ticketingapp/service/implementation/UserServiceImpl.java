@@ -1,5 +1,6 @@
 package com.neo.ticketingapp.service.implementation;
 
+import com.neo.ticketingapp.common.constants.CommonConstants;
 import com.neo.ticketingapp.common.enums.UserType;
 import com.neo.ticketingapp.model.User;
 import com.neo.ticketingapp.repository.UserRepository;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
-    private static final String VALID = "Valid";
 
     private GeneralUtils generalUtils;
 
@@ -32,22 +32,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public String insertUser(User user) {
         logger.debug("Request to add New User received by the System");
-        String result;
+
         if (!userRepository.findByUsername(user.getUsername()).isEmpty())
             return "Username already exist !";
-
         if (user.getUsername() == null)
             return "Username cannot be Empty !";
-        if (!(result = generalUtils.isName(user.getFirstName(), "First Name")).equals(VALID))
+        String result = generalUtils.isName(user.getFirstName(), "First Name");
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isName(user.getLastName(), "Last Name")).equals(VALID))
+        result = generalUtils.isName(user.getLastName(), "Last Name");
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
+        result = generalUtils.isEmail(user.getEmail());
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
+        result = generalUtils.isPhone(user.getContact());
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
+        result = generalUtils.isPassword(user.getPassword());
+        if (!CommonConstants.VALID.equals(result))
             return result;
+
+//        if (!(result = generalUtils.isName(user.getFirstName(), "First Name")).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isName(user.getLastName(), "Last Name")).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
+//            return result;
         user.setPassword(generalUtils.encryptPassword(user.getPassword()));
 
         userRepository.insert(user);
@@ -58,17 +73,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUserDetails(User user) throws IllegalAccessException {
         logger.debug("Request to Update {} received by the System", user.getUsername());
-        String result;
         User updatedUser;
         if ((updatedUser = getUserByUsername(user.getUsername())) == null)
             return "Username does not exist !";
-
-        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
+        String result = generalUtils.isEmail(user.getEmail());
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
+        result = generalUtils.isPhone(user.getContact());
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
+        result = generalUtils.isPassword(user.getPassword());
+        if (!CommonConstants.VALID.equals(result))
             return result;
+//        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
+//            return result;
 
         updatedUser.setEmail(user.getEmail());
         updatedUser.setContact(user.getContact());
@@ -87,10 +109,8 @@ public class UserServiceImpl implements UserService {
         }
 
         User user;
-        if ((user = getUserByUsername(username)) != null) {
-            if (user.getPassword().equals(generalUtils.encryptPassword(password))) {
-                return user;
-            }
+        if ((user = getUserByUsername(username)) != null && (user.getPassword().equals(generalUtils.encryptPassword(password)))) {
+            return user;
         }
         return null;
     }
@@ -99,11 +119,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String username) throws IllegalAccessException {
         logger.debug("Request received to delete the {}", username);
         User user = getUserByUsername(username);
-        userRepository.delete(user);
+        if (user != null)
+            userRepository.delete(user);
         logger.info("{} is successfully deleted", username);
     }
 
-    private User getUserByUsername(String username){
+    private User getUserByUsername(String username) {
         List<User> userList = userRepository.findByUsername(username);
         if (userList == null || userList.isEmpty()) {
             return null;
@@ -119,7 +140,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void resetPassword(String username, String currentPassword, String newPassword){
+    public void resetPassword(String username, String currentPassword, String newPassword) {
         logger.debug("Request received to reset the password from {}", username);
 
         List<User> userById = userRepository.findByUsername(username);

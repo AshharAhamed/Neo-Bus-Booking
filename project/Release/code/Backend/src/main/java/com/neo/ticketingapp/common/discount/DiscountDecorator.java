@@ -6,7 +6,7 @@ public class DiscountDecorator implements Discount {
 
     protected Discount discount;
 
-    public DiscountDecorator(Discount discount){
+    public DiscountDecorator(Discount discount) {
         this.discount = discount;
     }
 

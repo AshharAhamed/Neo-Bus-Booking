@@ -24,6 +24,7 @@ import java.util.List;
 public class JourneyServiceImpl implements JourneyService {
 
     private static final Logger logger = LogManager.getLogger(JourneyServiceImpl.class);
+    private static String getJourneyInfo = "Request received to get the Route with Journey - {}";
 
     @Autowired
     private RouteService routeService;
@@ -48,7 +49,7 @@ public class JourneyServiceImpl implements JourneyService {
             Journey newJourney = journeyRepository.insert(journey);
             JourneyPassenger journeyPassenger = new JourneyPassenger();
             journeyPassenger.setJourneyID(newJourney.getJourneyID());
-            journeyPassenger.setTravelCardList( new ArrayList<>());
+            journeyPassenger.setTravelCardList(new ArrayList<>());
             journeyPassengerService.insertJourneyPassenger(journeyPassenger);
             return "Journey Added Successfully !";
         } else {
@@ -58,7 +59,7 @@ public class JourneyServiceImpl implements JourneyService {
 
     @Override
     public Journey getJourneyByJourneyID(String journeyID) {
-        logger.debug("Request received to get the Route with Journey - {}", journeyID);
+        logger.debug(getJourneyInfo, journeyID);
         List<Journey> journeyList = journeyRepository.findByJourneyID(journeyID);
         if (journeyList == null || journeyList.isEmpty()) {
             return null;
@@ -68,7 +69,7 @@ public class JourneyServiceImpl implements JourneyService {
 
     @Override
     public Journey getJourneyByRouteID(String routeID) {
-        logger.debug("Request received to get the Route with Journey - {}", routeID);
+        logger.debug(getJourneyInfo, routeID);
         List<Journey> journeyList = journeyRepository.findByRouteID(routeID);
         if (journeyList == null || journeyList.isEmpty()) {
             return null;
@@ -78,7 +79,7 @@ public class JourneyServiceImpl implements JourneyService {
 
     @Override
     public Journey getJourneyByBusNo(String busNo) {
-        logger.debug("Request received to get the Route with Journey - {}", busNo);
+        logger.debug(getJourneyInfo, busNo);
         List<Journey> journeyList = journeyRepository.findByBusNo(busNo);
         if (journeyList == null || journeyList.isEmpty()) {
             return null;
