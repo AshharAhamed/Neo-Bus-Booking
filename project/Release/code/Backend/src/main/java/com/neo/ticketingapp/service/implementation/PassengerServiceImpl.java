@@ -207,7 +207,7 @@ public class PassengerServiceImpl implements PassengerService {
             Card card;
             if ((card = cardService.getCardByCardNo(paymentCardNo)) != null) {
                 PaymentService paymentService = new PaymentServiceImpl();
-                if ((paymentService.processPayment(paymentCardNo, card.getCcNo(), amount))) {
+                if ((paymentService.validatePayment(paymentCardNo, card.getCcNo(), amount))) {
                     passenger.setCreditBalance(passenger.getCreditBalance() + amount);
                     passengerRepository.save(passenger);
                     return "Account Topped Up Successfully !";
@@ -286,6 +286,7 @@ public class PassengerServiceImpl implements PassengerService {
         }
         if (creditBalance >= ticketPrice) {
             jsonObject.put(MESSAGE, "Success");
+            ticketPrice = new PaymentServiceImpl().processPayment(ticketPrice, "");
             passenger.setCreditBalance(creditBalance - ticketPrice);
             jsonObject.put("Passenger", passenger);
             jsonObject.put("ticketPrice", ticketPrice);
