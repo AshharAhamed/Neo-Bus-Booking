@@ -1,5 +1,6 @@
 package com.neo.ticketingapp.service.implementation;
 
+import com.neo.ticketingapp.common.constants.CommonConstants;
 import com.neo.ticketingapp.common.enums.PassengerType;
 import com.neo.ticketingapp.model.*;
 import com.neo.ticketingapp.repository.PassengerRepository;
@@ -20,8 +21,6 @@ import java.util.*;
 public class PassengerServiceImpl implements PassengerService {
     private static final Logger logger = LogManager.getLogger(PassengerServiceImpl.class);
     private GeneralUtils generalUtils;
-    private static final String VALID = "Valid";
-    private static final String ERROR = "Error";
     private static final String MESSAGE = "Message";
     private static final String PASSENGER_NOT_FOUND = "Passenger not Found !";
 
@@ -53,16 +52,31 @@ public class PassengerServiceImpl implements PassengerService {
         String result;
         if ((getPassengerByCardNo(passenger.getCardNo())) != null)
             return "Card already exist !";
-        if (!(result = generalUtils.isName(passenger.getFirstName(), "First Name")).equals(VALID))
+        result = generalUtils.isName(passenger.getFirstName(), "First Name");
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isName(passenger.getLastName(), "Last Name")).equals(VALID))
+        result = generalUtils.isName(passenger.getLastName(), "Last Name");
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isEmail(passenger.getEmail())).equals(VALID))
+        result = generalUtils.isEmail(passenger.getEmail());
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isPhone(passenger.getContact())).equals(VALID))
+        result = generalUtils.isPhone(passenger.getContact());
+        if (!CommonConstants.VALID.equals(result))
             return result;
-        if (!(result = generalUtils.isCardNo(passenger.getCardNo())).equals(VALID))
+        result = generalUtils.isCardNo(passenger.getCardNo());
+        if (!CommonConstants.VALID.equals(result))
             return result;
+//        if (!(result = generalUtils.isName(passenger.getFirstName(), "First Name")).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isName(passenger.getLastName(), "Last Name")).equals(VALID))
+////            return result;
+//        if (!(result = generalUtils.isEmail(passenger.getEmail())).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isPhone(passenger.getContact())).equals(VALID))
+//            return result;
+//        if (!(result = generalUtils.isCardNo(passenger.getCardNo())).equals(VALID))
+//            return result;
         if (passenger.getType().equals(PassengerType.Local) && passenger.getNic() == null)
             return "Local Account should have a NIC";
         if (passenger.getType().equals(PassengerType.Foreign) && passenger.getPassport() == null)
@@ -78,10 +92,11 @@ public class PassengerServiceImpl implements PassengerService {
         logger.debug("Request to Update {} received by the System", passenger.getCardNo());
         Passenger passengerById;
         if ((passengerById = getPassengerByCardNo(passenger.getCardNo())) != null) {
-            String result;
-            if (!(result = generalUtils.isEmail(passenger.getEmail())).equals(VALID))
+            String result = generalUtils.isEmail(passenger.getEmail());
+            if (!CommonConstants.VALID.equals(result))
                 return result;
-            if (!(result = generalUtils.isPhone(passenger.getContact())).equals(VALID))
+            result = generalUtils.isPhone(passenger.getContact());
+            if (!CommonConstants.VALID.equals(result))
                 return result;
             passengerById.setEmail(passenger.getEmail());
             passengerById.setContact(passenger.getContact());
@@ -135,10 +150,8 @@ public class PassengerServiceImpl implements PassengerService {
         logger.debug("Request received to logging to the system by {}", cardNo);
         if (!cardNo.isEmpty() || !nic.isEmpty()) {
             Passenger passenger;
-            if ((passenger = getPassengerByCardNo(cardNo)) != null) {
-                if (passenger.getNic().equals(nic) || passenger.getPassport().equals(nic)) {
-                    return passenger;
-                }
+            if ((passenger = getPassengerByCardNo(cardNo)) != null && (passenger.getNic().equals(nic) || passenger.getPassport().equals(nic))) {
+                return passenger;
             }
         }
         return null;
@@ -253,11 +266,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public String recoverTravelCard(String nic, String travelCardNo) {
         Passenger passenger;
-        if ((passenger = getPassengerByNIC(nic)) != null) {
-            passenger.setCardNo(travelCardNo);
-            passengerRepository.save(passenger);
-            return "New Travel Card No is " + travelCardNo;
-        } else if ((passenger = getPassengerByPassport(nic)) != null) {
+        if (((passenger = getPassengerByNIC(nic)) != null) || ((passenger = getPassengerByPassport(nic)) != null)) {
             passenger.setCardNo(travelCardNo);
             passengerRepository.save(passenger);
             return "New Travel Card No is " + travelCardNo;
@@ -266,7 +275,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public JSONObject validateJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException {
+    public JSONObject validateJourney(String travelCardID, String startStation, String endStation, String journeyID) {
         JSONObject jsonObject = new JSONObject();
         Passenger passenger = getPassengerByCardNo(travelCardID);
         Journey journey = journeyService.getJourneyByJourneyID(journeyID);
@@ -274,14 +283,14 @@ public class PassengerServiceImpl implements PassengerService {
         double creditBalance = passenger.getCreditBalance();
         double ticketPrice = calculateTicketPrice(route.getBusHalts(), startStation, endStation);
         if (ticketPrice == -1) {
-            jsonObject.put(ERROR, "Start Station is after End Station");
+            jsonObject.put(CommonConstants.ERROR, "Start Station is after End Station");
             return jsonObject;
         } else if (ticketPrice == -2) {
-            jsonObject.put(ERROR, "Station does not Exist");
+            jsonObject.put(CommonConstants.ERROR, "Station does not Exist");
             return jsonObject;
         }
         if ((getBusHaltPosition(route.getBusHalts(), journey.getNextStation())) > getBusHaltPosition(route.getBusHalts(), startStation)) {
-            jsonObject.put(ERROR, "Bus has already passed");
+            jsonObject.put(CommonConstants.ERROR, "Bus has already passed");
             return jsonObject;
         }
         if (creditBalance >= ticketPrice) {
@@ -292,7 +301,7 @@ public class PassengerServiceImpl implements PassengerService {
             jsonObject.put("ticketPrice", ticketPrice);
             return jsonObject;
         } else {
-            jsonObject.put(ERROR, "Not Sufficient Credit Balance");
+            jsonObject.put(CommonConstants.ERROR, "Not Sufficient Credit Balance");
             return jsonObject;
         }
     }
@@ -301,7 +310,7 @@ public class PassengerServiceImpl implements PassengerService {
     public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException, ParseException {
         JSONObject jsonObject = validateJourney(travelCardID, startStation, endStation, journeyID);
         Passenger passenger = (Passenger) jsonObject.get("Passenger");
-        if (jsonObject.get(ERROR) != null)
+        if (jsonObject.get(CommonConstants.ERROR) != null)
             return jsonObject;
         else {
             passengerRepository.save(passenger);

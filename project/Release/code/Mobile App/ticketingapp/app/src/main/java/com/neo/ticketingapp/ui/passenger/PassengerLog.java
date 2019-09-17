@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.neo.ticketingapp.R;
-import com.neo.ticketingapp.adapter.JourneyAdapter;
 import com.neo.ticketingapp.adapter.PassengerLogAdapter;
 import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.common.constants.Server;
-import com.neo.ticketingapp.response.model.Journey;
 import com.neo.ticketingapp.response.model.PassengerLogResponse;
-import com.neo.ticketingapp.service.JourneyService;
 import com.neo.ticketingapp.service.PassengerAccountService;
 
 import java.util.List;

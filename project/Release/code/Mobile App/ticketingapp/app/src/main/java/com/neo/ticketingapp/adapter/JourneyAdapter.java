@@ -29,16 +29,16 @@ public class JourneyAdapter extends ArrayAdapter<Journey> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.journey_detail,parent, false);
+        View view = layoutInflater.inflate(R.layout.journey_detail, parent, false);
 
-        TextView TextViewAccount = view.findViewById(R.id.routeNameTxt);
-        TextViewAccount.setText(journeys.get(position).getRouteName());
+        TextView routeNameTxt = view.findViewById(R.id.routeNameTxt);
+        routeNameTxt.setText(journeys.get(position).getRouteName());
 
-        TextView textViewComplaintType = view.findViewById(R.id.busNoTxt);
-        textViewComplaintType.setText(journeys.get(position).getBusNo());
+        TextView busNoTxt = view.findViewById(R.id.busNoTxt);
+        busNoTxt.setText(journeys.get(position).getBusNo());
 
-        TextView textViewComplaintType2 = view.findViewById(R.id.nextStationTxt);
-        textViewComplaintType.setText(journeys.get(position).getNextStation());
+        TextView nextStationTxt = view.findViewById(R.id.nextStationTxt);
+        nextStationTxt.setText(journeys.get(position).getNextStation());
 
         return view;
     }

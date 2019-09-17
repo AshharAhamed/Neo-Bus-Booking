@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 
 import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.response.model.InspectorPassengerResponse;
-import com.neo.ticketingapp.response.model.Journey;
 
 import java.util.List;
 
@@ -30,19 +29,19 @@ public class JourneyInfoAdapter extends ArrayAdapter<InspectorPassengerResponse>
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.passenger_detail,parent, false);
+        View view = layoutInflater.inflate(R.layout.passenger_detail, parent, false);
 
-        TextView TextViewAccount = view.findViewById(R.id.cardIDTxt);
-        TextViewAccount.setText(inspectorPassengerResponses.get(position).getTravelCardID());
+        TextView cardIDTxt = view.findViewById(R.id.cardIDTxt);
+        cardIDTxt.setText(inspectorPassengerResponses.get(position).getTravelCardID());
 
-        TextView textViewComplaintType = view.findViewById(R.id.passengerNameTxt);
-        textViewComplaintType.setText(inspectorPassengerResponses.get(position).getName());
+        TextView passengerNameTxt = view.findViewById(R.id.passengerNameTxt);
+        passengerNameTxt.setText(inspectorPassengerResponses.get(position).getName());
 
-        TextView textViewComplaintType2 = view.findViewById(R.id.nicTxt);
-        textViewComplaintType2.setText(inspectorPassengerResponses.get(position).getNic());
+        TextView nicTxt = view.findViewById(R.id.nicTxt);
+        nicTxt.setText(inspectorPassengerResponses.get(position).getNic());
 
-        TextView textViewComplaintType3 = view.findViewById(R.id.typeTxt);
-        textViewComplaintType3.setText(inspectorPassengerResponses.get(position).getType());
+        TextView typeTxt = view.findViewById(R.id.typeTxt);
+        typeTxt.setText(inspectorPassengerResponses.get(position).getType());
 
         return view;
     }

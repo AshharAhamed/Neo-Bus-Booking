@@ -61,7 +61,7 @@ public class RouteServiceImpl implements RouteService {
         List<Route> routeList = getAllRoutes();
         JSONObject jsonObject = new JSONObject();
         List<String> routeNameList = new ArrayList<>();
-        for (Route route: routeList) {
+        for (Route route : routeList) {
             routeNameList.add(route.getRouteName());
         }
         jsonObject.put("routes", routeNameList);

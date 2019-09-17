@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.neo.ticketingapp.R;
-import com.neo.ticketingapp.adapter.JourneyAdapter;
 import com.neo.ticketingapp.adapter.JourneyInfoAdapter;
 import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.common.constants.Server;
@@ -40,7 +39,7 @@ public class InspectorJourney extends AppCompatActivity {
         this.getOnGoingPassengers();
     }
 
-    private void getOnGoingPassengers(){
+    private void getOnGoingPassengers() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Server.SERVER_BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -54,6 +53,7 @@ public class InspectorJourney extends AppCompatActivity {
             public void onResponse(Call<List<InspectorPassengerResponse>> call, Response<List<InspectorPassengerResponse>> response) {
                 passengerList.setAdapter(new JourneyInfoAdapter(getBaseContext(), response.body()));
             }
+
             @Override
             public void onFailure(Call<List<InspectorPassengerResponse>> call, Throwable t) {
                 //To get network errors

@@ -13,7 +13,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Double processPayment(double amount, String type){
+    public Double processPayment(double amount, String type) {
         switch (type) {
             case "LOCAL_NEW":
                 LocalCustomer localCustomer = new LocalCustomer();
@@ -24,7 +24,7 @@ public class PaymentServiceImpl implements PaymentService {
             case "LOCAL_NEW_STUDENT":
                 StudentDiscount studentDiscount = new StudentDiscount(new LocalCustomer());
                 return studentDiscount.handleDiscount(amount);
-            case "FOREIGN_NEW" :
+            case "FOREIGN_NEW":
                 ForeignCustomer foreignCustomer = new ForeignCustomer();
                 return foreignCustomer.handleDiscount(amount);
             case "FOREIGN_NEW_DISABLED":
@@ -33,7 +33,8 @@ public class PaymentServiceImpl implements PaymentService {
             case "FOREIGN_NEW_STUDENT":
                 StudentDiscount studentDiscount1 = new StudentDiscount(new ForeignCustomer());
                 return studentDiscount1.handleDiscount(amount);
-            default: return amount;
+            default:
+                return amount;
         }
     }
 }

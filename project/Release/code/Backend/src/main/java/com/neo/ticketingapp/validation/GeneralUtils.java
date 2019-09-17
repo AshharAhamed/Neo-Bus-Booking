@@ -1,5 +1,6 @@
 package com.neo.ticketingapp.validation;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,6 +10,7 @@ import java.util.regex.Pattern;
 
 public class GeneralUtils {
     private static final String VALID = "Valid";
+    private static final Logger logger = LogManager.getLogger(GeneralUtils.class);
 
 
     public String isName(String name, String attributeName) {
@@ -59,14 +61,9 @@ public class GeneralUtils {
     public String encryptPassword(String password) {
         String generatedPassword = null;
         try {
-            // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
-            // Add password bytes to digest
             md.update(password.getBytes());
-            // Get the hash's bytes
             byte[] bytes = md.digest();
-            // This bytes[] has bytes in decimal format;
-            // Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
             for (byte aByte : bytes) {
                 sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
@@ -74,7 +71,7 @@ public class GeneralUtils {
             // Get complete hashed password in hex format
             generatedPassword = sb.toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.valueOf("context"), e);
         }
         return generatedPassword;
     }
@@ -87,5 +84,9 @@ public class GeneralUtils {
             return VALID;
         else
             return "Card is Invalid !";
+    }
+
+    public String isUsername(String userName) {
+        return VALID;
     }
 }

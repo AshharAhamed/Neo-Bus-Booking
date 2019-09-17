@@ -28,7 +28,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
 
     private Journey journey;
     private TextView busNoTxt;
-    private TextView NextStationTxt;
+    private TextView nextStationTxt;
     private EditText startStation;
     private EditText endStation;
     private Button tapBtn;
@@ -45,7 +45,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
 
     private void initializeUIObjects() {
         this.busNoTxt = findViewById(R.id.busNoTxt);
-        this.NextStationTxt = findViewById(R.id.NextStationTxt);
+        this.nextStationTxt = findViewById(R.id.NextStationTxt);
         this.startStation = findViewById(R.id.startStation);
         this.endStation = findViewById(R.id.endStation);
         this.tapBtn = findViewById(R.id.tapBtn);
@@ -53,7 +53,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
 
         tapBtn.setVisibility(View.GONE);
         busNoTxt.setText(journey.getBusNo());
-        NextStationTxt.setText(journey.getNextStation());
+        nextStationTxt.setText(journey.getNextStation());
     }
 
     @Override
