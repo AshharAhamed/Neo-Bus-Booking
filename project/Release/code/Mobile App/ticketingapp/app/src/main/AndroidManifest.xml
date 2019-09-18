@@ -11,7 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.passenger.PassengerLog"></activity>
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.passenger.PassengerLog" />
         <activity android:name=".ui.passenger.PassengerTripDetail" />
         <activity android:name=".ui.inspector.InspectorJourney" />
         <activity android:name=".ui.inspector.InspectorHome" />
@@ -22,11 +29,7 @@
         <activity android:name=".ui.passenger.PassengerAccountActivity" />
         <activity android:name=".ui.passenger.PassengerHome" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
