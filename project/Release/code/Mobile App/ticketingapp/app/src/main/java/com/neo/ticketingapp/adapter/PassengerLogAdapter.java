@@ -11,14 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.neo.ticketingapp.R;
-import com.neo.ticketingapp.response.model.Journey;
 import com.neo.ticketingapp.response.model.PassengerLogResponse;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class PassengerLogAdapter extends ArrayAdapter<PassengerLogResponse> {
@@ -37,24 +31,23 @@ public class PassengerLogAdapter extends ArrayAdapter<PassengerLogResponse> {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.log_detail,parent, false);
 
-        TextView TextViewAccount = view.findViewById(R.id.logIDTxt);
-        TextViewAccount.setText(passengerLogResponses.get(position).getLogID());
+        TextView logIDTxt = view.findViewById(R.id.logIDTxt);
+        logIDTxt.setText(passengerLogResponses.get(position).getLogID());
 
-        TextView textViewComplaintType = view.findViewById(R.id.logTicketPriceTxt);
-        textViewComplaintType.setText(passengerLogResponses.get(position).getTicketPrice());
+        TextView logTicketPriceTxt = view.findViewById(R.id.logTicketPriceTxt);
+        logTicketPriceTxt.setText(passengerLogResponses.get(position).getTicketPrice());
 
-        TextView textViewComplaintType2 = view.findViewById(R.id.logStartStationTxt);
-        textViewComplaintType2.setText(passengerLogResponses.get(position).getStartStation());
+        TextView logStartStationTxt = view.findViewById(R.id.logStartStationTxt);
+        logStartStationTxt.setText(passengerLogResponses.get(position).getStartStation());
 
-        TextView textViewComplaintType3 = view.findViewById(R.id.logEndStationTxt);
-        textViewComplaintType3.setText(passengerLogResponses.get(position).getEndStation());
+        TextView logEndStationTxt = view.findViewById(R.id.logEndStationTxt);
+        logEndStationTxt.setText(passengerLogResponses.get(position).getEndStation());
 
+        TextView logStartTimeTxt = view.findViewById(R.id.logStartTimeTxt);
+        logStartTimeTxt.setText(passengerLogResponses.get(position).getStartTime());
 
-        TextView textViewComplaintType4 = view.findViewById(R.id.logStartTimeTxt);
-        textViewComplaintType4.setText(passengerLogResponses.get(position).getStartTime());
-
-        TextView textViewComplaintType5 = view.findViewById(R.id.logEndTimeTxt);
-        textViewComplaintType5.setText(passengerLogResponses.get(position).getEndTime());
+        TextView logEndTimeTxt = view.findViewById(R.id.logEndTimeTxt);
+        logEndTimeTxt.setText(passengerLogResponses.get(position).getEndTime());
         return view;
     }
 }

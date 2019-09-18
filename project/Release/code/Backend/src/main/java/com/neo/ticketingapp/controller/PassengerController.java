@@ -1,5 +1,6 @@
 package com.neo.ticketingapp.controller;
 
+import com.neo.ticketingapp.common.constants.CommonConstants;
 import com.neo.ticketingapp.model.Card;
 import com.neo.ticketingapp.model.Passenger;
 import com.neo.ticketingapp.service.interfaces.PassengerService;
@@ -118,7 +119,7 @@ public class PassengerController {
         logger.debug("Request received to top up a passenger in the system");
         try {
             if (travelCardNo != null) {
-                double amount = Double.parseDouble(sampleObject.get("amount").toString()) ;
+                double amount = Double.parseDouble(sampleObject.get("amount").toString());
                 return new ResponseEntity<>(passengerService.topUp(travelCardNo, sampleObject.get("paymentCardNo").toString(), amount), HttpStatus.CREATED);
             }
         } catch (IllegalArgumentException ex) {
@@ -135,9 +136,9 @@ public class PassengerController {
                 return new ResponseEntity<>(passengerService.startJourney(jsonObject.get("travelCardID").toString(), jsonObject.get("startStation").toString(), jsonObject.get("endStation").toString(), jsonObject.get("journeyID").toString()), HttpStatus.CREATED);
             }
         } catch (IllegalArgumentException | IllegalAccessException | ParseException ex) {
-            return new ResponseEntity<>((JSONObject) new JSONObject().put("Error", ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>((JSONObject) new JSONObject().put(CommonConstants.ERROR, ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>((JSONObject) new JSONObject().put("Error", "Empty JSON Object"), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>((JSONObject) new JSONObject().put(CommonConstants.ERROR, "Empty JSON Object"), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping(value = "/validateJourney")
@@ -147,10 +148,10 @@ public class PassengerController {
             if (jsonObject != null) {
                 return new ResponseEntity<>(passengerService.validateJourney(jsonObject.get("travelCardID").toString(), jsonObject.get("startStation").toString(), jsonObject.get("endStation").toString(), jsonObject.get("journeyID").toString()), HttpStatus.CREATED);
             }
-        } catch (IllegalArgumentException | IllegalAccessException ex) {
-            return new ResponseEntity<>((JSONObject) new JSONObject().put("Error", ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+        } catch (IllegalArgumentException ex) {
+            return new ResponseEntity<>((JSONObject) new JSONObject().put(CommonConstants.ERROR, ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>((JSONObject) new JSONObject().put("Error", "Empty JSON Object"), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>((JSONObject) new JSONObject().put(CommonConstants.ERROR, "Empty JSON Object"), HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping(value = "/endJourney/{logID}")

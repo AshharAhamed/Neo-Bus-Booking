@@ -19,13 +19,15 @@ public class PassengerLogServiceImpl implements PassengerLogService {
 
     @Override
     public PassengerLog insertLog(PassengerLog passengerLog) throws IllegalAccessException {
-         return passengerLogRepository.save(passengerLog);
+        logger.debug("Request received to add log with Travel Card Id - {}", passengerLog.getTravelCardID());
+        return passengerLogRepository.save(passengerLog);
     }
 
     @Override
-    public String updateLogDetails(String logID, PassengerLog passengerLog){
+    public String updateLogDetails(String logID, PassengerLog passengerLog) {
+        logger.debug("Request received to add log with Travel Card Id - {}", passengerLog.getTravelCardID());
         PassengerLog updatedPassengerLog = getLogByLogID(logID);
-        if(updatedPassengerLog != null){
+        if (updatedPassengerLog != null) {
             updatedPassengerLog.setEndTime(passengerLog.getEndTime());
             passengerLogRepository.save(updatedPassengerLog);
             return "SUCCESS";
@@ -34,9 +36,9 @@ public class PassengerLogServiceImpl implements PassengerLogService {
     }
 
     @Override
-    public PassengerLog getLogByLogID(String logID){
+    public PassengerLog getLogByLogID(String logID) {
         List<PassengerLog> passengerLogList = passengerLogRepository.findByLogID(logID);
-        if(passengerLogList == null || passengerLogList.isEmpty()){
+        if (passengerLogList == null || passengerLogList.isEmpty()) {
             return null;
         }
         return passengerLogList.get(0);
@@ -44,7 +46,6 @@ public class PassengerLogServiceImpl implements PassengerLogService {
 
     @Override
     public List<PassengerLog> getLogsByTravelCardID(String travelCardID) {
-        List<PassengerLog> passengerLogList = passengerLogRepository.findByTravelCardID(travelCardID);
-        return passengerLogList;
+        return passengerLogRepository.findByTravelCardID(travelCardID);
     }
 }

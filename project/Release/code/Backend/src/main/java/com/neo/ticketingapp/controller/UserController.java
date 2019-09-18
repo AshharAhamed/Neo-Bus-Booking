@@ -76,19 +76,19 @@ public class UserController {
         try {
             if (generalUser != null) {
                 User user;
-                if ((user = userService.logUser(generalUser.getUsername(), generalUser.getPassword())) != null){
+                if ((user = userService.logUser(generalUser.getUsername(), generalUser.getPassword())) != null) {
                     generalUser.setPassword("");
                     generalUser.setType(user.getType().toString());
                     generalUser.setLoginFlag("true");
                     return new ResponseEntity<>(generalUser, HttpStatus.OK);
-                }else{
+                } else {
                     Passenger passenger;
-                    if((passenger = passengerService.logPassenger(generalUser.getUsername(), generalUser.getPassword())) != null){
+                    if ((passenger = passengerService.logPassenger(generalUser.getUsername(), generalUser.getPassword())) != null) {
                         generalUser.setPassword("");
                         generalUser.setType(passenger.getType().toString());
                         generalUser.setLoginFlag("true");
                         return new ResponseEntity<>(generalUser, HttpStatus.OK);
-                    }else{
+                    } else {
                         generalUser.setLoginFlag("false");
                         return new ResponseEntity<>(generalUser, HttpStatus.OK);
                     }
@@ -96,7 +96,7 @@ public class UserController {
             }
         } catch (IllegalArgumentException ex) {
             logger.info(ex.getMessage());
-            return new ResponseEntity<>( null, HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         } catch (IllegalAccessException ex) {
             logger.info(ex.getMessage());
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -115,7 +115,7 @@ public class UserController {
         logger.debug("Request received to top up a passenger in the system");
         try {
             if (travelCardNo != null) {
-                double amount = Double.parseDouble(sampleObject.get("amount").toString()) ;
+                double amount = Double.parseDouble(sampleObject.get("amount").toString());
                 return new ResponseEntity<>(passengerService.topUpByCash(travelCardNo, amount), HttpStatus.CREATED);
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {

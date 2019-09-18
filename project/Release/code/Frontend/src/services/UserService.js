@@ -1,19 +1,24 @@
 export default class UserService {
 
     setUserDetails(Username, Type) {
-            localStorage.setItem('LoggedInStatus', true);
-            localStorage.setItem('Username', Username);
-            localStorage.setItem('Type', Type);
+        localStorage.setItem('LoggedInStatus', true);
+        localStorage.setItem('Username', Username);
+        localStorage.setItem('Type', Type);
+        if (Type === 'Manager') {
             alert('Login Successful !');
-            if (Type === 'Manager')
-                window.location.href = "/managerHome";
-            else if (Type === 'Inspector')
-                window.location.href = "/inspectorHome";
-            else if (Type === 'Local' || Type === 'Foreign')
-                window.location.href = "/passengerHome";
+            window.location.href = "/managerHome";
+        } else if (Type === 'Inspector') {
+            alert('Login Successful !');
+            window.location.href = "/inspectorHome";
+        } else if (Type === 'Local' || Type === 'Foreign') {
+            alert('Login Successful !');
+            window.location.href = "/passengerHome";
+        }else {
+            alert('Login Failed !');
+        }
     }
 
-    get Type(){
+    get Type() {
         return (localStorage.getItem('Type'))
     }
 
@@ -29,7 +34,7 @@ export default class UserService {
         }
     }
 
-    setLoggedIn(value){
+    setLoggedIn(value) {
         localStorage.setItem('LoggedInStatus', value);
     }
 

@@ -1,5 +1,6 @@
 package com.neo.ticketingapp.service.interfaces;
 
 public interface PaymentService {
-    boolean processPayment(String paymentCardNo, String ccNo, double amount);
+    boolean validatePayment(String paymentCardNo, String ccNo, double amount);
+    Double processPayment(double amount, String type);
 }

@@ -20,15 +20,15 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public String insertCard(Card card) {
-        if((getCardByCardNo(card.getCardNo())) == null ){
+        if ((getCardByCardNo(card.getCardNo())) == null) {
             cardRepository.insert(card);
             return "Card Added Successfully !";
-        }else
+        } else
             return "Card Already Exist";
     }
 
     @Override
-    public String deleteCard(String cardNo){
+    public String deleteCard(String cardNo) {
         cardRepository.delete(getCardByCardNo(cardNo));
         return "Card Sucessfully Deleted !";
     }
