@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.neo.ticketingapp.R;
+import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.response.model.Card;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class CardAdapter extends ArrayAdapter<Card> {
         TextViewAccount.setText(cards.get(position).getCardNo());
 
         TextView textViewComplaintType = view.findViewById(R.id.expDateTxt);
-        textViewComplaintType.setText(cards.get(position).getExpiryDate());
+        textViewComplaintType.setText(GeneralUtil.convertMongoDate(cards.get(position).getExpiryDate()));
 
         return view;
     }

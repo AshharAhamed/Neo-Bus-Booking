@@ -3,6 +3,10 @@ package com.neo.ticketingapp.common;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+
 public class GeneralUtil {
 
     private static GeneralUtil generalUtil = null;
@@ -28,5 +32,17 @@ public class GeneralUtil {
 
     public void setTravelCardID(String travelCardID) {
         this.travelCardID = travelCardID;
+    }
+    public static String convertMongoDate(String val){
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
+        SimpleDateFormat outputFormat= new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            String finalStr = outputFormat.format(inputFormat.parse(val));
+            System.out.println(finalStr);
+            return finalStr;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

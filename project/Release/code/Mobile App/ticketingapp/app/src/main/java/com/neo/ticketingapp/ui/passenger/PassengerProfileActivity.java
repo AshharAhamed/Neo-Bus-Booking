@@ -63,7 +63,7 @@ public class PassengerProfileActivity extends AppCompatActivity {
                 MobileTxt.setText(response.body().getContact());
                 TypeTxt.setText(response.body().getType());
                 NICTxt.setText(response.body().getNic());
-                DoBTxt.setText(response.body().getDob());
+                DoBTxt.setText(GeneralUtil.convertMongoDate(response.body().getDob()));
             }
             @Override
             public void onFailure(Call<PassengerAccountResult> call, Throwable t) {

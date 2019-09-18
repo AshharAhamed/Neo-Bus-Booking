@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/nelumkuluna">
+    android:background="@drawable/lotus_tower">
 
     <EditText
         android:id="@+id/loginPasswordTxt"
         android:layout_width="313dp"
         android:layout_height="47dp"
         android:ems="10"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +28,11 @@
         android:layout_width="312dp"
         android:layout_height="45dp"
         android:ems="10"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
