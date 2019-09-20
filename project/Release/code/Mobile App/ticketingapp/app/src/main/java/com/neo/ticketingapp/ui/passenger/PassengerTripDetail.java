@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.neo.ticketingapp.R;
@@ -28,7 +29,8 @@ public class PassengerTripDetail extends AppCompatActivity implements View.OnCli
     private TextView ticketPriceTxt;
     private TextView getInTxt;
     private TextView getOutTxt;
-    private Button tapOutBtn;
+    private TextView busRouteNameTxt;
+    private ImageView tapOutBtn;
     private String ticketPrice;
     private String startStation;
     private String endStation;
@@ -44,7 +46,6 @@ public class PassengerTripDetail extends AppCompatActivity implements View.OnCli
         this.startStation = (String) intent.getSerializableExtra("startStation");
         this.endStation = (String) intent.getSerializableExtra("endStation");
         this.logID = (String) intent.getSerializableExtra("logID");
-
         this.initializeUIComponents();
     }
 
@@ -54,11 +55,13 @@ public class PassengerTripDetail extends AppCompatActivity implements View.OnCli
         this.getInTxt = findViewById(R.id.getInTxt);
         this.getOutTxt = findViewById(R.id.getOutTxt);
         this.tapOutBtn = findViewById(R.id.tapOutBtn);
+        this.busRouteNameTxt = findViewById(R.id.busRouteNameTxt);
 
         this.currBusNoTxt.setText(journey.getBusNo());
         this.ticketPriceTxt.setText(this.ticketPrice);
         this.getInTxt.setText(this.startStation);
         this.getOutTxt.setText(this.endStation);
+        this.busRouteNameTxt.setText(journey.getRouteName());
     }
 
     @Override

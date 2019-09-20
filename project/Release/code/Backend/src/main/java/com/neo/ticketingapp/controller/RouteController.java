@@ -46,4 +46,10 @@ public class RouteController {
         logger.debug("Request received to get all Route Names");
         return routeService.getAllRouteNames();
     }
+
+    @GetMapping(value = "/getBusHalts/{routeID}")
+    public List<String> getBusHalts( @PathVariable String routeID) {
+        logger.debug("Request received to get all Route Names");
+        return routeService.getAllBusStands(routeID);
+    }
 }

@@ -10,7 +10,7 @@ export default class OneRoute extends Component {
     }
 
     delete() {
-        this.managerService.deletePassenger(this.props.obj.cardNo).then(response => {
+        this.managerService.deleteJourney(this.props.obj.cardNo).then(response => {
             alert(response.data);
             window.location.reload();
         }).catch(err => {

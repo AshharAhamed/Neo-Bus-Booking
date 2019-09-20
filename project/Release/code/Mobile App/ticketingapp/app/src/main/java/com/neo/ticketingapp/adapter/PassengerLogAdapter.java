@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.neo.ticketingapp.R;
+import com.neo.ticketingapp.common.GeneralUtil;
 import com.neo.ticketingapp.response.model.PassengerLogResponse;
 
 import java.util.List;
@@ -44,10 +45,10 @@ public class PassengerLogAdapter extends ArrayAdapter<PassengerLogResponse> {
         logEndStationTxt.setText(passengerLogResponses.get(position).getEndStation());
 
         TextView logStartTimeTxt = view.findViewById(R.id.logStartTimeTxt);
-        logStartTimeTxt.setText(passengerLogResponses.get(position).getStartTime());
+        logStartTimeTxt.setText(GeneralUtil.convertMongoDateTime(passengerLogResponses.get(position).getStartTime()));
 
         TextView logEndTimeTxt = view.findViewById(R.id.logEndTimeTxt);
-        logEndTimeTxt.setText(passengerLogResponses.get(position).getEndTime());
+        logEndTimeTxt.setText(GeneralUtil.convertMongoDateTime(passengerLogResponses.get(position).getEndTime()));
         return view;
     }
 }

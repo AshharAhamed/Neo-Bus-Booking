@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.neo.ticketingapp.common.GeneralUtil;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText loginUserName = findViewById(R.id.loginUsernameTxt);
         final EditText loginPwd = findViewById(R.id.loginPasswordTxt);
-        final Button loginBtn = findViewById(R.id.loginBtn);
+        final ImageView loginBtn = findViewById(R.id.loginBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

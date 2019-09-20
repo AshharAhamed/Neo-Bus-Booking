@@ -11,4 +11,5 @@ public interface RouteService {
     Route getRouteByRouteID(String routeID);
     List<Route> getAllRoutes();
     JSONObject getAllRouteNames();
+    List<String> getAllBusStands(String routeID);
 }
