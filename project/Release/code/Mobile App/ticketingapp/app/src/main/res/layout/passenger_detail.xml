@@ -24,7 +24,9 @@
                     android:id="@+id/cardIDTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -36,7 +38,9 @@
                     android:id="@+id/passengerNameTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -48,13 +52,17 @@
                     android:id="@+id/nicTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/typeTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>

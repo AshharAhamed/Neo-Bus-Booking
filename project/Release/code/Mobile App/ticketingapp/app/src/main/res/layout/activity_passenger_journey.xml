@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.passenger.PassengerJourneyActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView17"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Enter Trip Details"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.045"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.04" />-->
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="350dp"
@@ -116,32 +104,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.518" />
 
-    <EditText
-        android:id="@+id/startStation"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.646" />
-
-    <EditText
-        android:id="@+id/endStation"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
-
     <ImageView
         android:id="@+id/confirmBtn"
         android:layout_width="327dp"
@@ -166,4 +128,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.908"
         app:srcCompat="@drawable/tap_in_btn" />
+
+    <Spinner
+        android:id="@+id/StartStationSpinner"
+        style="@style/spinnerStyle"
+        android:layout_width="235dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
+
+    <Spinner
+        android:id="@+id/EndStationSpinner"
+        style="@style/spinnerStyle"
+        android:layout_width="235dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.721" />
 </androidx.constraintlayout.widget.ConstraintLayout>

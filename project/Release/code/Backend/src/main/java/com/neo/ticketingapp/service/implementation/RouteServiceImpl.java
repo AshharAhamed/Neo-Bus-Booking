@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -73,7 +74,8 @@ public class RouteServiceImpl implements RouteService {
         Route route = getRouteByRouteID(routeID);
         List<String> busHaltList = new ArrayList<>();
         for (String halt: route.getBusHalts()) {
-            busHaltList.add(halt);
+            if(!halt.equals("END"))
+                busHaltList.add(halt);
         }
         return busHaltList;
     }
