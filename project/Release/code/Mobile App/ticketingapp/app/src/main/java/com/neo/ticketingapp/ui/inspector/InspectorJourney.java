@@ -51,7 +51,8 @@ public class InspectorJourney extends AppCompatActivity {
         call.enqueue(new Callback<List<InspectorPassengerResponse>>() {
             @Override
             public void onResponse(Call<List<InspectorPassengerResponse>> call, Response<List<InspectorPassengerResponse>> response) {
-                passengerList.setAdapter(new JourneyInfoAdapter(getBaseContext(), response.body()));
+                if(response.body() != null)
+                    passengerList.setAdapter(new JourneyInfoAdapter(getBaseContext(), response.body()));
             }
 
             @Override

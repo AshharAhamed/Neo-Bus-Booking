@@ -6,28 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".ui.inspector.InspectorHome">
 
-    <Button
-        android:id="@+id/viewAllJourneysBtn"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="View All On Going Jourenys"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.101"
+        app:srcCompat="@drawable/app_logo" />
+
+    <ImageView
+        android:id="@+id/viewAllJourneysBtn"
+        android:layout_width="346dp"
+        android:layout_height="59dp"
+        android:onClick="onClick"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87"
+        app:srcCompat="@drawable/on_going_journeys_btn" />
 
     <TextView
         android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hi Inspector"
+        android:layout_width="223dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/nunito_sans_extrabold"
+        android:gravity="center"
+        android:text="Hi Inspector !"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.279" />
 </androidx.constraintlayout.widget.ConstraintLayout>

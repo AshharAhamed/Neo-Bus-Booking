@@ -43,7 +43,7 @@
 
                 <TextView
                     android:id="@+id/busNoTxt"
-                    android:layout_width="258dp"
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/nunito_sans"
@@ -51,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/nextStationTxt"
-                    android:layout_width="146dp"
+                    android:layout_width="271dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_sans"
                     android:textSize="20sp" />
