@@ -16,7 +16,7 @@ export default class NavigationBar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary" style={{width:"100%"}>
                 {
                     (this.state.isLoggedIn && this.state.userType === "Manager") ? (
                         <ul className="navbar-nav mr-auto">
