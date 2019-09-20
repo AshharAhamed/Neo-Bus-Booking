@@ -106,7 +106,7 @@ export default class AddJourney extends Component {
                                     <div className="contact100-form-bgbtn"/>
                                     <button className="contact100-form-btn">
 							<span>
-                                Top Up  <i className="fa fa-paper-plane"/>
+                                Start Journey  <i className="fa fa-paper-plane"/>
                             <input type="submit" value=""/>
 							</span>
                                     </button>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.neo.ticketingapp.R;
@@ -31,8 +32,8 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
     private TextView nextStationTxt;
     private EditText startStation;
     private EditText endStation;
-    private Button tapBtn;
-    private Button confirmBtn;
+    private ImageView tapBtn;
+    private ImageView confirmBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

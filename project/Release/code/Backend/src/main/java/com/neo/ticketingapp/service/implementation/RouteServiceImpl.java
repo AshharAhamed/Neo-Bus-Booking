@@ -67,4 +67,14 @@ public class RouteServiceImpl implements RouteService {
         jsonObject.put("routes", routeNameList);
         return jsonObject;
     }
+
+    @Override
+    public List<String> getAllBusStands(String routeID) {
+        Route route = getRouteByRouteID(routeID);
+        List<String> busHaltList = new ArrayList<>();
+        for (String halt: route.getBusHalts()) {
+            busHaltList.add(halt);
+        }
+        return busHaltList;
+    }
 }

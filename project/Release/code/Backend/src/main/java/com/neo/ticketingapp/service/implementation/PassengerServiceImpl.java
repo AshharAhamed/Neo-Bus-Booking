@@ -317,10 +317,10 @@ public class PassengerServiceImpl implements PassengerService {
             journeyPassengerService.addPassenger(journeyID, travelCardID);
 
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
             String dateString = dateFormat.format(date);
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString);
 
             PassengerLog passengerLog = new PassengerLog();
             passengerLog.setTravelCardID(travelCardID);
@@ -339,10 +339,10 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public String endJourney(String logID) throws IllegalAccessException, ParseException {
         PassengerLog passengerLog = passengerLogService.getLogByLogID(logID);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String dateString = dateFormat.format(date);
-        date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString);
         passengerLog.setEndTime(date);
         passengerLogService.updateLogDetails(logID, passengerLog);
         journeyPassengerService.removePassenger(passengerLogService.getLogByLogID(logID).getJourneyID(), passengerLogService.getLogByLogID(logID).getTravelCardID());

@@ -18,6 +18,7 @@ export default class AddRoute extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.clearForm = this.clearForm.bind(this);
         this.addBusStation = this.addBusStation.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
 
     }
 

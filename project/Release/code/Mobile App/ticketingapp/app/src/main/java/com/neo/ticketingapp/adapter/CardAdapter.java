@@ -36,7 +36,7 @@ public class CardAdapter extends ArrayAdapter<Card> {
         cardNoTxt.setText(cards.get(position).getCardNo());
 
         TextView expDateTxt = view.findViewById(R.id.expDateTxt);
-        expDateTxt.setText(cards.get(position).getExpiryDate());
+        expDateTxt.setText(GeneralUtil.convertMongoDate(cards.get(position).getExpiryDate()));
 
         return view;
     }
