@@ -64,12 +64,12 @@ export default class AddRoute extends Component {
     }
 
     render() {
-        const ColoredLine = ({ color }) => (
+        const ColoredLine = ({color}) => (
             <hr
                 style={{
                     color: color,
                     backgroundColor: color,
-                    width : "400px"
+                    width: "400px"
                 }}
             />
         );
@@ -120,7 +120,7 @@ export default class AddRoute extends Component {
                                                             onClick={(e) => this.handleRemove(index)}>Remove <i
                                                         className="fa fa-times"/></button>
                                                 </Ripples>
-                                                <ColoredLine color="black" />
+                                                <ColoredLine color="black"/>
                                             </div>
                                         )
                                     })
