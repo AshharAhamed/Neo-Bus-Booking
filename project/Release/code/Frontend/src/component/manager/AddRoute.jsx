@@ -88,7 +88,7 @@ export default class AddRoute extends Component {
                     <div key="1">
                         <form onSubmit={this.onSubmit} style={{marginLeft: "50px"}}>
 				<span className="contact100-form-title float-lg-left">
-					Add Passenger
+					Add Route
 				</span><br/><br/><br/><br/>
                             <div className="wrap-input100 validate-input" data-validate="Name is required">
                                 <span className="label-input100 float-left">Route</span>
