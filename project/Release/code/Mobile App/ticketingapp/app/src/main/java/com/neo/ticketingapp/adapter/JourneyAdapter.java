@@ -38,7 +38,7 @@ public class JourneyAdapter extends ArrayAdapter<Journey> {
         TextView busNoTxt = view.findViewById(R.id.busNoTxt);
         busNoTxt.setText(journeys.get(position).getBusNo());
 
-        Button routeNumber = view.findViewById(R.id.routeNumber);
+        TextView routeNumber = view.findViewById(R.id.routeNumber);
         routeNumber.setText(journeys.get(position).getRouteNo());
 
         TextView nextStationTxt = view.findViewById(R.id.nextStationTxt);
