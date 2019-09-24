@@ -1,3 +1,55 @@
 <resources>
+<!--    App Name-->
     <string name="app_name">Neo Bus</string>
+
+<!--    Text Labels-->
+    <string name="sign_in">Sign In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="bus_no">Bus No</string>
+    <string name="get_in_from">Get In From</string>
+    <string name="get_down_from">Get Down From</string>
+    <string name="ticket_price">Ticket Price</string>
+    <string name="please_tap_out_to_get_out_from_the_bus">Please Tap Out to get out from the bus</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="nic">NIC</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="email">Email</string>
+    <string name="type">Type</string>
+    <string name="my_profile">My Profile</string>
+    <string name="account_id">Account ID</string>
+    <string name="on_going_journeys">On Going Journeys</string>
+    <string name="past_trips">Past Trips</string>
+    <string name="enter_trip_details">Enter Trip Details</string>
+    <string name="start_station">Start Station</string>
+    <string name="end_station">End Station</string>
+    <string name="next_station">Next Station</string>
+    <string name="hi_passenger">Hi Passenger !</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="travel_card_no">Travel Card No</string>
+    <string name="credit_balance">Credit Balance</string>
+    <string name="my_account">My Account</string>
+    <string name="cards">Cards</string>
+    <string name="current_passengers">Current Passengers</string>
+    <string name="hi_inspector">Hi Inspector !</string>
+
+
+    <!--    Button Descriptions-->
+    <string name="tap_out_btn">Tap Out Button</string>
+    <string name="tap_in_btn">Tap In Button</string>
+    <string name="confirm_btn">Confirm Button</string>
+    <string name="my_account_btn">My Account Button</string>
+    <string name="my_profile_btn">My Profile Button</string>
+    <string name="past_journeys_btn">Past Journeys Button</string>
+    <string name="on_going_journeys_btn">On Going Journeys Button</string>
+    <string name="sign_in_btn">Sign In Button</string>
+
+    <!--    Logo Descriptions-->
+    <string name="neo_bus_logo">Neo Bus Logo</string>
+
+
 </resources>
