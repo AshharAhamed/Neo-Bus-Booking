@@ -107,6 +107,7 @@ public class JourneyServiceImpl implements JourneyService {
                 tempMap.put("startTime", journey.getStartTime().toString());
                 tempMap.put("nextStation", journey.getNextStation());
                 tempMap.put("routeName", routeService.getRouteByRouteID(journey.getRouteID()).getRouteName());
+                tempMap.put("routeNo", routeService.getRouteByRouteID(journey.getRouteID()).getRouteNo());
                 activeJourneyList.add(tempMap);
             }
         }

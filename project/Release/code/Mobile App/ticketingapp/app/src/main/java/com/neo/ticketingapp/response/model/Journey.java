@@ -9,6 +9,7 @@ public class Journey implements Serializable {
     private String journeyID;
     private String nextStation;
     private String routeName;
+    private String routeNo;
 
     public Journey() {
         //Initialize the Object
@@ -60,5 +61,13 @@ public class Journey implements Serializable {
 
     public void setRouteName(String routeName) {
         this.routeName = routeName;
+    }
+
+    public String getRouteNo() {
+        return routeNo;
+    }
+
+    public void setRouteNo(String routeNo) {
+        this.routeNo = routeNo;
     }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,9 @@ public class JourneyAdapter extends ArrayAdapter<Journey> {
 
         TextView busNoTxt = view.findViewById(R.id.busNoTxt);
         busNoTxt.setText(journeys.get(position).getBusNo());
+
+        Button routeNumber = view.findViewById(R.id.routeNumber);
+        routeNumber.setText(journeys.get(position).getRouteNo());
 
         TextView nextStationTxt = view.findViewById(R.id.nextStationTxt);
         nextStationTxt.setText(journeys.get(position).getNextStation());
