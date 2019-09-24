@@ -24,13 +24,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.086" />
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="102dp"
+        android:layout_height="86dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.075"
+        app:srcCompat="@drawable/past_trips_ico" />
+
     <ListView
         android:id="@+id/passengerLogList"
-        android:layout_width="411dp"
-        android:layout_height="585dp"
+        android:layout_width="384dp"
+        android:layout_height="511dp"
         android:layout_marginTop="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.789">
+
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
