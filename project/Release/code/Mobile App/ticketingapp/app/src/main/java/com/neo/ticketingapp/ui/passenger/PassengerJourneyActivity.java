@@ -91,18 +91,15 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         });
     }
 
-    //setting on click listener
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.tapBtn) {
+    private void startJourney(){
+        JourneyService service = retrofit.create(JourneyService.class);
 
-            JourneyService service = retrofit.create(JourneyService.class);
+        Call<StartJourneyResult> call = service.startJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStationSpinner.getSelectedItem().toString(), endStationSpinner.getSelectedItem().toString(), journey.getJourneyID()));
 
-            Call<StartJourneyResult> call = service.startJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStationSpinner.getSelectedItem().toString(), endStationSpinner.getSelectedItem().toString(), journey.getJourneyID()));
-
-            call.enqueue(new Callback<StartJourneyResult>() {
-                @Override
-                public void onResponse(Call<StartJourneyResult> call, Response<StartJourneyResult> response) {
+        call.enqueue(new Callback<StartJourneyResult>() {
+            @Override
+            public void onResponse(Call<StartJourneyResult> call, Response<StartJourneyResult> response) {
+                if (response.body() != null) {
                     if (response.body().getError() != null) {
                         GeneralUtil.toastShort(response.body().getError(), getBaseContext()).show();
                     } else {
@@ -116,37 +113,52 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
                         startActivity(intent);
                     }
                 }
+            }
 
-                @Override
-                public void onFailure(Call<StartJourneyResult> call, Throwable t) {
-                    //To get network errors
-                    GeneralUtil.toastShort(t.getMessage(), getBaseContext()).show();
-                }
-            });
-        } else if (v.getId() == R.id.confirmBtn) {
+            @Override
+            public void onFailure(Call<StartJourneyResult> call, Throwable t) {
+                //To get network errors
+                GeneralUtil.toastShort(t.getMessage(), getBaseContext()).show();
+            }
+        });
+    }
 
-            JourneyService service = retrofit.create(JourneyService.class);
+    private void confirmJourney(){
+        JourneyService service = retrofit.create(JourneyService.class);
 
-            Call<StartJourneyResult> call = service.validateJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStationSpinner.getSelectedItem().toString(), endStationSpinner.getSelectedItem().toString(), journey.getJourneyID()));
+        Call<StartJourneyResult> call = service.validateJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStationSpinner.getSelectedItem().toString(), endStationSpinner.getSelectedItem().toString(), journey.getJourneyID()));
 
-            call.enqueue(new Callback<StartJourneyResult>() {
-                @Override
-                public void onResponse(Call<StartJourneyResult> call, Response<StartJourneyResult> response) {
+        call.enqueue(new Callback<StartJourneyResult>() {
+            @Override
+            public void onResponse(Call<StartJourneyResult> call, Response<StartJourneyResult> response) {
+                if (response.body() != null) {
                     if (response.body().getError() != null) {
                         GeneralUtil.toastShort(response.body().getError(), getBaseContext()).show();
                     } else {
                         GeneralUtil.toastShort(response.body().getMessage(), getBaseContext()).show();
+                        startStationSpinner.setEnabled(false);
+                        endStationSpinner.setEnabled(false);
                         tapBtn.setVisibility(View.VISIBLE);
                         confirmBtn.setVisibility(View.GONE);
                     }
                 }
+            }
 
-                @Override
-                public void onFailure(Call<StartJourneyResult> call, Throwable t) {
-                    //To get network errors
-                    GeneralUtil.toastShort(t.getMessage(), getBaseContext()).show();
-                }
-            });
+            @Override
+            public void onFailure(Call<StartJourneyResult> call, Throwable t) {
+                //To get network errors
+                GeneralUtil.toastShort(t.getMessage(), getBaseContext()).show();
+            }
+        });
+    }
+
+    //setting on click listener
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tapBtn) {
+            this.startJourney();
+        } else if (v.getId() == R.id.confirmBtn) {
+            this.confirmJourney();
         }
     }
 }

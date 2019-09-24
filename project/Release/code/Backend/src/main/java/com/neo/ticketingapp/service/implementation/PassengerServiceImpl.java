@@ -23,6 +23,7 @@ public class PassengerServiceImpl implements PassengerService {
     private GeneralUtils generalUtils;
     private static final String MESSAGE = "Message";
     private static final String PASSENGER_NOT_FOUND = "Passenger not Found !";
+    private static final String TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     @Autowired
     private CardService cardService;
@@ -67,16 +68,6 @@ public class PassengerServiceImpl implements PassengerService {
         result = generalUtils.isCardNo(passenger.getCardNo());
         if (!CommonConstants.VALID.equals(result))
             return result;
-//        if (!(result = generalUtils.isName(passenger.getFirstName(), "First Name")).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isName(passenger.getLastName(), "Last Name")).equals(VALID))
-////            return result;
-//        if (!(result = generalUtils.isEmail(passenger.getEmail())).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isPhone(passenger.getContact())).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isCardNo(passenger.getCardNo())).equals(VALID))
-//            return result;
         if (passenger.getType().equals(PassengerType.Local) && passenger.getNic() == null)
             return "Local Account should have a NIC";
         if (passenger.getType().equals(PassengerType.Foreign) && passenger.getPassport() == null)
@@ -295,10 +286,6 @@ public class PassengerServiceImpl implements PassengerService {
         }
         if (creditBalance >= ticketPrice) {
             jsonObject.put(MESSAGE, "Success");
-            ticketPrice = new PaymentServiceImpl().processPayment(ticketPrice, "");
-            passenger.setCreditBalance(creditBalance - ticketPrice);
-            jsonObject.put("Passenger", passenger);
-            jsonObject.put("ticketPrice", ticketPrice);
             return jsonObject;
         } else {
             jsonObject.put(CommonConstants.ERROR, "Not Sufficient Credit Balance");
@@ -308,45 +295,45 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public JSONObject startJourney(String travelCardID, String startStation, String endStation, String journeyID) throws IllegalAccessException, ParseException {
-        JSONObject jsonObject = validateJourney(travelCardID, startStation, endStation, journeyID);
-        Passenger passenger = (Passenger) jsonObject.get("Passenger");
-        if (jsonObject.get(CommonConstants.ERROR) != null)
-            return jsonObject;
-        else {
-            passengerRepository.save(passenger);
-            journeyPassengerService.addPassenger(journeyID, travelCardID);
+        JSONObject jsonObject = new JSONObject();
+        Passenger passenger = getPassengerByCardNo(travelCardID);
+        passengerRepository.save(passenger);
+        journeyPassengerService.addPassenger(journeyID, travelCardID);
 
+        DateFormat dateFormat = new SimpleDateFormat(TIME_PATTERN);
+        Date date = new Date();
+        String dateString = dateFormat.format(date);
+        date = new SimpleDateFormat(TIME_PATTERN).parse(dateString);
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date();
-            String dateString = dateFormat.format(date);
-            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString);
+        PassengerLog passengerLog = new PassengerLog();
+        passengerLog.setTravelCardID(travelCardID);
+        passengerLog.setJourneyID(journeyID);
+        Journey journey = journeyService.getJourneyByJourneyID(journeyID);
+        Route route = routeService.getRouteByRouteID(journey.getRouteID());
+        double ticketPrice = calculateTicketPrice(route.getBusHalts(), startStation, endStation);
 
-            PassengerLog passengerLog = new PassengerLog();
-            passengerLog.setTravelCardID(travelCardID);
-            passengerLog.setJourneyID(journeyID);
-            passengerLog.setTicketPrice(Double.parseDouble(jsonObject.get("ticketPrice").toString()));
-            passengerLog.setStartStation(startStation);
-            passengerLog.setEndStation(endStation);
-            passengerLog.setStartTime(date);
-            passengerLog = passengerLogService.insertLog(passengerLog);
-            jsonObject.put("logID", passengerLog.getLogID());
-            jsonObject.put(MESSAGE, "Trip started !");
-            return jsonObject;
-        }
+        passengerLog.setTicketPrice(ticketPrice);
+        passengerLog.setStartStation(startStation);
+        passengerLog.setEndStation(endStation);
+        passengerLog.setStartTime(date);
+        passengerLog = passengerLogService.insertLog(passengerLog);
+        jsonObject.put("ticketPrice", ticketPrice);
+        jsonObject.put("logID", passengerLog.getLogID());
+        jsonObject.put(MESSAGE, "Trip started !");
+        return jsonObject;
     }
 
     @Override
     public String endJourney(String logID) throws IllegalAccessException, ParseException {
         PassengerLog passengerLog = passengerLogService.getLogByLogID(logID);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat(TIME_PATTERN);
         Date date = new Date();
         String dateString = dateFormat.format(date);
-        date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString);
+        date = new SimpleDateFormat(TIME_PATTERN).parse(dateString);
         passengerLog.setEndTime(date);
         passengerLogService.updateLogDetails(logID, passengerLog);
         journeyPassengerService.removePassenger(passengerLogService.getLogByLogID(logID).getJourneyID(), passengerLogService.getLogByLogID(logID).getTravelCardID());
-        return "SUCCESS";
+        return CommonConstants.SUCCESS;
     }
 
     private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation) {

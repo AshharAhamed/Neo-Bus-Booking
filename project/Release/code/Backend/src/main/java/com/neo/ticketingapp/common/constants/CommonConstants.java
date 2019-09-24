@@ -1,6 +1,11 @@
 package com.neo.ticketingapp.common.constants;
 
 public class CommonConstants {
+
+    private CommonConstants() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final Double ONE_HUNDRED = 100d;
     public static final Double STUDENT_DISCOUNT = 6d;
     public static final Double SEASONAL_DISCOUNT = 99d;
@@ -9,4 +14,6 @@ public class CommonConstants {
     public static final Double NEW_LOCAL_DISCOUNT = 98d;
     public static final String ERROR = "Error";
     public static final String VALID = "Valid";
+    public static final String SUCCESS = "SUCCESS";
+
 }

@@ -1,6 +1,7 @@
 package com.neo.ticketingapp.ui.inspector;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class InspectorOnGoingJourney extends AppCompatActivity {
 
     private ListView journeyList;
     private List<Journey> activeJourneyList;
+    private SwipeRefreshLayout pullToRefreshInspectorJourneys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,13 @@ public class InspectorOnGoingJourney extends AppCompatActivity {
         activeJourneyList = new ArrayList<>();
         this.getOnGoingJourneys();
         this.setListener();
+        this.setListRefreshListener();
     }
 
     //data binding
     private void initializeUIComponents() {
         this.journeyList = (ListView) findViewById(R.id.OnGoingJourneyList);
+        this.pullToRefreshInspectorJourneys = findViewById(R.id.PullToRefreshInspectorJourneys);
     }
 
     //renders all on going journeys
@@ -60,6 +64,16 @@ public class InspectorOnGoingJourney extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setListRefreshListener(){
+        this.pullToRefreshInspectorJourneys.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getOnGoingJourneys();
+                pullToRefreshInspectorJourneys.setRefreshing(false);
+            }
+        });
     }
 
     //listener for the list

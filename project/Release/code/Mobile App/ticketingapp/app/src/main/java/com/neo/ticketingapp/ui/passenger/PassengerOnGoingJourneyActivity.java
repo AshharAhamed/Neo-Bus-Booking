@@ -36,6 +36,7 @@ public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
         this.initializeUIObjects();
         this.getOnGoingJourneys();
         this.setListener();
+        this.setListRefreshListener();
     }
 
     //data binding
@@ -65,6 +66,16 @@ public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
 
     }
 
+    public void setListRefreshListener(){
+        this.pullToRefreshPassengerJourneys.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getOnGoingJourneys();
+                pullToRefreshPassengerJourneys.setRefreshing(false);
+            }
+        });
+    }
+
     //set onclick listener for the journey list
     public void setListener() {
         this.journeyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -74,14 +85,6 @@ public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
                 Intent intent = new Intent(PassengerOnGoingJourneyActivity.this, PassengerJourneyActivity.class);
                 intent.putExtra("Journey", journey);
                 startActivity(intent);
-            }
-        });
-
-        this.pullToRefreshPassengerJourneys.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getOnGoingJourneys();
-                pullToRefreshPassengerJourneys.setRefreshing(false);
             }
         });
     }
