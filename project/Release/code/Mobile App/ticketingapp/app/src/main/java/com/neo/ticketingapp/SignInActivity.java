@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.neo.ticketingapp.common.GeneralUtil;
-import com.neo.ticketingapp.common.constants.Server;
 import com.neo.ticketingapp.request.model.LoginRequest;
 import com.neo.ticketingapp.response.model.LoginResult;
 import com.neo.ticketingapp.service.LoginService;
@@ -20,9 +19,6 @@ import com.neo.ticketingapp.ui.passenger.PassengerHome;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -66,13 +62,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private void doLogin(final String username,final String password){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Server.SERVER_BASE_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        LoginService service = retrofit.create(LoginService.class);
+        LoginService service = GeneralUtil.getGeneralUtilInstance().getRetroFit().create(LoginService.class);
 
         Call<LoginResult> call = service.logUser(new LoginRequest(username,password));
 
@@ -80,13 +70,11 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 if(response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Local") || (response.body().getType().equals("Foreign")))){
-                    Intent intent = new Intent(SignInActivity.this, PassengerHome.class);
                     GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
-                    startActivity(intent);
+                    startActivity(new Intent(SignInActivity.this, PassengerHome.class));
                 }else if(response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Inspector"))){
-                    Intent intent = new Intent(SignInActivity.this, InspectorHome.class);
                     GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
-                    startActivity(intent);
+                    startActivity(new Intent(SignInActivity.this, InspectorHome.class));
                 }
                 else {
                     GeneralUtil.toastShort("Invalid Username or Password", getBaseContext()).show();

@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.neo.ticketingapp.R;
 
-public class InspectorHome extends AppCompatActivity implements View.OnClickListener{
+public class InspectorHome extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +16,11 @@ public class InspectorHome extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_inspector_home);
     }
 
+    //On Click Listener
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.viewAllJourneysBtn) {
-            Intent intent = new Intent(InspectorHome.this, InspectorOnGoingJourney.class);
-            startActivity(intent);
+            startActivity(new Intent(InspectorHome.this, InspectorOnGoingJourney.class));
         }
     }
 }

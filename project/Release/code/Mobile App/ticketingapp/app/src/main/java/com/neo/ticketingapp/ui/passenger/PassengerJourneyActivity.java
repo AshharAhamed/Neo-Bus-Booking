@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.common.GeneralUtil;
-import com.neo.ticketingapp.common.constants.Server;
 import com.neo.ticketingapp.request.model.StartJourneyRequest;
 import com.neo.ticketingapp.response.model.Journey;
 import com.neo.ticketingapp.response.model.StartJourneyResult;
@@ -27,8 +24,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class PassengerJourneyActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +34,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
     private ImageView confirmBtn;
     private Spinner startStationSpinner;
     private Spinner endStationSpinner;
+    private Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +42,27 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_passenger_journey);
         Intent intent = getIntent();
         this.journey = (Journey) intent.getSerializableExtra("Journey");
+        retrofit = GeneralUtil.getGeneralUtilInstance().getRetroFit();
         initializeUIObjects();
         getBusHalts();
     }
 
-    private void getBusHalts() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Server.SERVER_BASE_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    //data binding
+    private void initializeUIObjects() {
+        this.busNoTxt = findViewById(R.id.busNoTxt);
+        this.nextStationTxt = findViewById(R.id.NextStationTxt);
+        this.tapBtn = findViewById(R.id.tapBtn);
+        this.confirmBtn = findViewById(R.id.confirmBtn);
+        this.startStationSpinner = findViewById(R.id.StartStationSpinner);
+        this.endStationSpinner = findViewById(R.id.EndStationSpinner);
 
+        tapBtn.setVisibility(View.GONE);
+        busNoTxt.setText(journey.getBusNo());
+        nextStationTxt.setText(journey.getNextStation());
+    }
+
+    //get bus halts on the spinner
+    private void getBusHalts() {
         RouteService service = retrofit.create(RouteService.class);
 
         Call<List<String>> call = service.getBusHalts(journey.getRouteID());
@@ -67,7 +73,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
                 if (response.body() != null) {
                     List<String> busHaltList = response.body();
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
                             getApplicationContext(),
                             android.R.layout.simple_spinner_item,
                             busHaltList
@@ -85,28 +91,10 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         });
     }
 
-    private void initializeUIObjects() {
-        this.busNoTxt = findViewById(R.id.busNoTxt);
-        this.nextStationTxt = findViewById(R.id.NextStationTxt);
-        this.tapBtn = findViewById(R.id.tapBtn);
-        this.confirmBtn = findViewById(R.id.confirmBtn);
-        this.startStationSpinner = findViewById(R.id.StartStationSpinner);
-        this.endStationSpinner = findViewById(R.id.EndStationSpinner);
-
-        tapBtn.setVisibility(View.GONE);
-        busNoTxt.setText(journey.getBusNo());
-        nextStationTxt.setText(journey.getNextStation());
-    }
-
+    //setting on click listener
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tapBtn) {
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Server.SERVER_BASE_URL)
-                    .addConverterFactory(ScalarsConverterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
 
             JourneyService service = retrofit.create(JourneyService.class);
 
@@ -136,12 +124,6 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
                 }
             });
         } else if (v.getId() == R.id.confirmBtn) {
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Server.SERVER_BASE_URL)
-                    .addConverterFactory(ScalarsConverterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
 
             JourneyService service = retrofit.create(JourneyService.class);
 

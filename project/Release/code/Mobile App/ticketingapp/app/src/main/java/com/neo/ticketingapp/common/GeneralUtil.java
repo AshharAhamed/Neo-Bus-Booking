@@ -3,8 +3,16 @@ package com.neo.ticketingapp.common;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.neo.ticketingapp.common.constants.CommonConstant;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class GeneralUtil {
@@ -35,29 +43,33 @@ public class GeneralUtil {
         this.travelCardID = travelCardID;
     }
 
-    public static String convertMongoDate(String val){
+    public static String convertMongoDate(String val) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
-        SimpleDateFormat outputFormat= new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
         try {
-            String finalStr = outputFormat.format(inputFormat.parse(val));
-            System.out.println(finalStr);
-            return finalStr;
+            return outputFormat.format(inputFormat.parse(val));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    public static String convertMongoDateTime(String val){
+    public static String convertMongoDateTime(String val) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
-        SimpleDateFormat outputFormat= new SimpleDateFormat("yy/MM/dd HH:mm");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
         try {
-            String finalStr = outputFormat.format(inputFormat.parse(val));
-            System.out.println(finalStr);
-            return finalStr;
+            return outputFormat.format(inputFormat.parse(val));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public Retrofit getRetroFit() {
+        return new Retrofit.Builder()
+                .baseUrl(CommonConstant.SERVER_BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 }

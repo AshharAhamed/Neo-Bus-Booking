@@ -12,7 +12,6 @@ import android.widget.ListView;
 import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.adapter.JourneyAdapter;
 import com.neo.ticketingapp.common.GeneralUtil;
-import com.neo.ticketingapp.common.constants.Server;
 import com.neo.ticketingapp.response.model.Journey;
 import com.neo.ticketingapp.service.JourneyService;
 
@@ -22,9 +21,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
 
@@ -36,20 +32,21 @@ public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_on_going_journey);
-        this.journeyList = (ListView) findViewById(R.id.OnGoingJourneyList);
-        this.pullToRefreshPassengerJourneys = findViewById(R.id.PullToRefreshPassengerJourneys);
         activeJourneyList = new ArrayList<>();
+        this.initializeUIObjects();
         this.getOnGoingJourneys();
         this.setListener();
     }
 
+    //data binding
+    private void initializeUIObjects() {
+        this.journeyList = (ListView) findViewById(R.id.OnGoingJourneyList);
+        this.pullToRefreshPassengerJourneys = findViewById(R.id.PullToRefreshPassengerJourneys);
+    }
+
+    //render on going journeys
     private void getOnGoingJourneys() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Server.SERVER_BASE_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        JourneyService service = retrofit.create(JourneyService.class);
+        JourneyService service = GeneralUtil.getGeneralUtilInstance().getRetroFit().create(JourneyService.class);
         Call<List<Journey>> call = service.getAllActiveJourneys();
 
         call.enqueue(new Callback<List<Journey>>() {
@@ -68,6 +65,7 @@ public class PassengerOnGoingJourneyActivity extends AppCompatActivity {
 
     }
 
+    //set onclick listener for the journey list
     public void setListener() {
         this.journeyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
