@@ -8,12 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoClientSettingsBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
-import com.mongodb.Block;
-import com.mongodb.connection.SslSettings;
 import com.mongodb.connection.SslSettings.Builder;
-import com.mongodb.connection.netty.NettyStreamFactoryFactory;
 
-import io.netty.channel.nio.NioEventLoopGroup;
 import javax.annotation.PreDestroy;
 
 @SpringBootApplication

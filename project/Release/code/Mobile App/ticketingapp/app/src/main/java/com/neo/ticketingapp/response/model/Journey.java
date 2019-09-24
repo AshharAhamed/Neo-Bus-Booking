@@ -11,6 +11,7 @@ public class Journey implements Serializable {
     private String routeName;
 
     public Journey() {
+        //Initialize the Object
     }
 
     public String getRouteID() {

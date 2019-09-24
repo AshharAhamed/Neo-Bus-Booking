@@ -16,20 +16,17 @@ public class PassengerHome extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_passenger_home);
     }
 
+    //Set On Click Listener
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.MyAccountBtn) {
-            Intent intent = new Intent(PassengerHome.this, PassengerAccountActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(PassengerHome.this, PassengerAccountActivity.class));
         } else if (v.getId() == R.id.MyProfileBtn) {
-            Intent intent = new Intent(PassengerHome.this, PassengerProfileActivity.class);
-            startActivity(intent);
-        }else if (v.getId() == R.id.OnGoingJourneyBtn) {
-            Intent intent = new Intent(PassengerHome.this, PassengerOnGoingJourneyActivity.class);
-            startActivity(intent);
-        }else if (v.getId() == R.id.pastLogBtn) {
-            Intent intent = new Intent(PassengerHome.this, PassengerLog.class);
-            startActivity(intent);
+            startActivity(new Intent(PassengerHome.this, PassengerProfileActivity.class));
+        } else if (v.getId() == R.id.OnGoingJourneyBtn) {
+            startActivity(new Intent(PassengerHome.this, PassengerOnGoingJourneyActivity.class));
+        } else if (v.getId() == R.id.pastLogBtn) {
+            startActivity(new Intent(PassengerHome.this, PassengerLog.class));
         }
     }
 }

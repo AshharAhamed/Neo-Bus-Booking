@@ -53,16 +53,6 @@ public class UserServiceImpl implements UserService {
         if (!CommonConstants.VALID.equals(result))
             return result;
 
-//        if (!(result = generalUtils.isName(user.getFirstName(), "First Name")).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isName(user.getLastName(), "Last Name")).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
-//            return result;
         user.setPassword(generalUtils.encryptPassword(user.getPassword()));
 
         userRepository.insert(user);
@@ -85,12 +75,6 @@ public class UserServiceImpl implements UserService {
         result = generalUtils.isPassword(user.getPassword());
         if (!CommonConstants.VALID.equals(result))
             return result;
-//        if (!(result = generalUtils.isEmail(user.getEmail())).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isPhone(user.getContact())).equals(VALID))
-//            return result;
-//        if (!(result = generalUtils.isPassword(user.getPassword())).equals(VALID))
-//            return result;
 
         updatedUser.setEmail(user.getEmail());
         updatedUser.setContact(user.getContact());
