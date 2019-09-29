@@ -1,52 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.passenger.PassengerLog">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="236dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/nunito_sans_extrabold"
-        android:text="@string/past_trips"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="102dp"
-        android:layout_height="86dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.075"
-        app:srcCompat="@drawable/past_trips_ico" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight=".7"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:paddingLeft="16sp"
+            android:paddingTop="20sp"
+            android:text="@string/past_trips"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="102dp"
+            android:layout_height="86dp"
+            android:paddingTop="8sp"
+            app:srcCompat="@drawable/past_trips_ico" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/passengerLogList"
-        android:layout_width="384dp"
-        android:layout_height="511dp"
-        android:layout_marginTop="144dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp">
 
     </ListView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

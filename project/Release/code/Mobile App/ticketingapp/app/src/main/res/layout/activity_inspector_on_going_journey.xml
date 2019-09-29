@@ -15,6 +15,7 @@
         android:fontFamily="@font/nunito_sans_extrabold"
         android:padding="16sp"
         android:text="@string/on_going_journeys"
+        android:textAlignment="center"
         android:textSize="36sp" />
 
     <ImageView
