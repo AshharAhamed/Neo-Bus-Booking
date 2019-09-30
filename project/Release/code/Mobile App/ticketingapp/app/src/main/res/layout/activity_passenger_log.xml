@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16sp"
     tools:context=".ui.passenger.PassengerLog">
 
     <LinearLayout
@@ -14,7 +15,7 @@
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight=".7"
             android:fontFamily="@font/nunito_sans_extrabold"
@@ -35,7 +36,6 @@
         android:id="@+id/passengerLogList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp">
+        android:layout_marginTop="16sp" />
 
-    </ListView>
 </LinearLayout>
