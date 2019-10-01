@@ -50,6 +50,7 @@
 
     <!--    Logo Descriptions-->
     <string name="neo_bus_logo">Neo Bus Logo</string>
+    <string name="edit_details">Edit Details</string>
 
 
 </resources>

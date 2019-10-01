@@ -24,6 +24,7 @@
         android:layout_gravity="center"
         app:srcCompat="@drawable/on_going_trip_ico" />
 
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -45,6 +46,7 @@
                 android:id="@+id/currBusNoTxt"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_weight=".8"
                 android:fontFamily="@font/nunito_sans"
                 android:textSize="18sp" />
 
@@ -67,6 +69,7 @@
                 android:id="@+id/getInTxt"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_weight=".8"
                 android:fontFamily="@font/nunito_sans"
                 android:textSize="18sp" />
 
@@ -89,6 +92,7 @@
                 android:id="@+id/getOutTxt"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_weight=".8"
                 android:fontFamily="@font/nunito_sans"
                 android:textSize="18sp" />
         </TableRow>
@@ -110,6 +114,7 @@
                 android:id="@+id/ticketPriceTxt"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_weight=".8"
                 android:fontFamily="@font/nunito_sans"
                 android:textSize="18sp" />
 
