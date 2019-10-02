@@ -28,7 +28,9 @@
         <activity android:name=".ui.inspector.InspectorOnGoingJourney" />
         <activity android:name=".ui.passenger.PassengerJourneyActivity" />
         <activity android:name=".ui.passenger.PassengerOnGoingJourneyActivity" />
-        <activity android:name=".ui.passenger.PassengerProfileActivity" />
+        <activity
+            android:name=".ui.passenger.PassengerProfileActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.passenger.PassengerAccountActivity" />
         <activity android:name=".ui.passenger.PassengerHome" />
         <activity android:name=".MainActivity" />

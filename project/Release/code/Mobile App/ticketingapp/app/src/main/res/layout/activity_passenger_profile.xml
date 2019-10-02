@@ -10,8 +10,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_height="wrap_content">
 
         <TableRow>
 
@@ -22,195 +21,243 @@
                 android:layout_marginStart="8sp"
                 android:layout_marginTop="16sp"
                 android:fontFamily="@font/nunito_sans_extrabold"
+                android:paddingRight="60sp"
                 android:text="@string/my_profile"
                 android:textSize="36sp" />
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="178dp"
+                android:layout_width="83sp"
                 android:layout_height="83dp"
                 android:layout_marginTop="8sp"
                 app:srcCompat="@drawable/my_profile_ico" />
         </TableRow>
 
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/account_id"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/AccountTxt"
-                android:layout_width="230dp"
-                android:layout_height="27dp"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/first_name"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.077"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.42" />
-
-            <TextView
-                android:id="@+id/FirstNameTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/last_name"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/LastNameTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/email"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/EmailTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/mobile"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/MobileTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/type"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/TypeTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/nic"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/NICTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_weight=".2"
-                android:fontFamily="@font/nunito_sans"
-                android:text="@string/date_of_birth"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/DoBTxt"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:textSize="18sp" />
-        </TableRow>
     </TableLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TableRow
+
+                android:paddingTop="16sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/account_id"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/AccountTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="27dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/code"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/CodeTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="27dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/first_name"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/FirstNameTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:fontFamily="@font/nunito_sans"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/last_name"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/LastNameTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:fontFamily="@font/nunito_sans"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/email"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/EmailTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:fontFamily="@font/nunito_sans"
+                    android:inputType="textEmailAddress"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/mobile"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/MobileTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:fontFamily="@font/nunito_sans"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/type"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/TypeTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/nic"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/NICTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:fontFamily="@font/nunito_sans"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/date_of_birth"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/DoBTxt"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_sans"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <ImageView
+                    android:id="@+id/EditProfileBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/edit_profile" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 
 </LinearLayout>
