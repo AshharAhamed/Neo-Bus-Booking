@@ -63,8 +63,8 @@ public class GeneralUtil {
             return outputFormat.format(inputFormat.parse(val));
         } catch (ParseException e) {
             e.printStackTrace();
+            return "";
         }
-        return "";
     }
 
     public Retrofit getRetroFit() {

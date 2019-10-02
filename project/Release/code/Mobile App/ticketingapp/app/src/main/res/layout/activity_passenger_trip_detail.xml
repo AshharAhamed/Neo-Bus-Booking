@@ -1,171 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp"
     tools:context=".ui.passenger.PassengerTripDetail">
 
     <TextView
-        android:id="@+id/currBusNoTxt"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/getInTxt"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394" />
-
-    <TextView
-        android:id="@+id/getOutTxt"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473" />
-
-    <TextView
-        android:id="@+id/ticketPriceTxt"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/bus_no"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/get_in_from"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394" />
-
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/get_down_from"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
-
-    <TextView
-        android:id="@+id/textView25"
-        android:layout_width="60dp"
-        android:layout_height="28dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/ticket_price"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
-
-    <TextView
-        android:id="@+id/textView32"
-        android:layout_width="411dp"
-        android:layout_height="143dp"
-        android:fontFamily="@font/nunito_sans_extrabold"
-        android:gravity="center"
-        android:text="@string/please_tap_out_to_get_out_from_the_bus"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
-
-    <ImageView
-        android:id="@+id/tapOutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/tap_out_btn"
-        android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89"
-        app:srcCompat="@drawable/tap_out_btn" />
-
-    <TextView
         android:id="@+id/busRouteNameTxt"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:layout_gravity="center"
         android:fontFamily="@font/nunito_sans_extrabold"
         android:gravity="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="176dp"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
+        android:layout_gravity="center"
         app:srcCompat="@drawable/on_going_trip_ico" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/bus_no"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/currBusNoTxt"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:fontFamily="@font/nunito_sans"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/get_in_from"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/getInTxt"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:fontFamily="@font/nunito_sans"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/get_down_from"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/getOutTxt"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:fontFamily="@font/nunito_sans"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/ticket_price"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/ticketPriceTxt"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:fontFamily="@font/nunito_sans"
+                android:textSize="18sp" />
+
+        </TableRow>
+    </TableLayout>
+
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:fontFamily="@font/nunito_sans_extrabold"
+        android:gravity="center"
+        android:text="@string/please_tap_out_to_get_out_from_the_bus"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/tapOutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/tap_out_btn"
+        android:onClick="onClick"
+        app:srcCompat="@drawable/tap_out_btn" />
+
+
+</LinearLayout>

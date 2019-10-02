@@ -1,169 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp"
     tools:context=".ui.passenger.PassengerJourneyActivity">
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="305dp"
+        android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_gravity="center"
         android:fontFamily="@font/nunito_sans_extrabold"
         android:text="@string/enter_trip_details"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="130dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/start_station"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.646" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="130dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/end_station"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="130dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/bus_no"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="130dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/next_station"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
-
-    <TextView
-        android:id="@+id/busNoTxt"
-        android:layout_width="230dp"
-        android:layout_height="27dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
-
-    <TextView
-        android:id="@+id/NextStationTxt"
-        android:layout_width="230dp"
-        android:layout_height="27dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
-
-    <ImageView
-        android:id="@+id/confirmBtn"
-        android:layout_width="327dp"
-        android:layout_height="75dp"
-        android:contentDescription="@string/confirm_btn"
-        android:onClick="onClick"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.829"
-        app:srcCompat="@drawable/confirm_btn" />
-
-    <ImageView
-        android:id="@+id/tapBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/tap_in_btn"
-        android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908"
-        app:srcCompat="@drawable/tap_in_btn" />
-
-    <Spinner
-        android:id="@+id/StartStationSpinner"
-        style="@style/spinnerStyle"
-        android:layout_width="235dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645" />
-
-    <Spinner
-        android:id="@+id/EndStationSpinner"
-        style="@style/spinnerStyle"
-        android:layout_width="235dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        android:textSize="36sp" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="126dp"
-        android:layout_height="123dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228"
+        android:layout_width="wrap_content"
+        android:layout_height="122sp"
+        android:layout_gravity="center"
         app:srcCompat="@drawable/trip_icon" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow android:padding="16sp">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="200sp"
+                android:layout_height="27dp"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/bus_no"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/busNoTxt"
+                android:layout_width="200sp"
+                android:layout_height="27dp"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow android:padding="16sp">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="200sp"
+                android:layout_height="27dp"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/next_station"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/NextStationTxt"
+                android:layout_width="200sp"
+                android:layout_height="27dp"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow android:padding="16sp">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="200sp"
+                android:layout_height="27dp"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/start_station"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/StartStationSpinner"
+                style="@style/spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp" />
+        </TableRow>
+
+        <TableRow android:padding="16sp">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="200sp"
+                android:layout_height="27dp"
+                android:layout_weight=".2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/end_station"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/EndStationSpinner"
+                style="@style/spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/confirmBtn"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/confirm_btn"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/confirm_btn" />
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/tapBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/tap_in_btn"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/tap_in_btn" />
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

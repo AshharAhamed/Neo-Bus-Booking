@@ -47,8 +47,8 @@ public class PassengerAccountActivity extends AppCompatActivity {
         call.enqueue(new Callback<PassengerAccountResult>() {
             @Override
             public void onResponse(Call<PassengerAccountResult> call, Response<PassengerAccountResult> response) {
-                passengerAccountCreditBalance.setText(response.body().getCreditBalance());
-                passengerAccountLoanAmount.setText(response.body().getLoanAmount());
+                passengerAccountCreditBalance.setText(String.format("Rs. %s", response.body().getCreditBalance()));
+                passengerAccountLoanAmount.setText(String.format("Rs. %s", response.body().getLoanAmount()));
                 passengerAccountTravelCardNo.setText(response.body().getCardNo());
                 cardList.setAdapter(new CardAdapter(getBaseContext(), response.body().getCardList()));
 
