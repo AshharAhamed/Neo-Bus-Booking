@@ -7,6 +7,7 @@ import com.neo.ticketingapp.common.constants.CommonConstant;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -58,6 +59,7 @@ public class GeneralUtil {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
         try {
+            outputFormat.setTimeZone(TimeZone.getTimeZone("GMT"));outputFormat.calendar
             return outputFormat.format(inputFormat.parse(val));
         } catch (ParseException e) {
             e.printStackTrace();
