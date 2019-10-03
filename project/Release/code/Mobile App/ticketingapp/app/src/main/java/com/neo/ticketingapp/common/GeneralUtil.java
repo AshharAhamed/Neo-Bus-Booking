@@ -59,7 +59,7 @@ public class GeneralUtil {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
         try {
-            outputFormat.setTimeZone(TimeZone.getTimeZone("GMT"));outputFormat.calendar
+            outputFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
             return outputFormat.format(inputFormat.parse(val));
         } catch (ParseException e) {
             e.printStackTrace();
