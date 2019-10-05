@@ -10,6 +10,7 @@ import com.neo.ticketingapp.service.PassengerAccountService;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -62,7 +63,6 @@ public class PassengerAddCardActivity extends AppCompatActivity implements View.
         String cardNumber = cardNumbersEditText.getText().toString();
         String cvcNumber = cvcNumberEditText.getText().toString();
         Card card = new Card(cardNumber, this.getExpiryDate(), cvcNumber);
-        GeneralUtil.toastShort(getExpiryDate(), getApplicationContext()).show();
         PassengerAccountService service = GeneralUtil.getGeneralUtilInstance().getRetroFit().create(PassengerAccountService.class);
         Call<Card> call = service.addCardDetails(card, code);
         call.enqueue(new Callback<Card>() {
@@ -75,15 +75,61 @@ public class PassengerAddCardActivity extends AppCompatActivity implements View.
 
             @Override
             public void onFailure(Call<Card> call, Throwable t) {
-
+                //GeneralUtil.toastShort(t.getMessage(), getApplicationContext()).show();
+                Intent intent = new Intent(getApplicationContext(), PassengerAccountActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    private Boolean isValid() {
+        if (isCardNumberValid(cardNumbersEditText)) {
+            if (isMonthSelected(monthSpinner)) {
+                if (isYearSelected(yearSpinner)) {
+                    if (isCVCValid(cvcNumberEditText)) {
+                        return true;
+                    } else {
+                        GeneralUtil.toastShort("Please enter a valid CVC number !", getApplicationContext()).show();
+                        return false;
+                    }
+                } else {
+                    GeneralUtil.toastShort("Please select card expiry year !", getApplicationContext()).show();
+                    return false;
+                }
+            } else {
+                GeneralUtil.toastShort("Please select card expiry month !", getApplicationContext()).show();
+                return false;
+            }
+        } else {
+            GeneralUtil.toastShort("Please enter a valid card number !", getApplicationContext()).show();
+            return false;
+        }
+    }
+
+    private Boolean isCardNumberValid(EditText text) {
+        return text.getText().length() == 16 && !TextUtils.isEmpty(text.getText().toString());
+    }
+
+    private Boolean isMonthSelected(Spinner spinner) {
+        return !"Month".equals(spinner.getSelectedItem());
+    }
+
+    private Boolean isYearSelected(Spinner spinner) {
+        return !"Year".equals(spinner.getSelectedItem());
+    }
+
+    private Boolean isCVCValid(EditText text) {
+        return text.getText().length() == 3 && !TextUtils.isEmpty(text.getText().toString());
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.AddCardAddCardBtn) {
-            this.AddCard();
+            if (isValid()) {
+                this.AddCard();
+                GeneralUtil.toastShort("Card Details Added Successfully !", getApplicationContext()).show();
+            }
+
         }
     }
 }

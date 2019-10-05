@@ -32,6 +32,7 @@ public class GeneralUtil {
         return generalUtil;
     }
 
+    //This method is to give a short toast message on the bottom of the screen
     public static Toast toastShort(String text, Context baseContext) {
         return Toast.makeText(baseContext, text, Toast.LENGTH_SHORT);
     }
@@ -44,6 +45,7 @@ public class GeneralUtil {
         this.travelCardID = travelCardID;
     }
 
+    //This is to convert the MongoDB Data type to a simple date type
     public static String convertMongoDate(String val) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -55,6 +57,7 @@ public class GeneralUtil {
         return "";
     }
 
+    //This method is to convert into MongoDB Date type
     public static String convertMongoDateTime(String val) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
@@ -67,6 +70,10 @@ public class GeneralUtil {
         }
     }
 
+    /*
+    Retro fit is used to send the REST calls to the Backend API. This method is to build a retofit object
+    from the retro fit builder
+     */
     public Retrofit getRetroFit() {
         return new Retrofit.Builder()
                 .baseUrl(CommonConstant.SERVER_BASE_URL)

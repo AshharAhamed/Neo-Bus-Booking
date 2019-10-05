@@ -253,6 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     android:clickable="true"
+                    android:contentDescription="@string/edit_profile_button"
                     android:onClick="onClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/edit_profile" />
