@@ -49,19 +49,24 @@ public class PassengerDeleteCardActivity extends AppCompatActivity implements Vi
 
     private void DeleteCard() {
         PassengerAccountService service = GeneralUtil.getGeneralUtilInstance().getRetroFit().create(PassengerAccountService.class);
+
         Card card = new Card();
         card.setCardNo(cardNumber.getText().toString());
-        GeneralUtil.toastShort(card.getCardNo() + codeTxt.getText().toString(), getApplicationContext()).show();
+
         Call<StringResponse> call = service.deleteCardDetails(codeTxt.getText().toString(), card.getCardNo());
         call.enqueue(new Callback<StringResponse>() {
             @Override
             public void onResponse(Call<StringResponse> call, Response<StringResponse> response) {
                 GeneralUtil.toastShort("Card Details Updated Successfully !", getApplicationContext()).show();
+                Intent intent = new Intent(getApplicationContext(), PassengerAccountActivity.class);
+                startActivity(intent);
             }
 
             @Override
             public void onFailure(Call<StringResponse> call, Throwable t) {
                 //GeneralUtil.toastShort(t.getMessage(), getApplicationContext()).show();
+                Intent intent = new Intent(getApplicationContext(), PassengerAccountActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -71,8 +76,7 @@ public class PassengerDeleteCardActivity extends AppCompatActivity implements Vi
         if (view.getId() == R.id.DeleteCardDeleteBtn) {
             DeleteCard();
             GeneralUtil.toastShort("Card Details Deleted Successfully !", getApplicationContext()).show();
-            Intent intent = new Intent(getApplicationContext(), PassengerAccountActivity.class);
-            startActivity(intent);
+
         }
     }
 }

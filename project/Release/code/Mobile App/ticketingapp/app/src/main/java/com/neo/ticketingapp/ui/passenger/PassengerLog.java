@@ -126,7 +126,7 @@ public class PassengerLog extends AppCompatActivity implements View.OnClickListe
         document.finishPage(page);
 
         //Write the document Content
-        String targetPdf = "/sdcard/pdffromlayout.pdf";
+        String targetPdf = "/sdcard/pastJourneyLog.pdf";
         File filePath;
 
         filePath = new File(targetPdf);
@@ -149,7 +149,7 @@ public class PassengerLog extends AppCompatActivity implements View.OnClickListe
 
     //This method is to open the generated PDF
     private void openGeneratedPDF() {
-        File file = new File("/sdcard/pdffromlayout.pdf");
+        File file = new File("/sdcard/pastJourneyLog.pdf");
         GeneralUtil.toastShort("This Calls", getApplicationContext()).show();
         if (file.exists()) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
