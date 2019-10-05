@@ -17,7 +17,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ForgotPassword"></activity>
+
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".ui.inspector.ReportRoguePassenger" />
         <activity android:name=".ui.passenger.PassengerDeleteCardActivity" />
         <activity android:name=".ui.passenger.PassengerAddCardActivity" />
         <activity android:name=".SignInActivity" />

@@ -19,12 +19,12 @@ public class InspectorHome extends AppCompatActivity implements View.OnClickList
 
         buttonReport = findViewById(R.id.buttonReport);
 
-        /*buttonReport.setOnClickListener(new View.OnClickListener() {
+        buttonReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(InspectorHome.this, ReportRoguePassenger.class));
             }
-        });*/
+        });
     }
 
     //On Click Listener

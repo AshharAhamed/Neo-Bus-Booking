@@ -1,8 +1,11 @@
 package com.neo.ticketingapp.service;
 
+
+import com.neo.ticketingapp.request.model.RoguePassengerRequest;
 import com.neo.ticketingapp.request.model.StartJourneyRequest;
 import com.neo.ticketingapp.response.model.InspectorPassengerResponse;
 import com.neo.ticketingapp.response.model.Journey;
+import com.neo.ticketingapp.response.model.RoguePassengerResponse;
 import com.neo.ticketingapp.response.model.StartJourneyResult;
 
 import java.util.List;
@@ -36,4 +39,8 @@ public interface JourneyService {
     @Headers("Content-Type: application/json")
     @GET("journeyPassenger/getAllPassengers/{journeyID}")
     Call<List<InspectorPassengerResponse>> getOnGoingPassengers(@Path("journeyID") String journeyID);
+
+    @Headers("Content-Type: application/json")
+    @POST("journeyPassenger/addRoguePassenger")
+    Call<RoguePassengerResponse> addRoguePassenger(@Body RoguePassengerRequest body);
 }
