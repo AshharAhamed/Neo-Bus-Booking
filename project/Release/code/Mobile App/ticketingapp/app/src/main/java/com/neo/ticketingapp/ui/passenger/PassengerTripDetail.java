@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.neo.ticketingapp.R;
@@ -29,6 +30,9 @@ public class PassengerTripDetail extends AppCompatActivity implements View.OnCli
     private String startStation;
     private String endStation;
     private String logID;
+    private ImageView tapOutBtn;
+
+    private int tapOutBtnClickCount;
 
 
     @Override
@@ -56,18 +60,28 @@ public class PassengerTripDetail extends AppCompatActivity implements View.OnCli
         this.getInTxt = findViewById(R.id.getInTxt);
         this.getOutTxt = findViewById(R.id.getOutTxt);
         this.busRouteNameTxt = findViewById(R.id.busRouteNameTxt);
-
+        this.tapOutBtn = findViewById(R.id.tapOutBtn);
         this.currBusNoTxt.setText(journey.getBusNo());
         this.ticketPriceTxt.setText(this.ticketPrice);
         this.getInTxt.setText(this.startStation);
         this.getOutTxt.setText(this.endStation);
         this.busRouteNameTxt.setText(journey.getRouteName());
+
+        this.tapOutBtnClickCount = 0;
+    }
+
+    private void handleTapOutBtnClick() {
+        if (this.tapOutBtnClickCount == 1) {
+            tapOutBtn.setEnabled(false);
+        }
     }
 
     //setting Click Listener
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tapOutBtn) {
+            ++tapOutBtnClickCount;
+            handleTapOutBtnClick();
             JourneyService service = GeneralUtil.getGeneralUtilInstance().getRetroFit().create(JourneyService.class);
             Call<String> call = service.endJourney(this.logID);
             call.enqueue(new Callback<String>() {

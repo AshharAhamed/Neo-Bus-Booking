@@ -35,6 +35,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
     private Spinner startStationSpinner;
     private Spinner endStationSpinner;
     private Retrofit retrofit;
+    private int tapInClickCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,9 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         tapBtn.setVisibility(View.GONE);
         busNoTxt.setText(journey.getBusNo());
         nextStationTxt.setText(journey.getNextStation());
+
+        this.tapInClickCount = 0;
+        tapBtn.setEnabled(true);
     }
 
     //get bus halts on the spinner
@@ -91,7 +95,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         });
     }
 
-    private void startJourney(){
+    private void startJourney() {
         JourneyService service = retrofit.create(JourneyService.class);
 
         Call<StartJourneyResult> call = service.startJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStationSpinner.getSelectedItem().toString(), endStationSpinner.getSelectedItem().toString(), journey.getJourneyID()));
@@ -123,7 +127,7 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         });
     }
 
-    private void confirmJourney(){
+    private void confirmJourney() {
         JourneyService service = retrofit.create(JourneyService.class);
 
         Call<StartJourneyResult> call = service.validateJourney(new StartJourneyRequest(GeneralUtil.getGeneralUtilInstance().getTravelCardID(), startStationSpinner.getSelectedItem().toString(), endStationSpinner.getSelectedItem().toString(), journey.getJourneyID()));
@@ -152,10 +156,18 @@ public class PassengerJourneyActivity extends AppCompatActivity implements View.
         });
     }
 
+    private void handleBtnClickCount() {
+        if (this.tapInClickCount == 1) {
+            tapBtn.setEnabled(false);
+        }
+    }
+
     //setting on click listener
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tapBtn) {
+            ++tapInClickCount;
+            handleBtnClickCount();
             this.startJourney();
         } else if (v.getId() == R.id.confirmBtn) {
             this.confirmJourney();
