@@ -12,9 +12,11 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:fontFamily="@font/nunito_sans_extrabold"
         android:padding="8sp"
         android:text="@string/on_going_journeys"
+        android:textAlignment="center"
         android:textSize="36sp" />
 
     <ImageView
