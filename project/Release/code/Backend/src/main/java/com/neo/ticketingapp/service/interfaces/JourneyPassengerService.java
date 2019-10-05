@@ -1,6 +1,8 @@
 package com.neo.ticketingapp.service.interfaces;
 
 import com.neo.ticketingapp.model.JourneyPassenger;
+import com.neo.ticketingapp.model.RoguePassenger;
+
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
@@ -15,4 +17,6 @@ public interface JourneyPassengerService {
     JSONObject getAllCurrentJourneysWithDetail();
     void deleteJourneyPassenger(String journeyID) throws IllegalAccessException;
     List<HashMap> getJourneyPassengers(String journeyID) throws IllegalAccessException;
+     String insertRoguePassenger(RoguePassenger rogue);
+	List<RoguePassenger> getAllCurrentRogueJourneys();
 }
