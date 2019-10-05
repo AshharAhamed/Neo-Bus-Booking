@@ -60,6 +60,11 @@
     <string name="forward_slash">/</string>
     <string name="manage_card">Manage Card</string>
     <string name="edit_profile_button">Edit Profile Button</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="pwd_recovery_note">Dear Customer,\n  If you have forgotten the password we can help you. There\'s nothing to worry !   Please enter your Code below and credentials will be sent to your email.</string>
+    <string name="your_code">Your Code</string>
+    <string name="recovering">Recovering ...</string>
+    <string name="please_wait_while_we_are_setting_up">Please wait while we are setting up</string>
 
     <string-array name="months">
         <item>Month</item>
