@@ -11,6 +11,7 @@ public interface PassengerService {
 
     String insertPassenger(Passenger passenger) throws IllegalAccessException;
     String updatePassengerDetails(Passenger passenger) throws IllegalAccessException;
+    String updatePassengerProfileDetails(Passenger passenger);
     String deletePassenger(String username) throws IllegalAccessException;
     Passenger logUser(String username, String password) throws IllegalAccessException;
     List<Passenger> getAllPassengers(String userType);

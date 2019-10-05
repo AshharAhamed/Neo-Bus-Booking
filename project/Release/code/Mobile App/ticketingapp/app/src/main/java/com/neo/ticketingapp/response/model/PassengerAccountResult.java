@@ -19,6 +19,38 @@ public class PassengerAccountResult {
     private List<Card> cardList;
     private String loan;
 
+    public PassengerAccountResult() {
+    }
+
+    public PassengerAccountResult(String accountId, String firstName, String lastName, String email, String contact, String type, String nic, String cardNo) {
+        this.accountId = accountId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.contact = contact;
+        //this.dob = dob;
+        this.type = type;
+        this.nic = nic;
+        this.cardNo = cardNo;
+    }
+
+
+    public PassengerAccountResult(String accountId, String firstName, String lastName, String email, String contact, String dob, String type, String nic, String passport, String cardNo, String creditBalance, String loanAmount, List<Card> cardList, String loan) {
+        this.accountId = accountId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.contact = contact;
+        this.dob = dob;
+        this.type = type;
+        this.nic = nic;
+        this.passport = passport;
+        this.cardNo = cardNo;
+        this.creditBalance = creditBalance;
+        this.loanAmount = loanAmount;
+        this.cardList = cardList;
+        this.loan = loan;
+    }
 
     public String getAccountId() {
         return accountId;

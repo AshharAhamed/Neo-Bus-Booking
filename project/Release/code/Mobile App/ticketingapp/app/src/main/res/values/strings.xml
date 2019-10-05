@@ -1,8 +1,8 @@
 <resources>
-<!--    App Name-->
+    <!--    App Name-->
     <string name="app_name">Neo Bus</string>
 
-<!--    Text Labels-->
+    <!--    Text Labels-->
     <string name="sign_in">Sign In</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -22,6 +22,7 @@
     <string name="my_profile">My Profile</string>
     <string name="account_id">Account ID</string>
     <string name="on_going_journeys">On Going Journeys</string>
+    <string name="report_rogue_passenger">Report Rogue Passenger</string>
     <string name="past_trips">Past Trips</string>
     <string name="enter_trip_details">Enter Trip Details</string>
     <string name="start_station">Start Station</string>
@@ -51,6 +52,41 @@
     <!--    Logo Descriptions-->
     <string name="neo_bus_logo">Neo Bus Logo</string>
     <string name="edit_details">Edit Details</string>
+    <string name="code">Code</string>
+    <string name="add_card">Add Card</string>
+    <string name="card_number">Card Number</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="cvc">CVC</string>
+    <string name="forward_slash">/</string>
+    <string name="manage_card">Manage Card</string>
 
+    <string-array name="months">
+        <item>Month</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+
+    </string-array>
+
+    <string-array name="years">
+        <item>Year</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+    </string-array>
 
 </resources>

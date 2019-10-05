@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginTop="22sp"
-                android:layout_weight=".7"
+                android:layout_weight=".5"
                 android:fontFamily="@font/nunito_sans_extrabold"
                 android:text="@string/my_account"
                 android:textSize="36sp" />
@@ -28,8 +28,9 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="108dp"
-                android:layout_height="117dp"
-                android:layout_weight=".1"
+                android:layout_height="117sp"
+                android:layout_weight=".5"
+                android:maxWidth="108sp"
                 app:srcCompat="@drawable/my_account_icon" />
         </TableRow>
 
@@ -37,18 +38,17 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_weight=".4"
+                android:layout_weight=".5"
                 android:fontFamily="@font/nunito_sans"
                 android:text="@string/travel_card_no"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/PassengerAccountTravelCardNo"
-                android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_weight=".6"
+                android:layout_weight=".5"
+                android:width="200sp"
                 android:textSize="18sp" />
         </TableRow>
 
@@ -58,16 +58,16 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_weight=".4"
+                android:layout_weight=".5"
                 android:fontFamily="@font/nunito_sans"
                 android:text="@string/credit_balance"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/PassengerAccountCreditBalance"
-                android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_weight=".6"
+                android:layout_weight=".5"
+                android:width="200sp"
                 android:textSize="18sp" />
 
         </TableRow>
@@ -76,29 +76,45 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_weight=".4"
+                android:layout_weight=".5"
                 android:fontFamily="@font/nunito_sans"
                 android:text="@string/loan_amount"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/PassengerAccountLoanAmount"
-                android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_weight=".6"
+                android:layout_weight=".5"
+                android:width="200sp"
                 android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center"
+            android:paddingTop="16sp"
+            android:paddingBottom="16sp">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="64sp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/credit_card_ico" />
         </TableRow>
 
     </TableLayout>
 
+
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="64dp"
-        android:layout_height="118dp"
-        android:layout_marginLeft="16sp"
-        app:srcCompat="@drawable/credit_card_ico" />
+        android:id="@+id/AddCardBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:scaleType="fitXY"
+        android:src="@drawable/add_card" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -113,6 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PassengerAccountLoanAmount">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -135,19 +152,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="300sp"
+            android:orientation="vertical">
+
 
             <ListView
                 android:id="@+id/CardList"
-                android:layout_width="356dp"
-                android:layout_height="234dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp" />
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

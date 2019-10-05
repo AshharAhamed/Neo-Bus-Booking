@@ -3,8 +3,10 @@ package com.neo.ticketingapp.service.implementation;
 import com.neo.ticketingapp.model.Journey;
 import com.neo.ticketingapp.model.JourneyPassenger;
 import com.neo.ticketingapp.model.Passenger;
+import com.neo.ticketingapp.model.RoguePassenger;
 import com.neo.ticketingapp.model.Route;
 import com.neo.ticketingapp.repository.JourneyPassengerRepository;
+import com.neo.ticketingapp.repository.RoguePassengerRepository;
 import com.neo.ticketingapp.service.interfaces.JourneyPassengerService;
 import com.neo.ticketingapp.service.interfaces.JourneyService;
 import com.neo.ticketingapp.service.interfaces.PassengerService;
@@ -26,6 +28,9 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
 
     @Autowired
     private JourneyPassengerRepository journeyPassengerRepository;
+    
+    @Autowired
+    private RoguePassengerRepository roguePassengerRepository;
 
     @Autowired
     private JourneyService journeyService;
@@ -136,5 +141,19 @@ public class JourneyPassengerServiceImpl implements JourneyPassengerService {
             activePassengerList.add(tempMap);
         }
         return activePassengerList;
+    }
+
+	@Override
+	public String insertRoguePassenger(RoguePassenger rogue) {
+		// TODO Auto-generated method stub
+		
+		roguePassengerRepository.insert(rogue);
+            return "true";
+       
+	}
+	
+	@Override
+    public List<RoguePassenger> getAllCurrentRogueJourneys() {
+        return roguePassengerRepository.findAll();
     }
 }
