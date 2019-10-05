@@ -317,7 +317,6 @@ public class PassengerServiceImpl implements PassengerService {
 			throws IllegalAccessException, ParseException {
 		JSONObject jsonObject = new JSONObject();
 		Passenger passenger = getPassengerByCardNo(travelCardID);
-		passengerRepository.save(passenger);
 		journeyPassengerService.addPassenger(journeyID, travelCardID);
 
 		DateFormat dateFormat = new SimpleDateFormat(TIME_PATTERN);
@@ -331,6 +330,8 @@ public class PassengerServiceImpl implements PassengerService {
 		Journey journey = journeyService.getJourneyByJourneyID(journeyID);
 		Route route = routeService.getRouteByRouteID(journey.getRouteID());
 		double ticketPrice = calculateTicketPrice(route.getBusHalts(), startStation, endStation);
+		passenger.setCreditBalance(passenger.getCreditBalance() - ticketPrice);
+		passengerRepository.save(passenger);
 
 		passengerLog.setTicketPrice(ticketPrice);
 		passengerLog.setStartStation(startStation);
