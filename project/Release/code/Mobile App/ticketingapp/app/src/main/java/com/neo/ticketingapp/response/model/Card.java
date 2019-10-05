@@ -1,10 +1,21 @@
 package com.neo.ticketingapp.response.model;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     private String cardId;
     private String cardNo;
     private String expiryDate;
     private String ccNo;
+
+    public Card() {
+    }
+
+    public Card(String cardNo, String expiryDate, String ccNo) {
+        this.cardNo = cardNo;
+        this.expiryDate = expiryDate;
+        this.ccNo = ccNo;
+    }
 
     public String getCardId() {
         return cardId;

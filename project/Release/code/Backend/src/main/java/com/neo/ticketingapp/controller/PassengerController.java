@@ -50,6 +50,21 @@ public class PassengerController {
         }
         return new ResponseEntity<>(EMPTY_USER_OBJECT, HttpStatus.NO_CONTENT);
     }
+    
+    @PutMapping(value = "/profile/update")
+    public ResponseEntity<String> updatePassengerProfileDetails(@RequestBody Passenger passenger) {
+        logger.debug("Request received to update profile details");
+        try {
+            if (passenger != null) {
+                return new ResponseEntity<>(passengerService.updatePassengerProfileDetails(passenger), HttpStatus.OK);
+            }
+        } catch (IllegalArgumentException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(EMPTY_USER_OBJECT, HttpStatus.NO_CONTENT);
+    }
+    
+    
 
     @DeleteMapping(value = "/delete/{cardID}")
     public ResponseEntity<String> deletePassenger(@PathVariable String cardID) {
