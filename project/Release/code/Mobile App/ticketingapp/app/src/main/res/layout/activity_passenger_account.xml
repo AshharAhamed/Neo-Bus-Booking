@@ -1,106 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp"
     tools:context=".ui.passenger.PassengerAccountActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="150dp"
-        android:layout_height="28dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/loan_amount"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="150dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/travel_card_no"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="150dp"
-        android:layout_height="26dp"
-        android:fontFamily="@font/nunito_sans"
-        android:text="@string/credit_balance"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34" />
+        <TableRow>
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="236dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/nunito_sans_extrabold"
-        android:text="@string/my_account"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginTop="22sp"
+                android:layout_weight=".7"
+                android:fontFamily="@font/nunito_sans_extrabold"
+                android:text="@string/my_account"
+                android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/PassengerAccountCreditBalance"
-        android:layout_width="206dp"
-        android:layout_height="27dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="108dp"
+                android:layout_height="117dp"
+                android:layout_weight=".1"
+                app:srcCompat="@drawable/my_account_icon" />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/PassengerAccountLoanAmount"
-        android:layout_width="206dp"
-        android:layout_height="27dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.417" />
+        <TableRow>
 
-    <TextView
-        android:id="@+id/PassengerAccountTravelCardNo"
-        android:layout_width="206dp"
-        android:layout_height="27dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".4"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/travel_card_no"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/PassengerAccountTravelCardNo"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".6"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".4"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/credit_balance"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/PassengerAccountCreditBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".6"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".4"
+                android:fontFamily="@font/nunito_sans"
+                android:text="@string/loan_amount"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/PassengerAccountLoanAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".6"
+                android:textSize="18sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="64dp"
+        android:layout_height="118dp"
+        android:layout_marginLeft="16sp"
+        app:srcCompat="@drawable/credit_card_ico" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -152,28 +150,4 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="108dp"
-        android:layout_height="117dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078"
-        app:srcCompat="@drawable/my_account_icon" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="64dp"
-        android:layout_height="118dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/credit_card_ico" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
