@@ -61,6 +61,7 @@ public class PassengerLog extends AppCompatActivity implements View.OnClickListe
         this.passengerLogLinearLayout = findViewById(R.id.PassengerLogLinearLayout);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+
     }
 
     //render Passenger past journeys
@@ -99,6 +100,7 @@ public class PassengerLog extends AppCompatActivity implements View.OnClickListe
         return b;
     }
 
+    //This method is to create the PDF from the LinearLayout
     private void createPdf() {
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -145,6 +147,7 @@ public class PassengerLog extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //This method is to open the generated PDF
     private void openGeneratedPDF() {
         File file = new File("/sdcard/pdffromlayout.pdf");
         GeneralUtil.toastShort("This Calls", getApplicationContext()).show();

@@ -75,7 +75,7 @@ public class SignInActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void closeDialog(){
+    private void closeDialog() {
         alertDialog.hide();
     }
 
@@ -87,14 +87,18 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 closeDialog();
-                if (response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Local") || (response.body().getType().equals("Foreign")))) {
-                    GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
-                    startActivity(new Intent(SignInActivity.this, PassengerHome.class));
-                } else if (response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Inspector"))) {
-                    GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
-                    startActivity(new Intent(SignInActivity.this, InspectorHome.class));
+                if (response.body() != null) {
+                    if (response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Local") || (response.body().getType().equals("Foreign")))) {
+                        GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
+                        startActivity(new Intent(SignInActivity.this, PassengerHome.class));
+                    } else if (response.body().getLoginFlag().equals("true") && (response.body().getType().equals("Inspector"))) {
+                        GeneralUtil.getGeneralUtilInstance().setTravelCardID(response.body().getUsername());
+                        startActivity(new Intent(SignInActivity.this, InspectorHome.class));
+                    } else {
+                        GeneralUtil.toastShort("Invalid Username or Password", getBaseContext()).show();
+                    }
                 } else {
-                    GeneralUtil.toastShort("Invalid Username or Password", getBaseContext()).show();
+                    GeneralUtil.toastShort("Please Check your internet Connection !", getApplicationContext()).show();
                 }
             }
 
