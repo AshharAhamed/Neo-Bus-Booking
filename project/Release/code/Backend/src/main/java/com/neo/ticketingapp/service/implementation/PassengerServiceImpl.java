@@ -12,10 +12,23 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 @Service
 public class PassengerServiceImpl implements PassengerService {
@@ -356,6 +369,47 @@ public class PassengerServiceImpl implements PassengerService {
 		journeyPassengerService.removePassenger(passengerLogService.getLogByLogID(logID).getJourneyID(),
 				passengerLogService.getLogByLogID(logID).getTravelCardID());
 		return CommonConstants.SUCCESS;
+	}
+
+	@Override
+	public void sendEmail(String code) throws AddressException, MessagingException, IOException {
+		Passenger passenger = getPassengerByCardNo(code);
+		if (passenger != null) {
+			String email = passenger.getEmail();
+			String pwd = passenger.getNic();
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.put("mail.smtp.port", "587");
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("neoticketingsl@gmail.com", "5Aneo@#123");
+				}
+			});
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress("neoticketingsl@gmail.com", false));
+
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+			msg.setSubject("Password Recovery Request in NEO Ticketing ");
+			String content = "Dear Sir/ Madam,<br/> This email is sent to because you have requested to recover the password of the NEO BUS App. So, You can find the Recovered Password in this email and if you didn't request the mail Please ignore this email.<br/><b> Your Password : "
+					+ pwd + "</b><br/>Thanks and Regards<br/> <b>NEO Team</b> ";
+			msg.setContent(content, "text/html");
+			msg.setSentDate(new Date());
+
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+			messageBodyPart.setContent(content, "text/html");
+
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messageBodyPart);
+			MimeBodyPart attachPart = new MimeBodyPart();
+
+			// attachPart.attachFile("/images/neo_bus_launcher.png");
+			// multipart.addBodyPart(attachPart);
+			msg.setContent(multipart);
+			Transport.send(msg);
+		}
 	}
 
 	private double calculateTicketPrice(List<String> busHaltList, String startStation, String endStation) {
