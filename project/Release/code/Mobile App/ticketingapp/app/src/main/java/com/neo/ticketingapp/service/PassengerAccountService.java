@@ -38,4 +38,8 @@ public interface PassengerAccountService {
     @Headers("Content-Type: application/json")
     @DELETE("passenger/deleteCard/{code}/{cardNo}")
     Call<StringResponse> deleteCardDetails(@Path("code") String code, @Path("cardNo") String cardNo);
+
+    @Headers("Content-Type: application/json")
+    @GET("passenger/recoverPwd/{code}")
+    Call<StringResponse> requestRecoverPwd(@Path("code") String code);
 }

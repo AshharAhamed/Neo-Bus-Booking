@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.neo.ticketingapp.common.GeneralUtil;
@@ -26,6 +27,7 @@ import retrofit2.Response;
 public class SignInActivity extends AppCompatActivity {
 
     private AlertDialog alertDialog;
+    private TextView forgottenPwdBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,15 @@ public class SignInActivity extends AppCompatActivity {
         final EditText loginUserName = findViewById(R.id.loginUsernameTxt);
         final EditText loginPwd = findViewById(R.id.loginPasswordTxt);
         final ImageView loginBtn = findViewById(R.id.loginBtn);
+        forgottenPwdBtn = findViewById(R.id.ForgottenPwdBtn);
+
+        forgottenPwdBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
