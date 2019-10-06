@@ -4,8 +4,8 @@ import axios from 'axios'
 export default class APIService {
 
     constructor() {
-        this.baseUrl = "http://localhost:8080/";
-        // this.baseUrl = "https://neo-bus-backend.herokuapp.com/";
+        // this.baseUrl = "http://localhost:8080/";
+        this.baseUrl = "https://neo-bus-backend.herokuapp.com/";
         this.userService = new UserService();
     }
 
