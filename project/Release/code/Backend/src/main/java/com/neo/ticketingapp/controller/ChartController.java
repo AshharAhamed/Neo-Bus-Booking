@@ -24,7 +24,7 @@ import com.neo.ticketingapp.service.implementation.ChartServiceImpl;
 import com.neo.ticketingapp.service.interfaces.CardService;
 import com.neo.ticketingapp.service.interfaces.IChartService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://neo-bus-frontend.herokuapp.com"})
 @RestController
 @RequestMapping("/chart")
 public class ChartController {

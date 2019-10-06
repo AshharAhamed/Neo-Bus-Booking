@@ -65,20 +65,6 @@ export default class APIService {
         });
     }
 
-    getLocal(url) {
-        return new Promise((resolve, reject) => {
-            axios.get(this.baseUrlLocal + url).then(response => {
-                if (response.data.message === "TokenExpiredError") {
-                    alert("Session Timeout Please Login Again !");
-                    this.userService.logout();
-                }
-                resolve(response);
-            }).catch(err => {
-                resolve(err);
-            });
-        });
-    }
-
     delete(url) {
         return new Promise((resolve, reject) => {
             axios.delete(this.baseUrl + url).then(response => {

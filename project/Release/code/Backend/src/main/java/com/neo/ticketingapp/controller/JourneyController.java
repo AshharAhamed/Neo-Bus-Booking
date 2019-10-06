@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://neo-bus-frontend.herokuapp.com"})
 @RestController
 @RequestMapping("/journey")
 public class JourneyController {

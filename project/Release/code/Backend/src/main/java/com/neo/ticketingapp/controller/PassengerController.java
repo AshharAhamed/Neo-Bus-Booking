@@ -19,7 +19,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://neo-bus-frontend.herokuapp.com"})
 @RestController
 @RequestMapping("/passenger")
 public class PassengerController {
