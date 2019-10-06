@@ -4,6 +4,7 @@ import axios from 'axios'
 export default class APIService {
 
     constructor() {
+        this.baseUrlLocal = "http://localhost:8080/";
         this.baseUrl = "http://localhost:8080/";
         // this.baseUrl = "https://neo-bus-backend.herokuapp.com/";
         this.userService = new UserService();
@@ -54,6 +55,20 @@ export default class APIService {
     get(url) {
         return new Promise((resolve, reject) => {
             axios.get(this.baseUrl + url).then(response => {
+                if (response.data.message === "TokenExpiredError") {
+                    alert("Session Timeout Please Login Again !");
+                    this.userService.logout();
+                }
+                resolve(response);
+            }).catch(err => {
+                resolve(err);
+            });
+        });
+    }
+    
+    getLocal(url) {
+        return new Promise((resolve, reject) => {
+            axios.get(this.baseUrlLocal + url).then(response => {
                 if (response.data.message === "TokenExpiredError") {
                     alert("Session Timeout Please Login Again !");
                     this.userService.logout();
