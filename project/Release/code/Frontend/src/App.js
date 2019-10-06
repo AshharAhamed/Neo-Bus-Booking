@@ -19,6 +19,9 @@ import AddJourney from "./component/manager/AddJourney";
 import TopUp from './component/manager/TopUp'
 import RecoverTravelCard from "./component/manager/RecoverTravelCard";
 import ManageRoutes from "./component/manager/ManageRoutes";
+import FinanceReports from "./component/manager/statistics/finance/FinanceReports";
+import NetworkReports from "./component/manager/statistics/network/NetworkReports";
+import FraudReports from "./component/manager/statistics/fraud/FraudReports";
 
 import InspectorHome from "./component/inspector/Home";
 
@@ -48,7 +51,11 @@ class App extends Component {
             <Route exact path="/addPassenger" component={AddPassenger} />
             <Route exact path="/addRoute" component={AddRoute} />
             <Route exact path="/addJourney" component={AddJourney} />
-
+      
+            <Route exact path="/networkReports" component={NetworkReports} />
+            <Route exact path="/financeReports" component={FinanceReports} />
+            <Route exact path="/fraudReports" component={FraudReports} />
+      
             <Route exact path="/topUpPassenger" component={TopUp} />
             <Route exact path="/recoverCard" component={RecoverTravelCard} />
 
