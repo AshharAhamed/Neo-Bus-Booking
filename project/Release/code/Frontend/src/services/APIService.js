@@ -4,9 +4,8 @@ import axios from 'axios'
 export default class APIService {
 
     constructor() {
-        this.baseUrlLocal = "http://localhost:8080/";
-        this.baseUrl = "http://localhost:8080/";
-        // this.baseUrl = "https://neo-bus-backend.herokuapp.com/";
+        // this.baseUrl = "http://localhost:8080/";
+        this.baseUrl = "https://neo-bus-backend.herokuapp.com/";
         this.userService = new UserService();
     }
 
@@ -65,7 +64,7 @@ export default class APIService {
             });
         });
     }
-    
+
     getLocal(url) {
         return new Promise((resolve, reject) => {
             axios.get(this.baseUrlLocal + url).then(response => {

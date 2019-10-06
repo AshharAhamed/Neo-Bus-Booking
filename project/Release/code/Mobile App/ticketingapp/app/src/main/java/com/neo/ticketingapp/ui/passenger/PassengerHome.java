@@ -12,7 +12,7 @@ import com.neo.ticketingapp.SignInActivity;
 
 public class PassengerHome extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String WEB_URL = "https://www.google.lk/";
+    private static final String WEB_URL = "https://neo-bus-frontend.herokuapp.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
