@@ -40,9 +40,20 @@ export default class NavigationBar extends Component {
                                 <Link className="nav-link" to="/manageRoutes">Manage Routes</Link>
                             </li>
 
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">Analyze Statistical Data</Link>
-                            </li>
+                            <div className="row top-buffer">
+                                <div className="col">
+                                    <div className="dropdown">
+                                        <Link className="nav-link dropdown-toggle" to="#" data-toggle="dropdown">
+                                            Statistics
+                                        </Link>
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <Link className="dropdown-item" to="/networkReports">Network</Link>
+                                            <Link className="dropdown-item" to="/financeReports">Financial</Link>
+                                            <Link className="dropdown-item" to="/fraudReports">Frauds</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div className="row top-buffer">
                                 <div className="col">
