@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/itemOne"
+        android:title="My Account"
+        android:icon="@drawable/account_balance"/>
+
+    <item android:id="@+id/itemTwo"
+        android:title="Past Journeys"
+        android:icon="@drawable/history"/>
+
+    <item android:id="@+id/itemThree"
+        android:title="My Profile"
+        android:icon="@drawable/personal_profile"/>
+
+    <item android:id="@+id/itemFour"
+        android:title="On Going Journeys"
+        android:icon="@drawable/commute"/>
+
+    <item android:id="@+id/itemFive"
+        android:title="Accessibility"
+        android:icon="@drawable/accessibility"/>
+
+    <item android:id="@+id/itemSix"
+        android:title="Contact Us"
+        android:icon="@drawable/telephone"/>
+
+    <item android:id="@+id/itemSeven"
+        android:title="Logout"
+        android:icon="@drawable/logout"/>
+
+</menu>
