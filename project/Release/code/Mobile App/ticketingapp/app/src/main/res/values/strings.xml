@@ -66,6 +66,9 @@
     <string name="recovering">Recovering ...</string>
     <string name="please_wait_while_we_are_setting_up">Please wait while we are setting up</string>
 
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
     <string-array name="months">
         <item>Month</item>
         <item>01</item>
