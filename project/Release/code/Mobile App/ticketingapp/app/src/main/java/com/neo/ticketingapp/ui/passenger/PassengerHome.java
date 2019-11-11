@@ -10,7 +10,7 @@ import android.view.View;
 import com.neo.ticketingapp.R;
 import com.neo.ticketingapp.SignInActivity;
 
-public class PassengerHome extends AppCompatActivity implements View.OnClickListener {
+public class PassengerHome extends AppCompatActivity implements View.OnClickListener  {
 
     private static final String WEB_URL = "https://neo-bus-frontend.herokuapp.com/";
 
