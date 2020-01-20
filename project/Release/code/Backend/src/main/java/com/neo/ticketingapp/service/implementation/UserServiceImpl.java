@@ -139,10 +139,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers(String userType) {
         if (userType.equals("All"))
             return userRepository.findAll();
-        else if (UserType.Inspector.toString().equals(userType))
-            return userRepository.findByType(UserType.Inspector);
-        else if (UserType.Manager.toString().equals(userType))
-            return userRepository.findByType(UserType.Manager);
+        else if (UserType.INSPECTOR.toString().equals(userType))
+            return userRepository.findByType(UserType.INSPECTOR);
+        else if (UserType.MANAGER.toString().equals(userType))
+            return userRepository.findByType(UserType.MANAGER);
         return new ArrayList<>();
     }
 }

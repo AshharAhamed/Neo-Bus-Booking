@@ -20,7 +20,7 @@ public class FraudGrowthOverTheYears extends GrowthChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_FraudGrowth;
+		return CommonConstants.CHART_NAME_FRAUD_GROWTH;
 	}
 
 	@Override

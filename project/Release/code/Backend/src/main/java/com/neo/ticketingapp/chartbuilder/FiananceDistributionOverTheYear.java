@@ -29,7 +29,7 @@ public class FiananceDistributionOverTheYear extends BarStatChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_FinanceOverYear;
+		return CommonConstants.CHART_NAME_FINANCE_OVER_YEAR;
 	}
 
 	@Override

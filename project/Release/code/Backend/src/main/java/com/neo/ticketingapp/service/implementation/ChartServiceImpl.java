@@ -13,7 +13,7 @@ public class ChartServiceImpl implements IChartService{
 	@Override
 	public JSONObject getChartData(String type) {
 		JSONObject charDataJSON = new JSONObject();
-		Chart tempChart = cb.buildChart(type);; 
+		Chart tempChart = cb.buildChart(type);
 
 		// Load JSON
 		charDataJSON.put("type", tempChart.getChartType()) ;

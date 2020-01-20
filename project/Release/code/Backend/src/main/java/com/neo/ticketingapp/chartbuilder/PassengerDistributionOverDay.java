@@ -14,7 +14,7 @@ public class PassengerDistributionOverDay extends BarStatChart{
 	@Override
 	public float[] getDataArr() {
 
-		float [] passengerDistribution = {1, 5, 34, 90, 67, 87, 71, 24}; ; 
+		float [] passengerDistribution = {1, 5, 34, 90, 67, 87, 71, 24};
 		
 		// Do the implementation here
 		
@@ -29,7 +29,7 @@ public class PassengerDistributionOverDay extends BarStatChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_LoadOverDay;
+		return CommonConstants.CHART_NAME_LOAD_OVER_DAY;
 	}
 
 	@Override

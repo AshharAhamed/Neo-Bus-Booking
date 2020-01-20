@@ -57,9 +57,9 @@ public class TravelCardServiceImpl implements TravelCardService {
 
     @Override
     public List<TravelCard> getAllTravelCards(String activeStatus) {
-        if (activeStatus.equals(BooleanType.True.toString())) {
+        if (activeStatus.equals(BooleanType.TRUE.toString())) {
             return travelCardRepository.findByActive(true);
-        } else if (activeStatus.equals(BooleanType.False.toString())) {
+        } else if (activeStatus.equals(BooleanType.FALSE.toString())) {
             return travelCardRepository.findByActive(false);
         } else {
             return travelCardRepository.findAll();

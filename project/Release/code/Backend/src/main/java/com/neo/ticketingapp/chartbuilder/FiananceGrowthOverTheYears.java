@@ -20,7 +20,7 @@ public class FiananceGrowthOverTheYears extends GrowthChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_FinanceGrowth;
+		return CommonConstants.CHART_NAME_FINANCE_GROWTH;
 	}
 
 	@Override

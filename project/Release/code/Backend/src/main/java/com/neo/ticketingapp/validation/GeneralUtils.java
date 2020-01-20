@@ -86,7 +86,7 @@ public class GeneralUtils {
             return "Card is Invalid !";
     }
 
-    public String isUsername(String userName) {
+    public String isUsername() {
         return VALID;
     }
 }

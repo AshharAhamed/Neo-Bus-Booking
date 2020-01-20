@@ -36,7 +36,7 @@ public class FaresOverTheYear extends TableChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_AllFinanceTable;
+		return CommonConstants.CHART_NAME_ALL_FINANCE_TABLE;
 	}
 
 }

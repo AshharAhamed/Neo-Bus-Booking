@@ -6,7 +6,7 @@ public class TableChartType implements IChartType{
 
 	@Override
 	public String chartType() {
-		return CommonConstants.TABLECHART;
+		return CommonConstants.TABLE_CHART;
 	}
 
 }

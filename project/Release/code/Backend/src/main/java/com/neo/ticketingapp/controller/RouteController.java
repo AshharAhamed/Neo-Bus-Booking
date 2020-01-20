@@ -48,7 +48,7 @@ public class RouteController {
     }
 
     @GetMapping(value = "/getBusHalts/{routeID}")
-    public List<String> getBusHalts( @PathVariable String routeID) {
+    public List<String> getBusHalts(@PathVariable String routeID) {
         logger.debug("Request received to get all Route Names");
         return routeService.getAllBusStands(routeID);
     }

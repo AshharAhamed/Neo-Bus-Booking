@@ -19,24 +19,25 @@ import java.util.List;
 public class JourneyPassengerController {
 
     private static final Logger logger = LogManager.getLogger(JourneyPassengerController.class);
+    public static final String REQUEST_RECEIVED_TO_GET_ALL_SERVICE_USERS = "Request received to get all Service users";
 
     @Autowired
     private JourneyPassengerService journeyPassengerService;
 
     @GetMapping(value = "/getAll")
     public JSONObject getJourneyWithDetails() {
-        logger.debug("Request received to get all Service users");
+        logger.debug(REQUEST_RECEIVED_TO_GET_ALL_SERVICE_USERS);
         return journeyPassengerService.getAllCurrentJourneysWithDetail();
     }
 
     @GetMapping(value = "/getAllPassengers/{journeyID}")
     public List<HashMap> getJourneyPassengers(@PathVariable String journeyID) throws IllegalAccessException {
-        logger.debug("Request received to get all Service users");
+        logger.debug(REQUEST_RECEIVED_TO_GET_ALL_SERVICE_USERS);
         return journeyPassengerService.getJourneyPassengers(journeyID);
     }
-    
+
     @CrossOrigin(origins = "*")
-     @PostMapping(value = "/addRooguePassenger")
+    @PostMapping(value = "/addRooguePassenger")
     public ResponseEntity<String> addRoguePassenger(@RequestBody RoguePassenger roguePassenger) {
         logger.debug("Request received to add a Rogue Passenger to the system");
         try {
@@ -48,11 +49,11 @@ public class JourneyPassengerController {
         }
         return new ResponseEntity<>("User Object is Empty", HttpStatus.NO_CONTENT);
     }
-     
-     @GetMapping(value = "/getAllRoguePassengers")
-     public List getJourneyRoguePassengers() throws IllegalAccessException {
-         logger.debug("Request received to get all Service users");
-         return journeyPassengerService.getAllCurrentRogueJourneys();
-     }
-     
+
+    @GetMapping(value = "/getAllRoguePassengers")
+    public List getJourneyRoguePassengers() throws IllegalAccessException {
+        logger.debug(REQUEST_RECEIVED_TO_GET_ALL_SERVICE_USERS);
+        return journeyPassengerService.getAllCurrentRogueJourneys();
+    }
+
 }

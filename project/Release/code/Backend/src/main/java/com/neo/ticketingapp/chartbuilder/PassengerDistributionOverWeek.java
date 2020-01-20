@@ -20,7 +20,7 @@ public class PassengerDistributionOverWeek extends BarStatChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_LoadOverWeek;
+		return CommonConstants.CHART_NAME_LOAD_OVER_WEEK;
 	}
 
 	@Override

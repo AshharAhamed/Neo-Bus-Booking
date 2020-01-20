@@ -28,7 +28,7 @@ public class FinesDistrubutionOverTheYear extends BarStatChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_FinesOverYear;
+		return CommonConstants.CHART_NAME_FINES_OVER_YEAR;
 	}
 
 	@Override

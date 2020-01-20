@@ -36,7 +36,7 @@ public class FinesOverTheYear extends TableChart{
 
 	@Override
 	public String getChartName() {
-		return CommonConstants.CHARTNAME_AllFinesTable;
+		return CommonConstants.CHART_NAME_ALL_FINES_TABLE;
 	}
 
 }

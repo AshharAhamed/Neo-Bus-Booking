@@ -6,7 +6,7 @@ public class LineChartType implements IChartType{
 
 	@Override
 	public String chartType() {
-		return CommonConstants.LINECHART;
+		return CommonConstants.LINE_CHART;
 	}
 
 }
