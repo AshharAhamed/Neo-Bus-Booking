@@ -1,7 +1,7 @@
 # CSSE-Project
 This repo was created for CSSE Module in campus studies
 
-This project was made in 3rd Year 3rd Semester.
+This project was made in 3rd Year 2nd Semester.
 In this project a web application , mobile application, and a backend is implemeted.
 
 Members Involved
@@ -35,7 +35,7 @@ Make sure you have active internet connection.
 Android - on emulator
 No issue, should connect to backend 
 
-MongoDB is already hosted to cloud so, you don’t have to run MongoDB local instance
+MongoDB is already hosted to cloud so, you donâ€™t have to run MongoDB local instance
 
 User Records - 
 Admin - admin , admin123#
